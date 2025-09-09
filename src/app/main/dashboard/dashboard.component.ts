@@ -679,7 +679,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.sseSub = this.sseService
-      .getServerSentEvent('http://10.150.6.15:4060/api/utility/ccas_dashboard')
+      .getServerSentEvent()
       .pipe(debounceTime(100)) // Add debounce to reduce update frequency
       .subscribe((data: any) => {
         console.log(parseInt(data.IGCA_FLOW));
