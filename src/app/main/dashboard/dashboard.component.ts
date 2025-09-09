@@ -678,6 +678,16 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.ssetr = this.sseService
+      .getSSETrend()
+      .pipe(debounceTime(100)) // Add debounce to reduce update frequency
+      .subscribe((data: any) => {
+        console.log(data);
+        this.trendData = data;
+        // console.log(this.trendData);
+
+        // this.updateLineChart(this.lineChart, igcaFlow, pgcaFlow, timeLabels);
+      });
     this.sseSub = this.sseService
       .getServerSentEvent()
       .pipe(debounceTime(100)) // Add debounce to reduce update frequency
@@ -715,17 +725,6 @@ export class DashboardComponent implements OnInit {
         this.updateChart(this.chart10, this.AI_6_COMP4, 21000);
         this.updateChart(this.chart11, this.AI_6_COMP5, 21000);
         this.updateChart(this.chart12, this.AI_6_COMP6, 21000);
-      });
-
-    this.ssetr = this.sseService
-      .getSSETrend()
-      .pipe(debounceTime(100)) // Add debounce to reduce update frequency
-      .subscribe((data: any) => {
-        // console.log(data);
-        this.trendData = data;
-        console.log(this.trendData);
-
-        // this.updateLineChart(this.lineChart, igcaFlow, pgcaFlow, timeLabels);
       });
   }
   showdata() {
@@ -805,6 +804,9 @@ export class DashboardComponent implements OnInit {
     // Clean up subscription to prevent memory leaks
     if (this.sseSub) {
       this.sseSub.unsubscribe();
+    }
+    if (this.ssetr) {
+      this.ssetr.unsubscribe();
     }
   }
 }
