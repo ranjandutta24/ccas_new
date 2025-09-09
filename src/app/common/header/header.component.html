@@ -1,0 +1,30 @@
+<div class="header" style="list-style: none">
+  <!-- <li><a routerLink="/ccas-live"> CCAS Live</a></li> -->
+  <li (click)="goToRoute('/main/dashboard')">CCAS Live</li>
+  <li
+    [class.active]="isActive('/main/dashboard')"
+    (click)="goToRoute('/main/dashboard')"
+  >
+    Dash Board
+  </li>
+  <li
+    [class.active]="isActive('/main/overview')"
+    (click)="goToRoute('/main/overview')"
+  >
+    Overview
+  </li>
+  <li
+    [class.active]="isActive('/main/compressors')"
+    (click)="goToRoute('/main/compressors')"
+  >
+    Compressors
+  </li>
+  <li
+    [class.active]="isActive('/main/e-status')"
+    (click)="goToRoute('/main/e-status')"
+  >
+    Electrical Status
+  </li>
+</div>
+<!-- [class.active]="isActive('/main/ccslive')"
+(click)="goToRoute('/main/ccslive')" -->

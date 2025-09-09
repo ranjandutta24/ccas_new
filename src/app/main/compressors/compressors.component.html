@@ -1,0 +1,143 @@
+<div class="button-container">
+  <!-- Button 1 -->
+  <button
+    (click)="setActiveSection('section1')"
+    [class.active]="isActive('section1')"
+    class="switch-button"
+  >
+    Compressor 1
+  </button>
+
+  <!-- Button 2 -->
+  <button
+    (click)="setActiveSection('section2')"
+    [class.active]="isActive('section2')"
+    class="switch-button"
+  >
+    Compressor 2
+  </button>
+  <button
+    (click)="setActiveSection('section3')"
+    [class.active]="isActive('section3')"
+    class="switch-button"
+  >
+    Compressor 3
+  </button>
+  <button
+    (click)="setActiveSection('section4')"
+    [class.active]="isActive('section4')"
+    class="switch-button"
+  >
+    Compressor 4
+  </button>
+  <button
+    (click)="setActiveSection('section5')"
+    [class.active]="isActive('section5')"
+    class="switch-button"
+  >
+    Compressor 5
+  </button>
+  <button
+    (click)="setActiveSection('section6')"
+    [class.active]="isActive('section6')"
+    class="switch-button"
+  >
+    Compressor 6
+  </button>
+</div>
+
+<!-- ngSwitch Container -->
+<div [ngSwitch]="activeSection" class="content-container">
+  <!-- Section 1 Content -->
+  <div *ngSwitchCase="'section1'" class="section-content">
+    <div class="bar1">
+      <div class="each4th">1</div>
+      <div class="each4th">2</div>
+      <div class="each4th">3</div>
+      <div class="each4th">4</div>
+    </div>
+    <div class="radial">
+      <div class="each4th">1</div>
+      <div class="each4th">2</div>
+      <div class="each4th">3</div>
+      <div class="each4th">4</div>
+    </div>
+    <div class="bar2">
+      <div class="each4th">1</div>
+      <div class="each4th">2</div>
+      <div class="each4th">3</div>
+      <div class="each4th">4</div>
+    </div>
+  </div>
+
+  <!-- Section 2 Content -->
+  <div *ngSwitchCase="'section2'" class="section-content">
+    <h2>Welcome to Section 2</h2>
+    <p>This is the content for the second section.</p>
+    <div class="card">
+      <h3>Card Title</h3>
+      <p>Some additional information here...</p>
+    </div>
+    <div class="stats">
+      <span class="stat-item">Stats: 42</span>
+      <span class="stat-item">Users: 100+</span>
+    </div>
+  </div>
+  <!-- Section 3 Content -->
+  <div *ngSwitchCase="'section3'" class="section-content">
+    <h2>Welcome to Section 4</h2>
+    <p>This is the content for the second section.</p>
+    <div class="card">
+      <h3>Card Title</h3>
+      <p>Some additional information here...</p>
+    </div>
+    <div class="stats">
+      <span class="stat-item">Stats: 42</span>
+      <span class="stat-item">Users: 100+</span>
+    </div>
+  </div>
+  <!-- Section 4 Content -->
+  <div *ngSwitchCase="'section4'" class="section-content">
+    <h2>Welcome to Section 4</h2>
+    <p>This is the content for the second section.</p>
+    <div class="card">
+      <h3>Card Title</h3>
+      <p>Some additional information here...</p>
+    </div>
+    <div class="stats">
+      <span class="stat-item">Stats: 42</span>
+      <span class="stat-item">Users: 100+</span>
+    </div>
+  </div>
+  <!-- Section 5 Content -->
+  <div *ngSwitchCase="'section5'" class="section-content">
+    <h2>Welcome to Section 5</h2>
+    <p>This is the content for the second section.</p>
+    <div class="card">
+      <h3>Card Title</h3>
+      <p>Some additional information here...</p>
+    </div>
+    <div class="stats">
+      <span class="stat-item">Stats: 42</span>
+      <span class="stat-item">Users: 100+</span>
+    </div>
+  </div>
+  <!-- Section 6 Content -->
+  <div *ngSwitchCase="'section6'" class="section-content">
+    <h2>Welcome to Section 6</h2>
+    <p>This is the content for the second section.</p>
+    <div class="card">
+      <h3>Card Title</h3>
+      <p>Some additional information here...</p>
+    </div>
+    <div class="stats">
+      <span class="stat-item">Stats: 42</span>
+      <span class="stat-item">Users: 100+</span>
+    </div>
+  </div>
+
+  <!-- Default case (optional) -->
+  <div *ngSwitchDefault class="section-content">
+    <p>Please select a section to view content.</p>
+  </div>
+</div>
