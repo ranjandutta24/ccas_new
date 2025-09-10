@@ -30,14 +30,15 @@ export type ChartROptions = {
   labels: string[];
   plotOptions: ApexPlotOptions;
   fill: ApexFill;
+  title: ApexTitleSubtitle;
 };
 
 @Component({
-  selector: 'app-compressors',
-  templateUrl: './compressors.component.html',
-  styleUrls: ['./compressors.component.scss'],
+  selector: 'app-compressor1',
+  templateUrl: './compressor1.component.html',
+  styleUrls: ['./compressor1.component.scss'],
 })
-export class CompressorsComponent implements OnInit {
+export class Compressor1Component implements OnInit {
   @ViewChild('chart1') chart1!: ChartComponent;
   @ViewChild('chart2') chart2!: ChartComponent;
   @ViewChild('chart3') chart3!: ChartComponent;
@@ -46,11 +47,20 @@ export class CompressorsComponent implements OnInit {
   @ViewChild('chart6') chart6!: ChartComponent;
   @ViewChild('chart7') chart7!: ChartComponent;
   @ViewChild('chart8') chart8!: ChartComponent;
+  @ViewChild('chart9') chart9!: ChartComponent;
+  @ViewChild('chart10') chart10!: ChartComponent;
+  @ViewChild('chart11') chart11!: ChartComponent;
+  @ViewChild('chart12') chart12!: ChartComponent;
+
   activeSection: string = 'section1';
   public chartOptions1: ChartOptions;
   public chartOptions2: ChartOptions;
   public chartOptions3: ChartOptions;
   public chartOptions4: ChartOptions;
+  public chartOptions5: ChartOptions;
+  public chartOptions6: ChartOptions;
+  public chartOptions7: ChartOptions;
+  public chartOptions8: ChartOptions;
 
   // public chartROptions1: ChartOptions;
   public chartROptions1: ChartROptions;
@@ -68,7 +78,7 @@ export class CompressorsComponent implements OnInit {
   constructor() {
     const baseChartOptions = {
       chart: {
-        height: 110,
+        height: 90,
         // width: 300,
         type: 'bar',
         toolbar: {
@@ -107,22 +117,24 @@ export class CompressorsComponent implements OnInit {
       },
       legend: {
         show: true,
+        position: 'right',
         showForSingleSeries: true,
         customLegendItems: ['Current', 'Limit'],
         markers: {
           fillColors: ['#208705', '#775DD0'],
         },
-      },
+      } as ApexLegend,
     };
 
     this.chartOptions1 = {
       ...baseChartOptions,
+
       series: [
         {
           name: 'Actual',
           data: [
             {
-              x: 'Current Amp',
+              x: 'Temp DegC',
               y: 124,
               goals: [
                 {
@@ -144,7 +156,7 @@ export class CompressorsComponent implements OnInit {
           name: 'Actual',
           data: [
             {
-              x: 'Current Amp',
+              x: 'Temp DegC',
               y: 200,
               goals: [
                 {
@@ -166,7 +178,7 @@ export class CompressorsComponent implements OnInit {
           name: 'Actual',
           data: [
             {
-              x: 'Current Amp',
+              x: 'Temp DegC',
               y: 124,
               goals: [
                 {
@@ -188,7 +200,96 @@ export class CompressorsComponent implements OnInit {
           name: 'Actual',
           data: [
             {
-              x: 'Current Amp',
+              x: 'Temp DegC',
+              y: 124,
+              goals: [
+                {
+                  name: 'Expected',
+                  value: 100,
+                  strokeWidth: 5,
+                  strokeColor: '#775DD0',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+    this.chartOptions5 = {
+      ...baseChartOptions,
+
+      series: [
+        {
+          name: 'Actual',
+          data: [
+            {
+              x: 'Temp DegC',
+              y: 124,
+              goals: [
+                {
+                  name: 'Expected',
+                  value: 600,
+                  strokeWidth: 5,
+                  strokeColor: '#775DD0',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+    this.chartOptions6 = {
+      ...baseChartOptions,
+      series: [
+        {
+          name: 'Actual',
+          data: [
+            {
+              x: 'Temp DegC',
+              y: 200,
+              goals: [
+                {
+                  name: 'Expected',
+                  value: 600,
+                  strokeWidth: 5,
+                  strokeColor: '#775DD0',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+    this.chartOptions7 = {
+      ...baseChartOptions,
+      series: [
+        {
+          name: 'Actual',
+          data: [
+            {
+              x: 'Temp DegC',
+              y: 124,
+              goals: [
+                {
+                  name: 'Expected',
+                  value: 134,
+                  strokeWidth: 5,
+                  strokeColor: '#775DD0',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+    this.chartOptions8 = {
+      ...baseChartOptions,
+      series: [
+        {
+          name: 'Actual',
+          data: [
+            {
+              x: 'Temp DegC',
               y: 124,
               goals: [
                 {
@@ -215,8 +316,18 @@ export class CompressorsComponent implements OnInit {
         offsetY: -20,
         // width: 300,
       },
+      title: {
+        text: 'Lube Oil Temperature', // 👈 Chart title
+        align: 'center', // left | center | right
+        style: {
+          fontSize: '20px',
+          fontWeight: 'bold',
+          color: '#263238',
+        },
+      },
       plotOptions: {
         radialBar: {
+          hollow: { size: '40%' },
           startAngle: -90,
           endAngle: 90,
           track: {
@@ -259,6 +370,15 @@ export class CompressorsComponent implements OnInit {
         type: 'radialBar',
         offsetY: -20,
         // width: 300,
+      },
+      title: {
+        text: 'Lube Oil Temperature', // 👈 Chart title
+        align: 'center', // left | center | right
+        style: {
+          fontSize: '16px',
+          fontWeight: 'bold',
+          color: '#263238',
+        },
       },
       plotOptions: {
         radialBar: {
@@ -304,6 +424,15 @@ export class CompressorsComponent implements OnInit {
         offsetY: -20,
         // width: 300,
       },
+      title: {
+        text: 'Lube Oil Temperature', // 👈 Chart title
+        align: 'center', // left | center | right
+        style: {
+          fontSize: '16px',
+          fontWeight: 'bold',
+          color: '#263238',
+        },
+      },
       plotOptions: {
         radialBar: {
           startAngle: -90,
@@ -348,6 +477,15 @@ export class CompressorsComponent implements OnInit {
         type: 'radialBar',
         offsetY: -20,
         // width: 300,
+      },
+      title: {
+        text: 'Lube Oil Temperature', // 👈 Chart title
+        align: 'center', // left | center | right
+        style: {
+          fontSize: '16px',
+          fontWeight: 'bold',
+          color: '#263238',
+        },
       },
       plotOptions: {
         radialBar: {

@@ -33,11 +33,11 @@ export type ChartROptions = {
 };
 
 @Component({
-  selector: 'app-compressors',
-  templateUrl: './compressors.component.html',
-  styleUrls: ['./compressors.component.scss'],
+  selector: 'app-compressor6',
+  templateUrl: './compressor6.component.html',
+  styleUrls: ['./compressor6.component.scss'],
 })
-export class CompressorsComponent implements OnInit {
+export class Compressor6Component implements OnInit {
   @ViewChild('chart1') chart1!: ChartComponent;
   @ViewChild('chart2') chart2!: ChartComponent;
   @ViewChild('chart3') chart3!: ChartComponent;
@@ -46,6 +46,7 @@ export class CompressorsComponent implements OnInit {
   @ViewChild('chart6') chart6!: ChartComponent;
   @ViewChild('chart7') chart7!: ChartComponent;
   @ViewChild('chart8') chart8!: ChartComponent;
+
   activeSection: string = 'section1';
   public chartOptions1: ChartOptions;
   public chartOptions2: ChartOptions;

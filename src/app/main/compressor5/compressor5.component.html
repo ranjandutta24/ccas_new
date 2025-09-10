@@ -1,0 +1,106 @@
+<div class="bar1">
+  <div class="each4th">
+    <div class="each_g1">
+      <p class="unit" style="margin: 0px">Lube Oil Temperature [Deg C]</p>
+      <apx-chart
+        #chart1
+        [series]="chartOptions1.series"
+        [chart]="chartOptions1.chart"
+        [plotOptions]="chartOptions1.plotOptions"
+        [colors]="chartOptions1.colors"
+        [legend]="chartOptions1.legend"
+      >
+      </apx-chart>
+    </div>
+  </div>
+  <div class="each4th">
+    <div class="each_g1">
+      <p class="unit" style="margin: 0px">Discharge Air Temperature [Deg C]</p>
+      <apx-chart
+        #chart2
+        [series]="chartOptions2.series"
+        [chart]="chartOptions2.chart"
+        [plotOptions]="chartOptions2.plotOptions"
+        [colors]="chartOptions2.colors"
+        [legend]="chartOptions2.legend"
+      >
+      </apx-chart>
+    </div>
+  </div>
+  <div class="each4th">
+    <div class="each_g1">
+      <p class="unit" style="margin: 0px">Inlet Air Temperature [Deg C]</p>
+      <apx-chart
+        #chart3
+        [series]="chartOptions3.series"
+        [chart]="chartOptions3.chart"
+        [plotOptions]="chartOptions3.plotOptions"
+        [colors]="chartOptions3.colors"
+        [legend]="chartOptions3.legend"
+      >
+      </apx-chart>
+    </div>
+  </div>
+  <div class="each4th">
+    <div class="each_g1">
+      <p class="unit" style="margin: 0px">Compressor 1 Current (Amp)</p>
+      <apx-chart
+        #chart1
+        [series]="chartOptions4.series"
+        [chart]="chartOptions4.chart"
+        [plotOptions]="chartOptions4.plotOptions"
+        [colors]="chartOptions4.colors"
+        [legend]="chartOptions4.legend"
+      >
+      </apx-chart>
+    </div>
+  </div>
+</div>
+<div class="radial">
+  <div class="each4thr">
+    <apx-chart
+      #chart5
+      [series]="chartROptions1.series"
+      [chart]="chartROptions1.chart"
+      [plotOptions]="chartROptions1.plotOptions"
+      [labels]="chartROptions1.labels"
+      [fill]="chartROptions1.fill"
+    ></apx-chart>
+  </div>
+  <div class="each4thr">
+    <apx-chart
+      #chart6
+      [series]="chartROptions2.series"
+      [chart]="chartROptions2.chart"
+      [plotOptions]="chartROptions2.plotOptions"
+      [labels]="chartROptions2.labels"
+      [fill]="chartROptions2.fill"
+    ></apx-chart>
+  </div>
+  <div class="each4thr">
+    <apx-chart
+      #chart7
+      [series]="chartROptions3.series"
+      [chart]="chartROptions3.chart"
+      [plotOptions]="chartROptions3.plotOptions"
+      [labels]="chartROptions3.labels"
+      [fill]="chartROptions3.fill"
+    ></apx-chart>
+  </div>
+  <div class="each4thr">
+    <apx-chart
+      #chart8
+      [series]="chartROptions4.series"
+      [chart]="chartROptions4.chart"
+      [plotOptions]="chartROptions4.plotOptions"
+      [labels]="chartROptions4.labels"
+      [fill]="chartROptions4.fill"
+    ></apx-chart>
+  </div>
+</div>
+<div class="bar2">
+  <div class="each4th">1</div>
+  <div class="each4th">2</div>
+  <div class="each4th">3</div>
+  <div class="each4th">4</div>
+</div>
