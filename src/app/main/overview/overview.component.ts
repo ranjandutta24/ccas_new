@@ -83,25 +83,24 @@ export class OverviewComponent implements OnInit {
     //       1000
     //     );
     //   });
-
-    this.sseService.getServerSentEvent().subscribe((data: any) => {
-      this.igcaFlow = parseInt(data.IGCA_FLOW);
-      this.igcaPresser = parseFloat(data.IGCA_PRESSER.toFixed(2));
-      this.pgcaFlow = parseInt(data.PGCA_FLOW);
-      this.pgcaPresser = parseFloat(data.PGCA_PRESSER.toFixed(2));
-      this.AI_6_COMP1 = parseInt(data.AI_6_COMP1);
-      this.AI_6_COMP2 = parseInt(data.AI_6_COMP2);
-      this.AI_6_COMP3 = parseInt(data.AI_6_COMP3);
-      this.AI_6_COMP4 = parseInt(data.AI_6_COMP4);
-      this.AI_6_COMP5 = parseInt(data.AI_6_COMP5);
-      this.AI_6_COMP6 = parseInt(data.AI_6_COMP6);
-      this.MOTOR_CURR_COMP1 = parseInt(data.MOTOR_CURR_COMP1);
-      this.MOTOR_CURR_COMP2 = parseInt(data.MOTOR_CURR_COMP2);
-      this.MOTOR_CURR_COMP3 = parseInt(data.MOTOR_CURR_COMP3);
-      this.MOTOR_CURR_COMP4 = parseInt(data.MOTOR_CURR_COMP4);
-      this.MOTOR_CURR_COMP5 = parseInt(data.MOTOR_CURR_COMP5);
-      this.MOTOR_CURR_COMP6 = parseInt(data.MOTOR_CURR_COMP6);
-    });
+    // this.sseService.getServerSentEvent().subscribe((data: any) => {
+    //   this.igcaFlow = parseInt(data.IGCA_FLOW);
+    //   this.igcaPresser = parseFloat(data.IGCA_PRESSER.toFixed(2));
+    //   this.pgcaFlow = parseInt(data.PGCA_FLOW);
+    //   this.pgcaPresser = parseFloat(data.PGCA_PRESSER.toFixed(2));
+    //   this.AI_6_COMP1 = parseInt(data.AI_6_COMP1);
+    //   this.AI_6_COMP2 = parseInt(data.AI_6_COMP2);
+    //   this.AI_6_COMP3 = parseInt(data.AI_6_COMP3);
+    //   this.AI_6_COMP4 = parseInt(data.AI_6_COMP4);
+    //   this.AI_6_COMP5 = parseInt(data.AI_6_COMP5);
+    //   this.AI_6_COMP6 = parseInt(data.AI_6_COMP6);
+    //   this.MOTOR_CURR_COMP1 = parseInt(data.MOTOR_CURR_COMP1);
+    //   this.MOTOR_CURR_COMP2 = parseInt(data.MOTOR_CURR_COMP2);
+    //   this.MOTOR_CURR_COMP3 = parseInt(data.MOTOR_CURR_COMP3);
+    //   this.MOTOR_CURR_COMP4 = parseInt(data.MOTOR_CURR_COMP4);
+    //   this.MOTOR_CURR_COMP5 = parseInt(data.MOTOR_CURR_COMP5);
+    //   this.MOTOR_CURR_COMP6 = parseInt(data.MOTOR_CURR_COMP6);
+    // });
   }
   private animateValue(
     field: keyof this,

@@ -491,11 +491,11 @@ export class DashboardComponent implements OnInit {
       series: [
         {
           name: 'IGCA Flow',
-          data: [25, 25.1, 25.4, 25.8, 26.3, 26.9, 27, 26.4, 25],
+          data: [],
         },
         {
           name: 'PGCA FLow',
-          data: [15, 15.3, 15.7, 16, 15.5, 15, 15.9, 16.6, 17],
+          data: [],
         },
       ],
       chart: {
@@ -547,17 +547,7 @@ export class DashboardComponent implements OnInit {
         },
       },
       xaxis: {
-        categories: [
-          '13:10',
-          '13:20',
-          '13:30',
-          '13:40',
-          '13:50',
-          '14:00',
-          '14:10',
-          '14:20',
-          '14:30',
-        ],
+        categories: [],
         title: {
           text: 'Time',
           style: {
@@ -680,19 +670,37 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.ssetr = this.sseService
       .getSSETrend()
-      .pipe(debounceTime(100)) // Add debounce to reduce update frequency
+      .pipe(debounceTime(500)) // Add debounce to reduce update frequency
       .subscribe((data: any) => {
-        console.log(data);
+        // console.log(data);
         this.trendData = data;
-        // console.log(this.trendData);
+        console.log(this.trendData);
+        let igcaFlow = this.trendData.map((item) =>
+          parseFloat((item['IGCAF'] / 1000).toFixed(2))
+        );
+        let pgcaFlow = this.trendData.map((item) =>
+          parseFloat((item['PGCAF'] / 1000).toFixed(2))
+        );
+        let timeLabels = this.trendData.map((item) => {
+          const date = new Date(item['DATE']);
+          return date.toLocaleTimeString('en-GB', {
+            hour: '2-digit',
+            minute: '2-digit',
+          });
+        });
 
-        // this.updateLineChart(this.lineChart, igcaFlow, pgcaFlow, timeLabels);
+        this.updateLineChart(
+          this.lineChart,
+          igcaFlow.reverse(),
+          pgcaFlow.reverse(),
+          timeLabels.reverse()
+        );
       });
     this.sseSub = this.sseService
       .getServerSentEvent()
       .pipe(debounceTime(100)) // Add debounce to reduce update frequency
       .subscribe((data: any) => {
-        console.log(parseInt(data.IGCA_FLOW));
+        // console.log(parseInt(data.IGCA_FLOW));
 
         this.igcaFlow = parseInt(data.IGCA_FLOW);
         this.igcaPresser = parseFloat(data.IGCA_PRESSER.toFixed(2));
