@@ -57,6 +57,7 @@ export class DashboardComponent implements OnInit {
   @ViewChild('chart11') chart11!: ChartComponent;
   @ViewChild('chart12') chart12!: ChartComponent;
   @ViewChild('lineChart') lineChart!: ChartComponent;
+  @ViewChild('lineChart2') lineChart2!: ChartComponent;
 
   igcaFlow: number = 0;
   igcaPresser: number = 0;
@@ -681,6 +682,8 @@ export class DashboardComponent implements OnInit {
         let pgcaFlow = this.trendData.map((item) =>
           parseFloat((item['PGCAF'] / 1000).toFixed(2))
         );
+        let igcaPresser = this.trendData.map((item) => item['IGCAP']);
+        let pgcaPresser = this.trendData.map((item) => item['PGCAP']);
         let timeLabels = this.trendData.map((item) => {
           const date = new Date(item['DATE']);
           return date.toLocaleTimeString('en-GB', {
@@ -694,6 +697,13 @@ export class DashboardComponent implements OnInit {
           igcaFlow.reverse(),
           pgcaFlow.reverse(),
           timeLabels.reverse()
+        );
+
+        this.updateLineChart(
+          this.lineChart2,
+          igcaPresser,
+          pgcaPresser,
+          timeLabels
         );
       });
     this.sseSub = this.sseService
