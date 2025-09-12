@@ -582,8 +582,8 @@ export class DashboardComponent implements OnInit {
             color: '#263238',
           },
         },
-        min: 12,
-        max: 30,
+        min: 15,
+        max: 35,
       },
       colors: ['#008FFB', '#BD4CC7'],
     };
@@ -685,15 +685,22 @@ export class DashboardComponent implements OnInit {
       .subscribe((data: any) => {
         // console.log(data);
         this.trendData = data;
-        // console.log(this.trendData);
+        console.log(this.trendData);
         let igcaFlow = this.trendData.map((item) =>
           parseFloat((item['IGCAF'] / 1000).toFixed(2))
         );
         let pgcaFlow = this.trendData.map((item) =>
           parseFloat((item['PGCAF'] / 1000).toFixed(2))
         );
-        let igcaPresser = this.trendData.map((item) => item['IGCAP']);
-        let pgcaPresser = this.trendData.map((item) => item['PGCAP']);
+        let igcaPresser = this.trendData.map((item) =>
+          parseFloat((item['IGCAP'] / 1).toFixed(2))
+        );
+        let pgcaPresser = this.trendData.map((item) =>
+          parseFloat((item['PGCAP'] / 1).toFixed(2))
+        );
+
+        // let pgcaPresser = this.trendData.map((item) => item['PGCAP']);
+
         let timeLabels = this.trendData.map((item) => {
           const date = new Date(item['DATE']);
           return date.toLocaleTimeString('en-GB', {
@@ -701,6 +708,8 @@ export class DashboardComponent implements OnInit {
             minute: '2-digit',
           });
         });
+
+        // console.log(igcaPresser);
 
         this.updateLineChart(
           this.lineChart,
@@ -711,8 +720,8 @@ export class DashboardComponent implements OnInit {
 
         this.updateLineChart(
           this.lineChart2,
-          igcaPresser,
-          pgcaPresser,
+          igcaPresser.reverse(),
+          pgcaPresser.reverse(),
           timeLabels
         );
       });

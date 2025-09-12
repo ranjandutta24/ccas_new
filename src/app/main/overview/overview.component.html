@@ -1,69 +1,71 @@
-<table>
-  <thead>
-    <tr>
-      <th>Parameter</th>
-      <th [ngClass]="MOTOR_CURR_COMP1 <= 50 ? 'colorRed' : 'colorGreen'">
-        Compressor 1
-      </th>
-      <th [ngClass]="MOTOR_CURR_COMP2 <= 50 ? 'colorRed' : 'colorGreen'">
-        Compressor 2
-      </th>
-      <th [ngClass]="MOTOR_CURR_COMP3 <= 50 ? 'colorRed' : 'colorGreen'">
-        Compressor 3
-      </th>
-      <th [ngClass]="MOTOR_CURR_COMP4 <= 50 ? 'colorRed' : 'colorGreen'">
-        Compressor 4
-      </th>
-      <th [ngClass]="MOTOR_CURR_COMP5 <= 50 ? 'colorRed' : 'colorGreen'">
-        Compressor 5
-      </th>
-      <th [ngClass]="MOTOR_CURR_COMP6 <= 50 ? 'colorRed' : 'colorGreen'">
-        Compressor 6
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>IGCA Flow (Nm³/hr)</td>
-      <td [attr.colspan]="6">{{ igcaFlow }}</td>
-    </tr>
-    <tr>
-      <td>IGCA Pressure (kg/cm²)</td>
-      <td [attr.colspan]="6">{{ igcaPresser }}</td>
-    </tr>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Parameter</th>
+        <th [ngClass]="MOTOR_CURR_COMP1 <= 50 ? 'colorRed' : 'colorGreen'">
+          Compressor 1
+        </th>
+        <th [ngClass]="MOTOR_CURR_COMP2 <= 50 ? 'colorRed' : 'colorGreen'">
+          Compressor 2
+        </th>
+        <th [ngClass]="MOTOR_CURR_COMP3 <= 50 ? 'colorRed' : 'colorGreen'">
+          Compressor 3
+        </th>
+        <th [ngClass]="MOTOR_CURR_COMP4 <= 50 ? 'colorRed' : 'colorGreen'">
+          Compressor 4
+        </th>
+        <th [ngClass]="MOTOR_CURR_COMP5 <= 50 ? 'colorRed' : 'colorGreen'">
+          Compressor 5
+        </th>
+        <th [ngClass]="MOTOR_CURR_COMP6 <= 50 ? 'colorRed' : 'colorGreen'">
+          Compressor 6
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>IGCA Flow (Nm³/hr)</td>
+        <td [attr.colspan]="6">{{ igcaFlow }}</td>
+      </tr>
+      <tr>
+        <td>IGCA Pressure (kg/cm²)</td>
+        <td [attr.colspan]="6">{{ igcaPresser }}</td>
+      </tr>
 
-    <tr>
-      <td>PGCA Flow (Nm³/hr)</td>
-      <td [attr.colspan]="6">{{ pgcaFlow }}</td>
-    </tr>
+      <tr>
+        <td>PGCA Flow (Nm³/hr)</td>
+        <td [attr.colspan]="6">{{ pgcaFlow }}</td>
+      </tr>
 
-    <tr>
-      <td>PGCA Pressure (kg/cm²)</td>
-      <td [attr.colspan]="6">{{ pgcaPresser }}</td>
-    </tr>
+      <tr>
+        <td>PGCA Pressure (kg/cm²)</td>
+        <td [attr.colspan]="6">{{ pgcaPresser }}</td>
+      </tr>
 
-    <tr>
-      <td>Compressor Flow (Nm³/hr)</td>
-      <td>{{ AI_6_COMP1 }}</td>
-      <td>{{ AI_6_COMP2 }}</td>
-      <td>{{ AI_6_COMP3 }}</td>
-      <td>{{ AI_6_COMP4 }}</td>
-      <td>{{ AI_6_COMP5 }}</td>
-      <td>{{ AI_6_COMP6 }}</td>
-      <!-- <td *ngFor="let flow of compressorFlows">{{ flow }}</td> -->
-    </tr>
+      <tr>
+        <td>Compressor Flow (Nm³/hr)</td>
+        <td>{{ AI_6_COMP1 }}</td>
+        <td>{{ AI_6_COMP2 }}</td>
+        <td>{{ AI_6_COMP3 }}</td>
+        <td>{{ AI_6_COMP4 }}</td>
+        <td>{{ AI_6_COMP5 }}</td>
+        <td>{{ AI_6_COMP6 }}</td>
+        <!-- <td *ngFor="let flow of compressorFlows">{{ flow }}</td> -->
+      </tr>
 
-    <tr>
-      <td>Current (amp)</td>
-      <td>{{ MOTOR_CURR_COMP1 }}</td>
-      <td>{{ MOTOR_CURR_COMP2 }}</td>
-      <td>{{ MOTOR_CURR_COMP3 }}</td>
-      <td>{{ MOTOR_CURR_COMP4 }}</td>
-      <td>{{ MOTOR_CURR_COMP5 }}</td>
-      <td>{{ MOTOR_CURR_COMP6 }}</td>
-    </tr>
-  </tbody>
-</table>
+      <tr>
+        <td>Current (amp)</td>
+        <td>{{ MOTOR_CURR_COMP1 }}</td>
+        <td>{{ MOTOR_CURR_COMP2 }}</td>
+        <td>{{ MOTOR_CURR_COMP3 }}</td>
+        <td>{{ MOTOR_CURR_COMP4 }}</td>
+        <td>{{ MOTOR_CURR_COMP5 }}</td>
+        <td>{{ MOTOR_CURR_COMP6 }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <table>
   <thead>
@@ -77,11 +79,11 @@
   </thead>
   <tbody>
     <tr *ngFor="let plant of plants">
-      <td>{{ plant }}</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td colspan="2">0</td>
+      <td>{{ plant["name"] }}</td>
+      <td>{{ plant["if"] }}</td>
+      <td>{{ plant["ip"] }}</td>
+      <td>{{ plant["pf"] }}</td>
+      <td colspan="2">{{ plant["pp"] }}</td>
     </tr>
   </tbody>
 </table>

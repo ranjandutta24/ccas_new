@@ -50,39 +50,87 @@ export class OverviewComponent implements OnInit {
   compressorCurrents = [324, 45, 45, 56, 67, 23]; // raw amp values
 
   plants = [
-    'COB 11',
-    'CDCP',
-    'Sinter Plant',
-    'Blast Furnace',
-    'LDCP',
-    'BOF',
-    'CCP',
-    'Wire Rod Mill',
-    'Bar Mill',
-    'USM',
-    'PBS 2',
+    {
+      name: 'COB 11',
+      if: 0,
+      pf: 0,
+      ip: 0,
+      pp: 0,
+    },
+    {
+      name: 'CDCP',
+      if: 0,
+      pf: 0,
+      ip: 0,
+      pp: 0,
+    },
+    {
+      name: 'Sinter Plant',
+      if: 0,
+      pf: 0,
+      ip: 0,
+      pp: 0,
+    },
+    {
+      name: 'Blast Furnace',
+      if: 0,
+      pf: 0,
+      ip: 0,
+      pp: 0,
+    },
+    {
+      name: 'LDCP',
+      if: 0,
+      pf: 0,
+      ip: 0,
+      pp: 0,
+    },
+    {
+      name: 'BOF',
+      if: 0,
+      pf: 0,
+      ip: 0,
+      pp: 0,
+    },
+    {
+      name: 'CCP',
+      if: 0,
+      pf: 0,
+      ip: 0,
+      pp: 0,
+    },
+    {
+      name: 'Wire Rod Mill',
+      if: 0,
+      pf: 0,
+      ip: 0,
+      pp: 0,
+    },
+    {
+      name: 'Bar Mill',
+      if: 0,
+      pf: 0,
+      ip: 0,
+      pp: 0,
+    },
+    {
+      name: 'USM',
+      if: 0,
+      pf: 0,
+      ip: 0,
+      pp: 0,
+    },
+    {
+      name: 'PBS 2',
+      if: 0,
+      pf: 0,
+      ip: 0,
+      pp: 0,
+    },
   ];
 
   currentThreshold = 50;
   ngOnInit(): void {
-    // this.sseService
-    //   .getServerSentEvent('http://10.150.6.15:4060/api/utility/ccas_dashboard')
-    //   .subscribe((data: any) => {
-    //     this.animateValue('igcaFlow', this.igcaFlow || 0, data.IGCA_FLOW, 1000);
-    //     this.animateValue(
-    //       'igcaPresser',
-    //       this.igcaPresser || 0,
-    //       data.IGCA_PRESSER,
-    //       1000
-    //     );
-    //     this.animateValue('pgcaFlow', this.pgcaFlow || 0, data.PGCA_FLOW, 1000);
-    //     this.animateValue(
-    //       'pgcaPresser',
-    //       this.pgcaPresser || 0,
-    //       data.PGCA_PRESSER,
-    //       1000
-    //     );
-    //   });
     this.sseService.getServerSentEvent().subscribe((data: any) => {
       this.igcaFlow = parseInt(data.IGCA_FLOW);
       this.igcaPresser = parseFloat(data.IGCA_PRESSER.toFixed(2));
@@ -100,6 +148,11 @@ export class OverviewComponent implements OnInit {
       this.MOTOR_CURR_COMP4 = parseInt(data.MOTOR_CURR_COMP4);
       this.MOTOR_CURR_COMP5 = parseInt(data.MOTOR_CURR_COMP5);
       this.MOTOR_CURR_COMP6 = parseInt(data.MOTOR_CURR_COMP6);
+    });
+    this.sseService.getSSEbyshop().subscribe((data: any) => {
+      console.log(data);
+      this.plants[2].if = data.sp1_Inst_air_inlet_flow.toFixed(2);
+      this.plants[2].ip = data.sp1_Inst_air_pressure.toFixed(2);
     });
   }
   private animateValue(
