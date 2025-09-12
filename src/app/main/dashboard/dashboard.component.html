@@ -70,7 +70,10 @@
   </div>
 
   <div class="graph1">
-    <div class="each_g1">
+    <div
+      class="each_g1"
+      [ngClass]="MOTOR_CURR_COMP1 <= 50 ? 'bg_off' : 'bg_on'"
+    >
       <p class="unit" style="margin: 0px">Compressor 1 Current (Amp)</p>
       <apx-chart
         #chart1
@@ -83,7 +86,10 @@
       </apx-chart>
     </div>
 
-    <div class="each_g1">
+    <div
+      class="each_g1"
+      [ngClass]="MOTOR_CURR_COMP2 <= 50 ? 'bg_off' : 'bg_on'"
+    >
       <p class="unit" style="margin: 0px">Compressor 2 Current (Amp)</p>
       <apx-chart
         #chart2
@@ -96,7 +102,10 @@
       >
       </apx-chart>
     </div>
-    <div class="each_g1">
+    <div
+      class="each_g1"
+      [ngClass]="MOTOR_CURR_COMP3 <= 50 ? 'bg_off' : 'bg_on'"
+    >
       <p class="unit" style="margin: 0px">Compressor 3 Current (Amp)</p>
       <apx-chart
         #chart3
@@ -109,7 +118,10 @@
       >
       </apx-chart>
     </div>
-    <div class="each_g1">
+    <div
+      class="each_g1"
+      [ngClass]="MOTOR_CURR_COMP4 <= 50 ? 'bg_off' : 'bg_on'"
+    >
       <p class="unit" style="margin: 0px">Compressor 4 Current (Amp)</p>
       <apx-chart
         #chart4
@@ -122,7 +134,10 @@
       >
       </apx-chart>
     </div>
-    <div class="each_g1">
+    <div
+      class="each_g1"
+      [ngClass]="MOTOR_CURR_COMP5 <= 50 ? 'bg_off' : 'bg_on'"
+    >
       <p class="unit" style="margin: 0px">Compressor 5 Current (Amp)</p>
       <apx-chart
         #chart5
@@ -135,7 +150,10 @@
       >
       </apx-chart>
     </div>
-    <div class="each_g1">
+    <div
+      class="each_g1"
+      [ngClass]="MOTOR_CURR_COMP6 <= 50 ? 'bg_off' : 'bg_on'"
+    >
       <p class="unit" style="margin: 0px">Compressor 6 Current (Amp)</p>
       <apx-chart
         #chart6
@@ -150,7 +168,10 @@
     </div>
   </div>
   <div class="graph2">
-    <div class="each_g2">
+    <div
+      class="each_g2"
+      [ngClass]="MOTOR_CURR_COMP1 <= 50 ? 'bg_off' : 'bg_on'"
+    >
       <p class="unit" style="margin: 0px">Compressor 1 Flow (Nm³/hr)</p>
       <apx-chart
         #chart7
@@ -163,7 +184,10 @@
       >
       </apx-chart>
     </div>
-    <div class="each_g2">
+    <div
+      class="each_g2"
+      [ngClass]="MOTOR_CURR_COMP2 <= 50 ? 'bg_off' : 'bg_on'"
+    >
       <p class="unit" style="margin: 0px">Compressor 2 Flow (Nm³/hr)</p>
       <apx-chart
         #chart8
@@ -176,7 +200,10 @@
       >
       </apx-chart>
     </div>
-    <div class="each_g2">
+    <div
+      class="each_g2"
+      [ngClass]="MOTOR_CURR_COMP3 <= 50 ? 'bg_off' : 'bg_on'"
+    >
       <p class="unit" style="margin: 0px">Compressor 3 Flow (Nm³/hr)</p>
       <apx-chart
         #chart9
@@ -189,7 +216,10 @@
       >
       </apx-chart>
     </div>
-    <div class="each_g2">
+    <div
+      class="each_g2"
+      [ngClass]="MOTOR_CURR_COMP4 <= 50 ? 'bg_off' : 'bg_on'"
+    >
       <p class="unit" style="margin: 0px">Compressor 4 Flow (Nm³/hr)</p>
       <apx-chart
         #chart10
@@ -202,7 +232,10 @@
       >
       </apx-chart>
     </div>
-    <div class="each_g2">
+    <div
+      class="each_g2"
+      [ngClass]="MOTOR_CURR_COMP5 <= 50 ? 'bg_off' : 'bg_on'"
+    >
       <p class="unit" style="margin: 0px">Compressor 5 Flow (Nm³/hr)</p>
       <apx-chart
         #chart11
@@ -215,7 +248,10 @@
       >
       </apx-chart>
     </div>
-    <div class="each_g2">
+    <div
+      class="each_g2"
+      [ngClass]="MOTOR_CURR_COMP6 <= 50 ? 'bg_off' : 'bg_on'"
+    >
       <p class="unit" style="margin: 0px">Compressor 6 Flow (Nm³/hr)</p>
       <apx-chart
         #chart12

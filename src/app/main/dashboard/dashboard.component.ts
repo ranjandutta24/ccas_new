@@ -96,8 +96,10 @@ export class DashboardComponent implements OnInit {
   public lineChartOptions: LineChartOptions;
   public lineChartOptions2: LineChartOptions;
 
-  active_compath = './../../../assets/compressor_running_with_smoke.gif';
-  deactive_compath = './../../../assets/compressor (1).png';
+  active_compath = './../../../assets/on.gif';
+  deactive_compath = './../../../assets/off.gif';
+  // active_compath = './../../../assets/compressor_running_with_smoke.gif';
+  // deactive_compath = './../../../assets/compressor (1).png';
   trendData = [];
 
   constructor(private sseService: SseService) {
@@ -127,7 +129,7 @@ export class DashboardComponent implements OnInit {
           horizontal: true,
         },
       },
-      colors: ['#208705'],
+      colors: ['#008FFB'],
       dataLabels: {
         formatter: function (val: any, opts: any) {
           const goals =
@@ -145,7 +147,7 @@ export class DashboardComponent implements OnInit {
         showForSingleSeries: true,
         customLegendItems: ['Current', 'Limit'],
         markers: {
-          fillColors: ['#208705', '#775DD0'],
+          fillColors: ['#008FFB', '#BD4CC7'],
         },
       },
     };
@@ -194,7 +196,7 @@ export class DashboardComponent implements OnInit {
           horizontal: true,
         },
       },
-      colors: ['#084c35'],
+      colors: ['#008FFB'],
       dataLabels: {
         formatter: function (val: any, opts) {
           const goals =
@@ -212,7 +214,7 @@ export class DashboardComponent implements OnInit {
         showForSingleSeries: true,
         customLegendItems: ['Current', 'Limit'],
         markers: {
-          fillColors: ['#00E396', '#775DD0'],
+          fillColors: ['#008FFB', '#BD4CC7'],
         },
       },
     };
@@ -231,7 +233,7 @@ export class DashboardComponent implements OnInit {
                   name: 'Expected',
                   value: 600,
                   strokeWidth: 5,
-                  strokeColor: '#775DD0',
+                  strokeColor: '#BD4CC7',
                 },
               ],
             },
@@ -249,12 +251,13 @@ export class DashboardComponent implements OnInit {
             {
               x: 'Current Amp',
               y: this.MOTOR_CURR_COMP2,
+
               goals: [
                 {
                   name: 'Expected',
-                  value: 600,
+                  value: 21000,
                   strokeWidth: 5,
-                  strokeColor: '#775DD0',
+                  strokeColor: '#BD4CC7',
                 },
               ],
             },
@@ -277,7 +280,7 @@ export class DashboardComponent implements OnInit {
                   name: 'Expected',
                   value: 600,
                   strokeWidth: 5,
-                  strokeColor: '#775DD0',
+                  strokeColor: '#BD4CC7',
                 },
               ],
             },
@@ -300,7 +303,7 @@ export class DashboardComponent implements OnInit {
                   name: 'Expected',
                   value: 600,
                   strokeWidth: 5,
-                  strokeColor: '#775DD0',
+                  strokeColor: '#BD4CC7',
                 },
               ],
             },
@@ -323,7 +326,7 @@ export class DashboardComponent implements OnInit {
                   name: 'Expected',
                   value: 600,
                   strokeWidth: 5,
-                  strokeColor: '#775DD0',
+                  strokeColor: '#BD4CC7',
                 },
               ],
             },
@@ -346,7 +349,7 @@ export class DashboardComponent implements OnInit {
                   name: 'Expected',
                   value: 600,
                   strokeWidth: 5,
-                  strokeColor: '#775DD0',
+                  strokeColor: '#BD4CC7',
                 },
               ],
             },
@@ -526,10 +529,15 @@ export class DashboardComponent implements OnInit {
           opacity: 0.9,
         },
         offsetY: -10,
+        formatter: function (val: any, opts: any) {
+          const index = opts.dataPointIndex;
+          // Show only 1 out of 10 points
+          return index % 10 === 0 ? val : '';
+        },
       },
       stroke: {
         curve: 'straight',
-        width: 3,
+        width: 2,
         colors: ['#008FFB', '#BD4CC7'],
       },
       title: {
@@ -557,6 +565,13 @@ export class DashboardComponent implements OnInit {
             color: '#263238',
           },
         },
+        labels: {
+          hideOverlappingLabels: true,
+          // formatter: function (value: string, timestamp: any, opts: any) {
+          //   const index = opts?.i; // ApexCharts passes category index in opts.i
+          //   return index % 10 === 0 ? value : '';
+          // },
+        },
       },
       yaxis: {
         title: {
@@ -576,11 +591,11 @@ export class DashboardComponent implements OnInit {
       series: [
         {
           name: 'IGCA Pressure',
-          data: [6.9, 6.7, 6.7, 6.6, 6.65, 6.7, 6.75, 6.8, 6.7],
+          data: [],
         },
         {
           name: 'PGCA Pressure',
-          data: [6.8, 6.7, 6.6, 6.5, 6.65, 6.64, 6.54, 6.4, 6.36],
+          data: [],
         },
       ],
       chart: {
@@ -610,6 +625,11 @@ export class DashboardComponent implements OnInit {
           opacity: 0.9,
         },
         offsetY: -10,
+        formatter: function (val: any, opts: any) {
+          const index = opts.dataPointIndex;
+          // Show only 1 out of 10 points
+          return index % 10 === 0 ? val : '';
+        },
       },
       stroke: {
         curve: 'straight',
@@ -632,17 +652,7 @@ export class DashboardComponent implements OnInit {
         },
       },
       xaxis: {
-        categories: [
-          '13:10',
-          '13:20',
-          '13:30',
-          '13:40',
-          '13:50',
-          '14:00',
-          '14:10',
-          '14:20',
-          '14:30',
-        ],
+        categories: [],
         title: {
           text: 'Time',
           style: {
@@ -675,7 +685,7 @@ export class DashboardComponent implements OnInit {
       .subscribe((data: any) => {
         // console.log(data);
         this.trendData = data;
-        console.log(this.trendData);
+        // console.log(this.trendData);
         let igcaFlow = this.trendData.map((item) =>
           parseFloat((item['IGCAF'] / 1000).toFixed(2))
         );
@@ -769,7 +779,7 @@ export class DashboardComponent implements OnInit {
                     name: 'Expected',
                     value: limit,
                     strokeWidth: 5,
-                    strokeColor: '#775DD0',
+                    strokeColor: '#BD4CC7',
                   },
                 ],
               },
@@ -801,7 +811,8 @@ export class DashboardComponent implements OnInit {
             },
           ],
           xaxis: {
-            categories: categories,
+            categories: categories, // your full 90 timestamps
+            tickAmount: 10,
             title: {
               text: 'Time',
               style: {
@@ -809,6 +820,16 @@ export class DashboardComponent implements OnInit {
                 fontWeight: 'bold',
                 color: '#263238',
               },
+            },
+            labels: {
+              hideOverlappingLabels: true,
+              rotate: 0,
+              rotateAlways: true,
+
+              // formatter: function (value: string, timestamp: any, opts: any) {
+              //   const index = opts?.i; // ApexCharts passes category index in opts.i
+              //   return index % 10 === 0 ? value : '';
+              // },
             },
           },
         },
