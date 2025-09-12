@@ -52,6 +52,10 @@ export class Compressor3Component implements OnInit {
   public chartOptions2: ChartOptions;
   public chartOptions3: ChartOptions;
   public chartOptions4: ChartOptions;
+  public chartOptions5: ChartOptions;
+  public chartOptions6: ChartOptions;
+  public chartOptions7: ChartOptions;
+  public chartOptions8: ChartOptions;
 
   // public chartROptions1: ChartOptions;
   public chartROptions1: ChartROptions;
@@ -69,7 +73,7 @@ export class Compressor3Component implements OnInit {
   constructor() {
     const baseChartOptions = {
       chart: {
-        height: 110,
+        height: 90,
         // width: 300,
         type: 'bar',
         toolbar: {
@@ -108,12 +112,13 @@ export class Compressor3Component implements OnInit {
       },
       legend: {
         show: true,
+        position: 'right',
         showForSingleSeries: true,
         customLegendItems: ['Current', 'Limit'],
         markers: {
           fillColors: ['#208705', '#775DD0'],
         },
-      },
+      } as ApexLegend,
     };
 
     this.chartOptions1 = {
@@ -190,6 +195,95 @@ export class Compressor3Component implements OnInit {
           data: [
             {
               x: 'Current Amp',
+              y: 124,
+              goals: [
+                {
+                  name: 'Expected',
+                  value: 100,
+                  strokeWidth: 5,
+                  strokeColor: '#775DD0',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+    this.chartOptions5 = {
+      ...baseChartOptions,
+
+      series: [
+        {
+          name: 'Actual',
+          data: [
+            {
+              x: 'Temp DegC',
+              y: 124,
+              goals: [
+                {
+                  name: 'Expected',
+                  value: 600,
+                  strokeWidth: 5,
+                  strokeColor: '#775DD0',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+    this.chartOptions6 = {
+      ...baseChartOptions,
+      series: [
+        {
+          name: 'Actual',
+          data: [
+            {
+              x: 'Temp DegC',
+              y: 200,
+              goals: [
+                {
+                  name: 'Expected',
+                  value: 600,
+                  strokeWidth: 5,
+                  strokeColor: '#775DD0',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+    this.chartOptions7 = {
+      ...baseChartOptions,
+      series: [
+        {
+          name: 'Actual',
+          data: [
+            {
+              x: 'Temp DegC',
+              y: 124,
+              goals: [
+                {
+                  name: 'Expected',
+                  value: 134,
+                  strokeWidth: 5,
+                  strokeColor: '#775DD0',
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+    this.chartOptions8 = {
+      ...baseChartOptions,
+      series: [
+        {
+          name: 'Actual',
+          data: [
+            {
+              x: 'Temp DegC',
               y: 124,
               goals: [
                 {

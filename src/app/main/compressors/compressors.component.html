@@ -1,87 +1,89 @@
-<div class="button-container">
-  <!-- Button 1 -->
-  <button
-    (click)="setActiveSection('section1')"
-    [class.active]="isActive('section1')"
-    class="switch-button"
-  >
-    Compressor 1
-  </button>
+<div class="page-container">
+  <div class="button-container">
+    <!-- Button 1 -->
+    <button
+      (click)="setActiveSection('section1')"
+      [class.active]="isActive('section1')"
+      class="switch-button"
+    >
+      Compressor 1
+    </button>
 
-  <!-- Button 2 -->
-  <button
-    (click)="setActiveSection('section2')"
-    [class.active]="isActive('section2')"
-    class="switch-button"
-  >
-    Compressor 2
-  </button>
-  <button
-    (click)="setActiveSection('section3')"
-    [class.active]="isActive('section3')"
-    class="switch-button"
-  >
-    Compressor 3
-  </button>
-  <button
-    (click)="setActiveSection('section4')"
-    [class.active]="isActive('section4')"
-    class="switch-button"
-  >
-    Compressor 4
-  </button>
-  <button
-    (click)="setActiveSection('section5')"
-    [class.active]="isActive('section5')"
-    class="switch-button"
-  >
-    Compressor 5
-  </button>
-  <button
-    (click)="setActiveSection('section6')"
-    [class.active]="isActive('section6')"
-    class="switch-button"
-  >
-    Compressor 6
-  </button>
-</div>
+    <!-- Button 2 -->
+    <button
+      (click)="setActiveSection('section2')"
+      [class.active]="isActive('section2')"
+      class="switch-button"
+    >
+      Compressor 2
+    </button>
+    <button
+      (click)="setActiveSection('section3')"
+      [class.active]="isActive('section3')"
+      class="switch-button"
+    >
+      Compressor 3
+    </button>
+    <button
+      (click)="setActiveSection('section4')"
+      [class.active]="isActive('section4')"
+      class="switch-button"
+    >
+      Compressor 4
+    </button>
+    <button
+      (click)="setActiveSection('section5')"
+      [class.active]="isActive('section5')"
+      class="switch-button"
+    >
+      Compressor 5
+    </button>
+    <button
+      (click)="setActiveSection('section6')"
+      [class.active]="isActive('section6')"
+      class="switch-button"
+    >
+      Compressor 6
+    </button>
+  </div>
 
-<!-- ngSwitch Container -->
-<div [ngSwitch]="activeSection" class="content-container">
-  <!-- Section 1 Content -->
-  <app-compressor1
-    *ngSwitchCase="'section1'"
-    class="section-content"
-  ></app-compressor1>
+  <!-- ngSwitch Container -->
+  <div [ngSwitch]="activeSection" class="content-container">
+    <!-- Section 1 Content -->
+    <app-compressor1
+      *ngSwitchCase="'section1'"
+      class="section-content"
+    ></app-compressor1>
 
-  <!-- Section 2 Content -->
-  <app-compressor2
-    *ngSwitchCase="'section2'"
-    class="section-content"
-  ></app-compressor2>
-  <!-- Section 3 Content -->
-  <app-compressor3
-    *ngSwitchCase="'section3'"
-    class="section-content"
-  ></app-compressor3>
-  <!-- Section 4 Content -->
-  <app-compressor4
-    *ngSwitchCase="'section4'"
-    class="section-content"
-  ></app-compressor4>
-  <!-- Section 5 Content -->
-  <app-compressor5
-    *ngSwitchCase="'section5'"
-    class="section-content"
-  ></app-compressor5>
-  <!-- Section 6 Content -->
-  <app-compressor6
-    *ngSwitchCase="'section6'"
-    class="section-content"
-  ></app-compressor6>
+    <!-- Section 2 Content -->
+    <app-compressor2
+      *ngSwitchCase="'section2'"
+      class="section-content"
+    ></app-compressor2>
+    <!-- Section 3 Content -->
+    <app-compressor3
+      *ngSwitchCase="'section3'"
+      class="section-content"
+    ></app-compressor3>
+    <!-- Section 4 Content -->
+    <app-compressor4
+      *ngSwitchCase="'section4'"
+      class="section-content"
+    ></app-compressor4>
+    <!-- Section 5 Content -->
+    <app-compressor5
+      *ngSwitchCase="'section5'"
+      class="section-content"
+    ></app-compressor5>
+    <!-- Section 6 Content -->
+    <app-compressor6
+      *ngSwitchCase="'section6'"
+      class="section-content"
+    ></app-compressor6>
 
-  <!-- Default case (optional) -->
-  <div *ngSwitchDefault class="section-content">
-    <p>Please select a section to view content.</p>
+    <!-- Default case (optional) -->
+    <div *ngSwitchDefault class="section-content">
+      <p>Please select a section to view content.</p>
+    </div>
   </div>
 </div>
