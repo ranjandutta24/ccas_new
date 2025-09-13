@@ -57,6 +57,26 @@
     }
 
     /* Animations */
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
     @keyframes fadeInDown {
       from {
         opacity: 0;
@@ -102,4 +122,21 @@ svg path{
     stroke-dashoffset: 0;
  
   }
+}
+
+.flx{
+  display: flex;
+  img{
+    width: 50px;
+    height: 40px;
+    margin: 15px 20px 50px 20px;
+    
+  }
+}
+
+.i1{
+  animation: fadeInLeft 1s ease-out;
+}
+.i2{
+  animation: fadeInRight 1s ease-out;
 }
