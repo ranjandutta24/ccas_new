@@ -79,3 +79,27 @@
       }
     }
   
+svg path{
+  fill: transparent;
+  stroke: #b6a058;
+  stroke-width: 0.5;
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: textAnimation 2s ease-in-out 1 forwards;
+}
+
+@keyframes textAnimation {
+  0%{
+    stroke-dashoffset: 50;
+ 
+  }
+  80%{
+    fill: transparent;
+ 
+  }
+  100%{
+    fill: #fffde8;
+    stroke-dashoffset: 0;
+ 
+  }
+}
