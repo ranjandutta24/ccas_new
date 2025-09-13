@@ -685,7 +685,7 @@ export class DashboardComponent implements OnInit {
       .subscribe((data: any) => {
         // console.log(data);
         this.trendData = data;
-        console.log(this.trendData);
+        // console.log(this.trendData);
         let igcaFlow = this.trendData.map((item) =>
           parseFloat((item['IGCAF'] / 1000).toFixed(2))
         );

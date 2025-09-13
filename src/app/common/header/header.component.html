@@ -1,6 +1,13 @@
 <div class="header" style="list-style: none">
   <!-- <li><a routerLink="/ccas-live"> CCAS Live</a></li> -->
-  <li (click)="goToRoute('/main/dashboard')">CCAS Live</li>
+  <!-- <li (click)="goToRoute('/main/dashboard')">CCAS Live</li> -->
+
+  <li
+    [class.active]="isActive('/main/ccslive')"
+    (click)="goToRoute('/main/ccslive')"
+  >
+    CCAS
+  </li>
   <li
     [class.active]="isActive('/main/dashboard')"
     (click)="goToRoute('/main/dashboard')"

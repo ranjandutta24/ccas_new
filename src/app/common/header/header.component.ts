@@ -12,6 +12,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {}
 
   goToRoute(path: string) {
+    console.log(path);
+
     this.router.navigate([path]);
   }
   isActive(path: string): boolean {
