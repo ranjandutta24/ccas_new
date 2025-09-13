@@ -532,7 +532,7 @@ export class DashboardComponent implements OnInit {
         formatter: function (val: any, opts: any) {
           const index = opts.dataPointIndex;
           // Show only 1 out of 10 points
-          return index % 10 === 0 ? val : '';
+          return index % 9 === 0 ? val : '';
         },
       },
       stroke: {
@@ -628,7 +628,7 @@ export class DashboardComponent implements OnInit {
         formatter: function (val: any, opts: any) {
           const index = opts.dataPointIndex;
           // Show only 1 out of 10 points
-          return index % 10 === 0 ? val : '';
+          return index % 9 === 0 ? val : '';
         },
       },
       stroke: {
@@ -672,7 +672,7 @@ export class DashboardComponent implements OnInit {
           },
         },
         min: 6.3,
-        max: 7,
+        max: 7.2,
       },
       colors: ['#008FFB', '#BD4CC7'],
     };

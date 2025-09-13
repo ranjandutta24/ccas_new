@@ -150,9 +150,27 @@ export class OverviewComponent implements OnInit {
       this.MOTOR_CURR_COMP6 = parseInt(data.MOTOR_CURR_COMP6);
     });
     this.sseService.getSSEbyshop().subscribe((data: any) => {
-      console.log(data);
       this.plants[2].if = data.sp1_Inst_air_inlet_flow.toFixed(2);
       this.plants[2].ip = data.sp1_Inst_air_pressure.toFixed(2);
+
+      this.plants[3].if = data.INST_AIR_F.toFixed(2);
+      this.plants[3].ip = data.INST_AIR_P.toFixed(2);
+
+      this.plants[3].pf = data.PLANT_AIR_F
+        ? data.PLANT_AIR_F.toFixed(2)
+        : '0.00';
+
+      this.plants[3].pp = data.PLANT_AIR_P.toFixed(2);
+
+      this.plants[4].if = data.INST_P.toFixed(2);
+      this.plants[4].ip = data.INST_F.toFixed(2);
+
+      this.plants[6].ip = data.igca_pr.toFixed(2);
+      this.plants[6].if = data.igca_flow.toFixed(2);
+      this.plants[6].pf = data.pgca_flow.toFixed(2);
+      this.plants[6].pp = data.pgca_pr.toFixed(2);
+
+      console.log(this.plants[3]);
     });
   }
   private animateValue(
