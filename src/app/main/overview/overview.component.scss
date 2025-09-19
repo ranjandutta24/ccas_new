@@ -76,7 +76,8 @@ table {
 }
 
 thead {
-  background: linear-gradient(to right, #007bff, #0056b3);
+  background-color: #6c757d;
+  // background: linear-gradient(to right, #ffffff, #979797);
   color: #ffffff;
 }
 
@@ -132,7 +133,7 @@ tbody td {
 
 /* Status colors */
 .bg-danger {
-  background-color: #dc3545 !important;
+  background-color: #6d6d6d !important;
   color: #fff !important;
 }
 .bg-success {
@@ -140,13 +141,13 @@ tbody td {
   color: #fff !important;
 }
 .colorRed {
-  background-color: rgba(220, 53, 69, 0.15);
-  color: #dc3545;
+  background-color: rgba(168, 59, 40, 0.87);
+  color: #ffffff;
   font-weight: 600;
 }
 .colorGreen {
-  background-color: rgba(40, 167, 69, 0.15);
-  color: #28a745;
+  background-color: rgb(29, 124, 51);
+  color: #eeeeee;
   font-weight: 600;
 }
 .colorDefault {
