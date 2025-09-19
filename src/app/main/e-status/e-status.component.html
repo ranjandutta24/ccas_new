@@ -8,13 +8,16 @@
   </tr>
   <tr *ngFor="let fan of coolingTowerFans">
     <td>{{ fan.name }}</td>
-    <td
-      [ngClass]="{
-        'status-running': fan.status === 1,
-        'status-stopped': fan.status === 0
-      }"
-    >
-      Running Status
+    <td>
+      <div
+        class="status"
+        [ngClass]="{
+          'status-running': fan.status === 1,
+          'status-stopped': fan.status === 0
+        }"
+      >
+        Running Status
+      </div>
     </td>
   </tr>
 
@@ -23,13 +26,16 @@
   </tr>
   <tr *ngFor="let pump of coolingWaterPumps">
     <td>{{ pump.name }}</td>
-    <td
-      [ngClass]="{
-        'status-running': pump.status === 1,
-        'status-stopped': pump.status === 0
-      }"
-    >
-      Running Status
+    <td>
+      <div
+        class="status"
+        [ngClass]="{
+          'status-running': pump.status === 1,
+          'status-stopped': pump.status === 0
+        }"
+      >
+        Running Status
+      </div>
     </td>
   </tr>
 </table>

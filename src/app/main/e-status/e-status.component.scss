@@ -13,8 +13,8 @@
 /* Section headers */
 .section-header th {
   background: linear-gradient(135deg, #008cff, #008cff);
-  color: #000;
-  font-size: 17px;
+  // color: #000;
+  font-size: 20px;
   font-weight: 700;
   text-align: left;
   padding: 12px 16px;
@@ -28,8 +28,8 @@
   padding: 12px 15px;
   text-align: center;
   border-bottom: 1px solid #e0e0e0;
-  font-size: 15px;
-  color: #333;
+  // font-size: 15px;
+ 
 }
 
 /* First column (equipment name) */
@@ -95,4 +95,14 @@
     padding: 4px 10px;
     font-size: 12px;
   }
+}
+.status{
+  padding: 6px !important;
+  height: 20px;
+}
+th{
+  color: #ffffff;
+}
+td{
+    color: #333;
 }
