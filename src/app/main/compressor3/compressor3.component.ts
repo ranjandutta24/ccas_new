@@ -48,6 +48,10 @@ export class Compressor3Component implements OnInit {
   @ViewChild('chart6') chart6!: ChartComponent;
   @ViewChild('chart7') chart7!: ChartComponent;
   @ViewChild('chart8') chart8!: ChartComponent;
+  @ViewChild('chart9') chart9!: ChartComponent;
+  @ViewChild('chart10') chart10!: ChartComponent;
+  @ViewChild('chart11') chart11!: ChartComponent;
+  @ViewChild('chart12') chart12!: ChartComponent;
 
   activeSection: string = 'section1';
   public chartOptions1: ChartOptions;
@@ -73,6 +77,7 @@ export class Compressor3Component implements OnInit {
     return this.activeSection === section;
   }
   private sseSub?: Subscription;
+  com3: any;
   constructor(private sseService: SseService) {
     const baseChartOptions = {
       chart: {
@@ -486,8 +491,86 @@ export class Compressor3Component implements OnInit {
     this.sseSub = this.sseService.getSSEComp('comp3').subscribe((data: any) => {
       console.log(data);
 
-      // this.igcaFlow = parseInt(data.IGCA_FLOW);
+      this.com3 = data;
+      // console.log(this.com3['InletAirTempStage3']);
+
+      // this.updateChart(this.chart1, this.com3['LubeOilTemp'], 600);
+      // this.updateChart(this.chart2, this.com3['DischargeAirTemp'], 600);
+      // this.updateChart(this.chart3, this.com3['InletAirTempStage'], 250);
+      // this.updateChart(this.chart4, this.com3['InletAirTempStage3'], 250);
+
+      // this.updateChart(this.chart5, this.com3['MOTOR_CURR_COMP2'], 600);
+      // this.updateChart(this.chart6, this.com3['VibrationStage1'], 100);
+      // this.updateChart(this.chart7, this.com3['VibrationStgae2'], 100);
+      // this.updateChart(this.chart8, this.com3['VibrationStage3'] || 0, 100);
+
+      // this.updateRadialChart(this.chart9, this.com3['LubeoilPressure'], 100);
+      // this.updateRadialChart(this.chart10, this.com3['SystemPressure'], 1000);
+      // this.updateRadialChart(this.chart11, this.com3['AirFlow'], 500);
+      // this.updateRadialChart(this.chart12, this.com3['RUN_HR_COMP2'], 1000);
     });
+  }
+
+  private updateRadialChart(
+    chart: ChartComponent | undefined,
+    value: number,
+    max: number
+  ): void {
+    if (chart) {
+      const percent = (value / max) * 100;
+
+      chart.updateOptions(
+        {
+          series: [percent], // Apex expects % fill (0–100)
+          plotOptions: {
+            radialBar: {
+              dataLabels: {
+                value: {
+                  formatter: () => `${value} / ${max}`, // display actual numbers
+                },
+              },
+            },
+          },
+          fill: {
+            colors: [percent > 70 ? '#FF0000' : '#00B050'], // dynamic color
+          },
+        },
+        false,
+        true
+      );
+    }
+  }
+
+  private updateChart(
+    chart: ChartComponent | undefined,
+    value: number,
+    limit: number
+  ): void {
+    if (chart) {
+      chart.updateSeries(
+        [
+          {
+            name: 'Actual',
+            data: [
+              {
+                x: '',
+                // x: limit == 600 ? 'Amp' : 'Nm3/hr',
+                y: value,
+                goals: [
+                  {
+                    name: 'Expected',
+                    value: limit,
+                    strokeWidth: 5,
+                    strokeColor: '#BD4CC7',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        false
+      );
+    }
   }
 
   ngOnDestroy(): void {

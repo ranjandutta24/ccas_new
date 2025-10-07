@@ -48,6 +48,10 @@ export class Compressor2Component implements OnInit {
   @ViewChild('chart6') chart6!: ChartComponent;
   @ViewChild('chart7') chart7!: ChartComponent;
   @ViewChild('chart8') chart8!: ChartComponent;
+  @ViewChild('chart9') chart9!: ChartComponent;
+  @ViewChild('chart10') chart10!: ChartComponent;
+  @ViewChild('chart11') chart11!: ChartComponent;
+  @ViewChild('chart12') chart12!: ChartComponent;
 
   activeSection: string = 'section1';
   public chartOptions1: ChartOptions;
@@ -64,7 +68,7 @@ export class Compressor2Component implements OnInit {
   public chartROptions2: ChartROptions;
   public chartROptions3: ChartROptions;
   public chartROptions4: ChartROptions;
-
+  com2: any;
   setActiveSection(section: string): void {
     this.activeSection = section;
   }
@@ -348,7 +352,7 @@ export class Compressor2Component implements OnInit {
     };
 
     const value2 = 51.53;
-    const max2 = 10;
+    const max2 = 1000;
     const percent2 = (value2 / max2) * 100;
 
     this.chartROptions2 = {
@@ -482,12 +486,123 @@ export class Compressor2Component implements OnInit {
     };
   }
 
+  // AirFlow
+  // :
+  // 229
+  // ByPassValve
+  // :
+  // 0
+  // CommonTrip
+  // :
+  // 1
+  // Common_Alarm
+  // :
+  // 1
+  // DT_Stamp
+  // :
+  // "2025-10-07T10:59:03.000Z"
+  // DischargeAirTemp
+  // :
+  // 42
+  // InletAirTempStage
+  // :
+  // 31
+  // InletAirTempStage3
+  // :
+  // 33
+  // InletValvePosition
+  // :
+
+  // POPRunning
+  // :
+  // 1
+  // PressureSetPoint
+
   ngOnInit(): void {
     this.sseSub = this.sseService.getSSEComp('comp2').subscribe((data: any) => {
       console.log(data);
+      this.com2 = data;
+      console.log(this.com2['InletAirTempStage3']);
+
+      this.updateChart(this.chart1, this.com2['LubeOilTemp'], 600);
+      this.updateChart(this.chart2, this.com2['DischargeAirTemp'], 600);
+      this.updateChart(this.chart3, this.com2['InletAirTempStage'], 250);
+      this.updateChart(this.chart4, this.com2['InletAirTempStage3'], 250);
+
+      this.updateChart(this.chart5, this.com2['MOTOR_CURR_COMP2'], 600);
+      this.updateChart(this.chart6, this.com2['VibrationStage1'], 100);
+      this.updateChart(this.chart7, this.com2['VibrationStgae2'], 100);
+      this.updateChart(this.chart8, this.com2['VibrationStage3'] || 0, 100);
+
+      this.updateRadialChart(this.chart9, this.com2['LubeoilPressure'], 100);
+      this.updateRadialChart(this.chart10, this.com2['SystemPressure'], 1000);
+      this.updateRadialChart(this.chart11, this.com2['AirFlow'], 500);
+      this.updateRadialChart(this.chart12, this.com2['RUN_HR_COMP2'], 1000);
 
       // this.igcaFlow = parseInt(data.IGCA_FLOW);
     });
+  }
+
+  private updateRadialChart(
+    chart: ChartComponent | undefined,
+    value: number,
+    max: number
+  ): void {
+    if (chart) {
+      const percent = (value / max) * 100;
+
+      chart.updateOptions(
+        {
+          series: [percent], // Apex expects % fill (0–100)
+          plotOptions: {
+            radialBar: {
+              dataLabels: {
+                value: {
+                  formatter: () => `${value} / ${max}`, // display actual numbers
+                },
+              },
+            },
+          },
+          fill: {
+            colors: [percent > 70 ? '#FF0000' : '#00B050'], // dynamic color
+          },
+        },
+        false,
+        true
+      );
+    }
+  }
+
+  private updateChart(
+    chart: ChartComponent | undefined,
+    value: number,
+    limit: number
+  ): void {
+    if (chart) {
+      chart.updateSeries(
+        [
+          {
+            name: 'Actual',
+            data: [
+              {
+                x: '',
+                // x: limit == 600 ? 'Amp' : 'Nm3/hr',
+                y: value,
+                goals: [
+                  {
+                    name: 'Expected',
+                    value: limit,
+                    strokeWidth: 5,
+                    strokeColor: '#BD4CC7',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        false
+      );
+    }
   }
 
   ngOnDestroy(): void {

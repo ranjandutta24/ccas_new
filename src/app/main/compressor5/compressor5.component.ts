@@ -48,6 +48,10 @@ export class Compressor5Component implements OnInit {
   @ViewChild('chart6') chart6!: ChartComponent;
   @ViewChild('chart7') chart7!: ChartComponent;
   @ViewChild('chart8') chart8!: ChartComponent;
+  @ViewChild('chart9') chart9!: ChartComponent;
+  @ViewChild('chart10') chart10!: ChartComponent;
+  @ViewChild('chart11') chart11!: ChartComponent;
+  @ViewChild('chart12') chart12!: ChartComponent;
 
   activeSection: string = 'section1';
   public chartOptions1: ChartOptions;
