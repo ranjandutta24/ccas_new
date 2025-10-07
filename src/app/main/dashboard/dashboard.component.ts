@@ -730,6 +730,7 @@ export class DashboardComponent implements OnInit {
       .pipe(debounceTime(100)) // Add debounce to reduce update frequency
       .subscribe((data: any) => {
         // console.log(parseInt(data.IGCA_FLOW));
+        // console.log('ds');
 
         this.igcaFlow = parseInt(data.IGCA_FLOW);
         this.igcaPresser = parseFloat(data.IGCA_PRESSER.toFixed(2));

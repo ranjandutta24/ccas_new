@@ -119,6 +119,7 @@
   width: 100%;
   padding: 10px;
   height: 120px;
+  position: relative;
 }
 
 .each_g1{
@@ -134,6 +135,11 @@ color: rgb(110, 110, 110);
 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 font-weight: bold;
 }
+
+.unitr{
+  position: absolute; text-align: center;
+  left: 23px
+ }
 
 .table_con{
 display: flex;

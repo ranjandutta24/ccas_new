@@ -27,6 +27,7 @@ export class OverviewComponent implements OnInit {
   MOTOR_CURR_COMP6: number = 0;
 
   private sseSub?: Subscription;
+  private ssebyshop?: Subscription;
   constructor(private sseService: SseService) {}
   title = 'Centralized Compressed Air Station Overview';
 
@@ -131,25 +132,29 @@ export class OverviewComponent implements OnInit {
 
   currentThreshold = 50;
   ngOnInit(): void {
-    this.sseService.getServerSentEvent().subscribe((data: any) => {
-      this.igcaFlow = parseInt(data.IGCA_FLOW);
-      this.igcaPresser = parseFloat(data.IGCA_PRESSER.toFixed(2));
-      this.pgcaFlow = parseInt(data.PGCA_FLOW);
-      this.pgcaPresser = parseFloat(data.PGCA_PRESSER.toFixed(2));
-      this.AI_6_COMP1 = parseInt(data.AI_6_COMP1);
-      this.AI_6_COMP2 = parseInt(data.AI_6_COMP2);
-      this.AI_6_COMP3 = parseInt(data.AI_6_COMP3);
-      this.AI_6_COMP4 = parseInt(data.AI_6_COMP4);
-      this.AI_6_COMP5 = parseInt(data.AI_6_COMP5);
-      this.AI_6_COMP6 = parseInt(data.AI_6_COMP6);
-      this.MOTOR_CURR_COMP1 = parseInt(data.MOTOR_CURR_COMP1);
-      this.MOTOR_CURR_COMP2 = parseInt(data.MOTOR_CURR_COMP2);
-      this.MOTOR_CURR_COMP3 = parseInt(data.MOTOR_CURR_COMP3);
-      this.MOTOR_CURR_COMP4 = parseInt(data.MOTOR_CURR_COMP4);
-      this.MOTOR_CURR_COMP5 = parseInt(data.MOTOR_CURR_COMP5);
-      this.MOTOR_CURR_COMP6 = parseInt(data.MOTOR_CURR_COMP6);
-    });
-    this.sseService.getSSEbyshop().subscribe((data: any) => {
+    this.sseSub = this.sseService
+      .getServerSentEvent()
+      .subscribe((data: any) => {
+        console.log('overview');
+
+        this.igcaFlow = parseInt(data.IGCA_FLOW);
+        this.igcaPresser = parseFloat(data.IGCA_PRESSER.toFixed(2));
+        this.pgcaFlow = parseInt(data.PGCA_FLOW);
+        this.pgcaPresser = parseFloat(data.PGCA_PRESSER.toFixed(2));
+        this.AI_6_COMP1 = parseInt(data.AI_6_COMP1);
+        this.AI_6_COMP2 = parseInt(data.AI_6_COMP2);
+        this.AI_6_COMP3 = parseInt(data.AI_6_COMP3);
+        this.AI_6_COMP4 = parseInt(data.AI_6_COMP4);
+        this.AI_6_COMP5 = parseInt(data.AI_6_COMP5);
+        this.AI_6_COMP6 = parseInt(data.AI_6_COMP6);
+        this.MOTOR_CURR_COMP1 = parseInt(data.MOTOR_CURR_COMP1);
+        this.MOTOR_CURR_COMP2 = parseInt(data.MOTOR_CURR_COMP2);
+        this.MOTOR_CURR_COMP3 = parseInt(data.MOTOR_CURR_COMP3);
+        this.MOTOR_CURR_COMP4 = parseInt(data.MOTOR_CURR_COMP4);
+        this.MOTOR_CURR_COMP5 = parseInt(data.MOTOR_CURR_COMP5);
+        this.MOTOR_CURR_COMP6 = parseInt(data.MOTOR_CURR_COMP6);
+      });
+    this.ssebyshop = this.sseService.getSSEbyshop().subscribe((data: any) => {
       this.plants[2].if = data.sp1_Inst_air_inlet_flow.toFixed(2);
       this.plants[2].ip = data.sp1_Inst_air_pressure.toFixed(2);
 
@@ -169,8 +174,6 @@ export class OverviewComponent implements OnInit {
       this.plants[6].if = data.igca_flow.toFixed(2);
       this.plants[6].pf = data.pgca_flow.toFixed(2);
       this.plants[6].pp = data.pgca_pr.toFixed(2);
-
-      console.log(this.plants[3]);
     });
   }
   private animateValue(
@@ -207,5 +210,15 @@ export class OverviewComponent implements OnInit {
         (this as any)[field] = end; // ensure final value
       }
     }, stepTime);
+  }
+
+  ngOnDestroy(): void {
+    // Clean up subscription to prevent memory leaks
+    if (this.sseSub) {
+      this.sseSub.unsubscribe();
+    }
+    if (this.ssebyshop) {
+      this.ssebyshop.unsubscribe();
+    }
   }
 }

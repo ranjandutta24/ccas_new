@@ -14,6 +14,8 @@ import {
   ApexNonAxisChartSeries,
   ApexFill,
 } from 'ng-apexcharts';
+import { Subscription } from 'rxjs';
+import { SseService } from 'src/app/service/sse.servece';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -70,7 +72,8 @@ export class Compressor4Component implements OnInit {
   isActive(section: string): boolean {
     return this.activeSection === section;
   }
-  constructor() {
+  private sseSub?: Subscription;
+  constructor(private sseService: SseService) {
     const baseChartOptions = {
       chart: {
         height: 90,
@@ -479,5 +482,17 @@ export class Compressor4Component implements OnInit {
     };
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.sseSub = this.sseService.getSSEComp('comp4').subscribe((data: any) => {
+      console.log(data);
+
+      // this.igcaFlow = parseInt(data.IGCA_FLOW);
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.sseSub) {
+      this.sseSub.unsubscribe();
+    }
+  }
 }

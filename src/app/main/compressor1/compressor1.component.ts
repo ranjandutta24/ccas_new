@@ -14,6 +14,8 @@ import {
   ApexNonAxisChartSeries,
   ApexFill,
 } from 'ng-apexcharts';
+import { Subscription } from 'rxjs';
+import { SseService } from 'src/app/service/sse.servece';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;
@@ -68,6 +70,9 @@ export class Compressor1Component implements OnInit {
   public chartROptions3: ChartROptions;
   public chartROptions4: ChartROptions;
 
+  com1: any;
+  // {"DT_Stamp":"2025-10-07T06:39:00.000Z","InletValvePos":0,"BypassValvePos":100,"POPRunning":1,"LubeOilTemp":1,"":0,"MOTOR_CURR_COMP1":0,"":103,"PressureSetPoint":102,"":-14,"InletAirTempStage2":85,"InletAirTemStage":83,"DischargeAirTemp":86,"VibrationStage1":0,"VibrationStage2":0,"VibrationStage3":0,"CommonTrip":0,"CommonAlarm":0,"RUNHRCOMP1":918}
+
   setActiveSection(section: string): void {
     this.activeSection = section;
   }
@@ -75,7 +80,9 @@ export class Compressor1Component implements OnInit {
   isActive(section: string): boolean {
     return this.activeSection === section;
   }
-  constructor() {
+  private sseSub?: Subscription;
+
+  constructor(private sseService: SseService) {
     const baseChartOptions = {
       chart: {
         height: 90,
@@ -134,7 +141,7 @@ export class Compressor1Component implements OnInit {
           name: 'Actual',
           data: [
             {
-              x: 'Temp DegC',
+              x: '',
               y: 124,
               goals: [
                 {
@@ -156,7 +163,7 @@ export class Compressor1Component implements OnInit {
           name: 'Actual',
           data: [
             {
-              x: 'Temp DegC',
+              x: '',
               y: 200,
               goals: [
                 {
@@ -178,12 +185,12 @@ export class Compressor1Component implements OnInit {
           name: 'Actual',
           data: [
             {
-              x: 'Temp DegC',
+              x: '',
               y: 124,
               goals: [
                 {
                   name: 'Expected',
-                  value: 134,
+                  value: 250,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -200,12 +207,12 @@ export class Compressor1Component implements OnInit {
           name: 'Actual',
           data: [
             {
-              x: 'Temp DegC',
-              y: 124,
+              x: '',
+              y: 15,
               goals: [
                 {
                   name: 'Expected',
-                  value: 100,
+                  value: 250,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -223,7 +230,7 @@ export class Compressor1Component implements OnInit {
           name: 'Actual',
           data: [
             {
-              x: 'Temp DegC',
+              x: '',
               y: 124,
               goals: [
                 {
@@ -245,7 +252,7 @@ export class Compressor1Component implements OnInit {
           name: 'Actual',
           data: [
             {
-              x: 'Temp DegC',
+              x: '',
               y: 200,
               goals: [
                 {
@@ -267,7 +274,7 @@ export class Compressor1Component implements OnInit {
           name: 'Actual',
           data: [
             {
-              x: 'Temp DegC',
+              x: '',
               y: 124,
               goals: [
                 {
@@ -289,7 +296,7 @@ export class Compressor1Component implements OnInit {
           name: 'Actual',
           data: [
             {
-              x: 'Temp DegC',
+              x: '',
               y: 124,
               goals: [
                 {
@@ -314,6 +321,7 @@ export class Compressor1Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
+        // height: 250,
         // width: 300,
       },
       title: {
@@ -360,7 +368,7 @@ export class Compressor1Component implements OnInit {
       labels: ['Average Results'],
     };
 
-    const value2 = 51.53;
+    const value2 = 0;
     const max2 = 10;
     const percent2 = (value2 / max2) * 100;
 
@@ -414,7 +422,7 @@ export class Compressor1Component implements OnInit {
       labels: ['Average Results'],
     };
 
-    const value3 = 376;
+    const value3 = 0;
     const max3 = 3200;
     const percent3 = (value3 / max3) * 100;
     this.chartROptions3 = {
@@ -467,7 +475,7 @@ export class Compressor1Component implements OnInit {
       labels: ['Average Results'],
     };
 
-    const value = 10;
+    const value = 0;
     const max = 100000;
     const percent = (value / max) * 100;
 
@@ -476,6 +484,7 @@ export class Compressor1Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
+        height: 250,
         // width: 300,
       },
       title: {
@@ -522,5 +531,95 @@ export class Compressor1Component implements OnInit {
     };
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.sseSub = this.sseService.getSSEComp('comp1').subscribe((data: any) => {
+      this.com1 = data;
+      console.log(this.com1['MOTOR_CURR_COMP1']);
+
+      this.updateChart(this.chart1, this.com1['LubeOilTemp'], 600);
+      this.updateChart(this.chart2, this.com1['DischargeAirTemp'], 600);
+      this.updateChart(this.chart3, this.com1['InletAirTemStage'], 250);
+      this.updateChart(this.chart4, this.com1['InletAirTempStage2'], 250);
+
+      this.updateChart(this.chart5, this.com1['MOTOR_CURR_COMP1'], 600);
+      this.updateChart(this.chart6, this.com1['VibrationStage1'], 100);
+      this.updateChart(this.chart7, this.com1['VibrationStage2'], 100);
+      this.updateChart(this.chart8, this.com1['VibrationStage3'], 100);
+
+      this.updateRadialChart(this.chart9, this.com1['LubeOilPressure'], 100);
+      this.updateRadialChart(this.chart10, this.com1['SystemPressure'], 250);
+      this.updateRadialChart(this.chart11, this.com1['AirFlow'], 100);
+      this.updateRadialChart(this.chart12, this.com1['RUNHRCOMP1'], 1000);
+
+      // this.igcaFlow = parseInt(data.IGCA_FLOW);
+    });
+  }
+
+  private updateRadialChart(
+    chart: ChartComponent | undefined,
+    value: number,
+    max: number
+  ): void {
+    if (chart) {
+      const percent = (value / max) * 100;
+
+      chart.updateOptions(
+        {
+          series: [percent], // Apex expects % fill (0–100)
+          plotOptions: {
+            radialBar: {
+              dataLabels: {
+                value: {
+                  formatter: () => `${value} / ${max}`, // display actual numbers
+                },
+              },
+            },
+          },
+          fill: {
+            colors: [percent > 70 ? '#FF0000' : '#00B050'], // dynamic color
+          },
+        },
+        false,
+        true
+      );
+    }
+  }
+
+  private updateChart(
+    chart: ChartComponent | undefined,
+    value: number,
+    limit: number
+  ): void {
+    if (chart) {
+      chart.updateSeries(
+        [
+          {
+            name: 'Actual',
+            data: [
+              {
+                x: '',
+                // x: limit == 600 ? 'Amp' : 'Nm3/hr',
+                y: value,
+                goals: [
+                  {
+                    name: 'Expected',
+                    value: limit,
+                    strokeWidth: 5,
+                    strokeColor: '#BD4CC7',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        false
+      );
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.sseSub) {
+      this.sseSub.unsubscribe();
+    }
+  }
 }

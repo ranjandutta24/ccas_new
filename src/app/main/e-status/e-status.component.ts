@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { SseService } from 'src/app/service/sse.servece';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-e-status',
   templateUrl: './e-status.component.html',
@@ -36,18 +37,39 @@ export class EStatusComponent implements OnInit {
   };
 
   coolingTowerFans = [
-    { name: 'Cooling Tower Fan I', status: 1 },
+    { name: 'Cooling Tower Fan I', status: 0 },
     { name: 'Cooling Tower Fan II', status: 0 },
-    { name: 'Cooling Tower Fan III', status: 1 },
+    { name: 'Cooling Tower Fan III', status: 0 },
   ];
 
   coolingWaterPumps = [
-    { name: 'Cooling Water Pump I', status: 1 },
+    { name: 'Cooling Water Pump I', status: 0 },
     { name: 'Cooling Water Pump II', status: 0 },
-    { name: 'Cooling Water Pump III', status: 1 },
+    { name: 'Cooling Water Pump III', status: 0 },
     { name: 'Cooling Water Pump IV', status: 0 },
   ];
-  constructor() {}
 
-  ngOnInit(): void {}
+  private sseSub?: Subscription;
+  constructor(private sseService: SseService) {}
+
+  ngOnInit(): void {
+    this.sseSub = this.sseService.getSSEestatus().subscribe((data: any) => {
+      console.log('es');
+      this.coolingTowerFans[0].status = data.CoolingToweFan1;
+      this.coolingTowerFans[1].status = data.CoolingTowerFan2;
+      this.coolingTowerFans[2].status = data.CoolingTowerFan3;
+
+      this.coolingWaterPumps[0].status = data.coolingWaterPumpOn;
+      this.coolingWaterPumps[1].status = data.CoolingWaterPump2On;
+      this.coolingWaterPumps[2].status = data.CoolingWaterPump3On;
+      this.coolingWaterPumps[3].status = data.CoolingWaterPump4On;
+    });
+  }
+
+  ngOnDestroy(): void {
+    // Clean up subscription to prevent memory leaks
+    if (this.sseSub) {
+      this.sseSub.unsubscribe();
+    }
+  }
 }
