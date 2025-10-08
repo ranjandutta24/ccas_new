@@ -77,6 +77,8 @@ export class Compressor5Component implements OnInit {
     return this.activeSection === section;
   }
   private sseSub?: Subscription;
+  com5: any;
+
   constructor(private sseService: SseService) {
     const baseChartOptions = {
       chart: {
@@ -491,8 +493,90 @@ export class Compressor5Component implements OnInit {
       console.log(data);
 
       // this.igcaFlow = parseInt(data.IGCA_FLOW);
+      this.com5 = data;
+      // console.log(this.com5['InletAirTempStage3']);
+
+      this.updateChart(this.chart1, this.com5['LubeOilTemp'], 600);
+      this.updateChart(this.chart2, this.com5['DischargeAirTemp'], 600);
+      this.updateChart(this.chart3, this.com5['InletAirTemStage'], 250);
+      this.updateChart(this.chart4, this.com5['InletAirTempStage2'], 250);
+
+      this.updateChart(this.chart5, this.com5['MOTOR_CURR_COMP5'], 600);
+      this.updateChart(this.chart6, this.com5['VibrationStgae1'] || 0, 100);
+      this.updateChart(this.chart7, this.com5['VibrationStage2'], 100);
+      this.updateChart(this.chart8, this.com5['VibrationStgae3'] || 0, 100);
+
+      this.updateRadialChart(this.chart9, this.com5['LubeoilPressure'], 100);
+      this.updateRadialChart(this.chart10, this.com5['SystemPressure'], 1000);
+      this.updateRadialChart(this.chart11, this.com5['AirFlow'], 500);
+      this.updateRadialChart(this.chart12, this.com5['RUN_HR_COMP5'], 1000);
+
     });
   }
+
+  //sourav code
+  private updateRadialChart(
+    chart: ChartComponent | undefined,
+    value: number,
+    max: number
+  ): void {
+    if (chart) {
+      const percent = (value / max) * 100;
+
+      chart.updateOptions(
+        {
+          series: [percent], // Apex expects % fill (0–100)
+          plotOptions: {
+            radialBar: {
+              dataLabels: {
+                value: {
+                  formatter: () => `${value} / ${max}`, // display actual numbers
+                },
+              },
+            },
+          },
+          fill: {
+            colors: [percent > 70 ? '#FF0000' : '#00B050'], // dynamic color
+          },
+        },
+        false,
+        true
+      );
+    }
+  }
+
+  private updateChart(
+    chart: ChartComponent | undefined,
+    value: number,
+    limit: number
+  ): void {
+    if (chart) {
+      chart.updateSeries(
+        [
+          {
+            name: 'Actual',
+            data: [
+              {
+                x: '',
+                // x: limit == 600 ? 'Amp' : 'Nm3/hr',
+                y: value,
+                goals: [
+                  {
+                    name: 'Expected',
+                    value: limit,
+                    strokeWidth: 5,
+                    strokeColor: '#BD4CC7',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+        false
+      );
+    }
+  }
+  //sourav code
 
   ngOnDestroy(): void {
     if (this.sseSub) {

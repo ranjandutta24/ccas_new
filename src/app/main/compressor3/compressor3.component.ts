@@ -494,20 +494,20 @@ export class Compressor3Component implements OnInit {
       this.com3 = data;
       // console.log(this.com3['InletAirTempStage3']);
 
-      // this.updateChart(this.chart1, this.com3['LubeOilTemp'], 600);
-      // this.updateChart(this.chart2, this.com3['DischargeAirTemp'], 600);
-      // this.updateChart(this.chart3, this.com3['InletAirTempStage'], 250);
-      // this.updateChart(this.chart4, this.com3['InletAirTempStage3'], 250);
+      this.updateChart(this.chart1, this.com3['LubeOilTemp'], 600);
+      this.updateChart(this.chart2, this.com3['DischargeAirTemp'], 600);
+      this.updateChart(this.chart3, this.com3['InletAirTempStage2'], 250);
+      this.updateChart(this.chart4, this.com3['InletAirTempStage3'], 250);
 
-      // this.updateChart(this.chart5, this.com3['MOTOR_CURR_COMP2'], 600);
-      // this.updateChart(this.chart6, this.com3['VibrationStage1'], 100);
-      // this.updateChart(this.chart7, this.com3['VibrationStgae2'], 100);
-      // this.updateChart(this.chart8, this.com3['VibrationStage3'] || 0, 100);
+      this.updateChart(this.chart5, this.com3['MotorCurrent'], 600);
+      this.updateChart(this.chart6, this.com3['VibrationStgae1'], 100);
+      this.updateChart(this.chart7, this.com3['VibrationStage2'], 100);
+      this.updateChart(this.chart8, this.com3['VibrationStgae3'] || 0, 100);
 
-      // this.updateRadialChart(this.chart9, this.com3['LubeoilPressure'], 100);
-      // this.updateRadialChart(this.chart10, this.com3['SystemPressure'], 1000);
-      // this.updateRadialChart(this.chart11, this.com3['AirFlow'], 500);
-      // this.updateRadialChart(this.chart12, this.com3['RUN_HR_COMP2'], 1000);
+      this.updateRadialChart(this.chart9, this.com3['LubeoilPressure'], 100);
+      this.updateRadialChart(this.chart10, this.com3['SystemPressure'], 1000);
+      this.updateRadialChart(this.chart11, this.com3['AirFlow'], 500);
+      this.updateRadialChart(this.chart12, this.com3['RUN_HR_COMP3'], 1000);
     });
   }
 

@@ -1,70 +1,125 @@
-.status{
+.status {
     display: flex;
 }
-.graph1{
+
+.graph1 {
     display: flex;
 }
-.graph2{
+
+.graph2 {
     display: flex;
 }
-.graph3{
+
+.graph3 {
     display: flex;
     margin-bottom: 20px;
 }
-.each_com{
+
+// .each_com {
+//     display: flex;
+//     justify-content: center;
+//     width: 100%;
+//     border: 1px solid rgb(163, 163, 163);
+//     padding: 10px;
+// }
+
+//sourav code
+
+.inactive_design {
     display: flex;
     justify-content: center;
     width: 100%;
-    border: 1px solid  rgb(163, 163, 163)
-    ;
+    gap: 8px;
+    /* 👈 adds spacing between I/II/... and image */
+    border: 1px solid rgb(163, 163, 163);
     padding: 10px;
+    background-color: #ff4141;
 }
 
-.com_icon{
+.active_design {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 8px;
+    /* 👈 adds spacing between I/II/... and image */
+    border: 1px solid rgb(163, 163, 163);
+    padding: 10px;
+    background-color: #CCFFCC;
+    animation: blinkBackground 2s infinite;
+}
+
+/* 👇 keyframes define the blinking effect */
+@keyframes blinkBackground {
+    0% {
+        background-color: #dfffdf;
+        /* light green */
+    }
+
+    50% {
+        background-color: #4dff4d;
+    }
+
+    /* brighter green */
+
+    100% {
+        background-color: #d8fcd8;
+    }
+}
+
+//sourav code
+
+.com_icon {
     height: 130px;
     // padding: 5px;
 }
 
-.each_g1{
+.each_g1 {
     // display: flex;
     justify-content: center;
     width: 100%;
-    border: 1px solid rgb(163, 163, 163);
-    padding: 10px;
-}
-.each_g2{
-    // display: flex;
-    justify-content: center;
-    width: 100%;
-    border: 1px solid rgb(163, 163, 163);
-    padding: 10px;
-}
-.each_g3{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    border: 1px solid  rgb(163, 163, 163);
+    // border: 1px solid rgb(163, 163, 163);
+    border: 2px solid rgb(163, 163, 163);
     padding: 10px;
 }
 
-.red_text{
-color: red;
-font-weight: bold;
-font-size: 25px;
+.each_g2 {
+    // display: flex;
+    justify-content: center;
+    width: 100%;
+    border: 2px solid rgb(163, 163, 163);
+    padding: 10px;
 }
-.green_text{
-color: rgb(35, 206, 35);
-font-weight: bold;
-font-size: 25px;
+
+.each_g3 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    border: 1px solid rgb(163, 163, 163);
+    padding: 10px;
 }
-.unit{
+
+.textColour1 {
+    color: #212121;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.textColour2 {
+    color: #212121;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.unit {
     color: rgb(110, 110, 110);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
 }
-.bg_off{
-background-color: #c5c5c5;
+
+.bg_off {
+    background-color: #c5c5c5;
 }
-.bg_on{
+
+.bg_on {
     background-color: rgb(250, 255, 250);
 }

@@ -4,24 +4,24 @@
 //     font-family: Arial, sans-serif;
 //     // margin-top: 1rem;
 //   }
-  
+
 //   thead {
 //     background-color: #e0f0ff;
 //   }
-  
+
 //   thead th {
 //     padding: 10px;
 //     border: 1px solid #ccc;
 //     text-align: center;
 //     font-weight: bold;
 //   }
-  
+
 //   tbody td {
 //     padding: 8px;
 //     border: 1px solid #ccc;
 //     text-align: center;
 //   }
-  
+
 //   .table-title {
 //     background-color: #007bff;
 //     color: white;
@@ -31,17 +31,17 @@
 //     border-radius: 4px;
 //     margin-bottom: 10px;
 //   }
-  
+
 //   .bg-danger {
 //     background-color: #dc3545;
 //     color: white;
 //   }
-  
+
 //   .bg-success {
 //     background-color: #28a745;
 //     color: white;
 //   }
-  
+
 //   .table-info {
 //     background-color: #d1ecf1;
 //     font-weight: bold;
@@ -58,9 +58,12 @@
 
 .table-container {
   width: 100%;
-  overflow-x: auto;   /* Enables horizontal scroll on small screens */
+  overflow-x: auto;
+  /* Enables horizontal scroll on small screens */
   -webkit-overflow-scrolling: touch;
   margin-top: 1rem;
+  margin-bottom: 1.25rem;
+  /* Adjust gap size as needed */
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
@@ -72,7 +75,8 @@ table {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 14px;
   background-color: #ffffff;
-  min-width: 600px; /* Prevents breaking layout on very small screens */
+  min-width: 600px;
+  /* Prevents breaking layout on very small screens */
 }
 
 thead {
@@ -83,7 +87,9 @@ thead {
 
 thead th {
   padding: 12px;
-  border: 1px solid #ddd;
+  // border: 1px solid #ddd;
+  border: 2px solid #000000; //sourav code
+  /* Darker border */
   text-align: center;
   font-weight: 600;
   font-size: 14px;
@@ -98,6 +104,7 @@ tbody tr {
 tbody tr:nth-child(odd) {
   background-color: #f9f9f9;
 }
+
 tbody tr:nth-child(even) {
   background-color: #ffffff;
 }
@@ -108,7 +115,9 @@ tbody tr:hover {
 
 tbody td {
   padding: 10px;
-  border: 1px solid #ddd;
+  // border: 1px solid #ddd;
+  border: 2px solid #000000; //sourav code
+  /* Darker border */
   text-align: center;
   color: #333;
 }
@@ -136,20 +145,25 @@ tbody td {
   background-color: #6d6d6d !important;
   color: #fff !important;
 }
+
 .bg-success {
   background-color: #28a745 !important;
   color: #fff !important;
 }
+
 .colorRed {
-  background-color: rgba(168, 59, 40, 0.87);
+  // background-color: rgba(168, 59, 40, 0.87);
+  background-color: #ff4141;
   color: #ffffff;
   font-weight: 600;
 }
+
 .colorGreen {
   background-color: rgb(29, 124, 51);
   color: #eeeeee;
   font-weight: 600;
 }
+
 .colorDefault {
   background-color: rgba(108, 117, 125, 0.15);
   color: #6c757d;
@@ -162,10 +176,12 @@ tbody td {
     font-size: 12px;
     min-width: 500px;
   }
+
   thead th,
   tbody td {
     padding: 8px;
   }
+
   .table-title {
     font-size: 16px;
     padding: 10px;
@@ -177,17 +193,19 @@ tbody td {
     font-size: 11px;
     min-width: 400px;
   }
+
   thead th,
   tbody td {
     padding: 6px;
   }
+
   .table-title {
     font-size: 14px;
     padding: 8px;
   }
 }
 
-td{
+td {
   font-size: 15px;
   font-weight: 500;
 }
