@@ -352,8 +352,8 @@ export class Compressor3Component implements OnInit {
       labels: ['Average Results'],
     };
 
-    const value2 = 51.53;
-    const max2 = 10;
+    const value2 = 0;
+    const max2 = 1000;
     const percent2 = (value2 / max2) * 100;
 
     this.chartROptions2 = {
@@ -397,8 +397,8 @@ export class Compressor3Component implements OnInit {
       labels: ['Average Results'],
     };
 
-    const value3 = 376;
-    const max3 = 3200;
+    const value3 = 0;
+    const max3 = 1000;
     const percent3 = (value3 / max3) * 100;
     this.chartROptions3 = {
       series: [percent3], // Apex needs % fill
@@ -506,7 +506,7 @@ export class Compressor3Component implements OnInit {
 
       this.updateRadialChart(this.chart9, this.com3['LubeoilPressure'], 100);
       this.updateRadialChart(this.chart10, this.com3['SystemPressure'], 1000);
-      this.updateRadialChart(this.chart11, this.com3['AirFlow'], 500);
+      this.updateRadialChart(this.chart11, this.com3['AirFlow'], 1000);
       this.updateRadialChart(this.chart12, this.com3['RUN_HR_COMP3'], 1000);
     });
   }

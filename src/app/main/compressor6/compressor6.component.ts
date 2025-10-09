@@ -307,8 +307,8 @@ export class Compressor6Component implements OnInit {
       ],
     };
 
-    const value1 = 0.14;
-    const max1 = 10;
+    const value1 = 0;
+    const max1 = 100;
     const percent1 = (value1 / max1) * 100;
 
     this.chartROptions1 = {
@@ -352,8 +352,8 @@ export class Compressor6Component implements OnInit {
       labels: ['Average Results'],
     };
 
-    const value2 = 51.53;
-    const max2 = 10;
+    const value2 = 0;
+    const max2 = 1000;
     const percent2 = (value2 / max2) * 100;
 
     this.chartROptions2 = {
@@ -397,8 +397,8 @@ export class Compressor6Component implements OnInit {
       labels: ['Average Results'],
     };
 
-    const value3 = 376;
-    const max3 = 3200;
+    const value3 = 0;
+    const max3 = 500;
     const percent3 = (value3 / max3) * 100;
     this.chartROptions3 = {
       series: [percent3], // Apex needs % fill
@@ -441,8 +441,8 @@ export class Compressor6Component implements OnInit {
       labels: ['Average Results'],
     };
 
-    const value = 10;
-    const max = 100000;
+    const value = 0;
+    const max = 1500;
     const percent = (value / max) * 100;
 
     this.chartROptions4 = {
@@ -497,18 +497,18 @@ export class Compressor6Component implements OnInit {
 
       this.updateChart(this.chart1, this.com6['LubeOilTemp'], 600);
       this.updateChart(this.chart2, this.com6['DischargeAirTemp'], 600);
-      this.updateChart(this.chart3, this.com6['InletAirTemStage'], 250);
+      this.updateChart(this.chart3, this.com6['InletAirTemStage'] || 0, 250);
       this.updateChart(this.chart4, this.com6['InletAirTempStage2'], 250);
 
       this.updateChart(this.chart5, this.com6['MOTOR_CURR_COMP6'], 600);
-      this.updateChart(this.chart6, this.com6['VibrationStgae1'] || 0, 100);
+      this.updateChart(this.chart6, this.com6['VibrationStage1'] || 0, 100);
       this.updateChart(this.chart7, this.com6['VibrationStage2'], 100);
       this.updateChart(this.chart8, this.com6['VibrationStgae3'] || 0, 100);
 
-      this.updateRadialChart(this.chart9, this.com6['LubeoilPressure'], 100);
+      this.updateRadialChart(this.chart9, this.com6['LubeoilPressure'] || 0, 100);
       this.updateRadialChart(this.chart10, this.com6['SystemPressure'], 1000);
       this.updateRadialChart(this.chart11, this.com6['AirFlow'], 500);
-      this.updateRadialChart(this.chart12, this.com6['RUN_HR_COMP6'], 1000);
+      this.updateRadialChart(this.chart12, this.com6['RUN_HR_COMP6'] || 0, 1500);
     });
   }
 

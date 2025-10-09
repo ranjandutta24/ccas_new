@@ -306,8 +306,8 @@ export class Compressor2Component implements OnInit {
       ],
     };
 
-    const value1 = 0.14;
-    const max1 = 10;
+    const value1 = 0;
+    const max1 = 100;
     const percent1 = (value1 / max1) * 100;
 
     this.chartROptions1 = {
@@ -351,7 +351,7 @@ export class Compressor2Component implements OnInit {
       labels: ['Average Results'],
     };
 
-    const value2 = 51.53;
+    const value2 = 0;
     const max2 = 1000;
     const percent2 = (value2 / max2) * 100;
 
@@ -396,8 +396,8 @@ export class Compressor2Component implements OnInit {
       labels: ['Average Results'],
     };
 
-    const value3 = 376;
-    const max3 = 3200;
+    const value3 = 0;
+    const max3 = 1000;
     const percent3 = (value3 / max3) * 100;
     this.chartROptions3 = {
       series: [percent3], // Apex needs % fill
@@ -440,8 +440,8 @@ export class Compressor2Component implements OnInit {
       labels: ['Average Results'],
     };
 
-    const value = 10;
-    const max = 100000;
+    const value = 0;
+    const max = 1000;
     const percent = (value / max) * 100;
 
     this.chartROptions4 = {
@@ -522,7 +522,6 @@ export class Compressor2Component implements OnInit {
     this.sseSub = this.sseService.getSSEComp('comp2').subscribe((data: any) => {
       console.log(data);
       this.com2 = data;
-      console.log(this.com2['InletAirTempStage3']);
 
       this.updateChart(this.chart1, this.com2['LubeOilTemp'], 600);
       this.updateChart(this.chart2, this.com2['DischargeAirTemp'], 600);
@@ -536,7 +535,7 @@ export class Compressor2Component implements OnInit {
 
       this.updateRadialChart(this.chart9, this.com2['LubeoilPressure'], 100);
       this.updateRadialChart(this.chart10, this.com2['SystemPressure'], 1000);
-      this.updateRadialChart(this.chart11, this.com2['AirFlow'], 500);
+      this.updateRadialChart(this.chart11, this.com2['AirFlow'], 1000);
       this.updateRadialChart(this.chart12, this.com2['RUN_HR_COMP2'], 1000);
 
       // this.igcaFlow = parseInt(data.IGCA_FLOW);
