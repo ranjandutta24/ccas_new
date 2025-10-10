@@ -520,7 +520,6 @@ export class Compressor2Component implements OnInit {
 
   ngOnInit(): void {
     this.sseSub = this.sseService.getSSEComp('comp2').subscribe((data: any) => {
-      console.log(data);
       this.com2 = data;
 
       this.updateChart(this.chart1, this.com2['LubeOilTemp'], 600);

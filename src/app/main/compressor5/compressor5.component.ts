@@ -490,7 +490,6 @@ export class Compressor5Component implements OnInit {
 
   ngOnInit(): void {
     this.sseSub = this.sseService.getSSEComp('comp5').subscribe((data: any) => {
-      console.log(data);
 
       // this.igcaFlow = parseInt(data.IGCA_FLOW);
       this.com5 = data;

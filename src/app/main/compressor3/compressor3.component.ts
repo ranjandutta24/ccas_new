@@ -489,8 +489,6 @@ export class Compressor3Component implements OnInit {
 
   ngOnInit(): void {
     this.sseSub = this.sseService.getSSEComp('comp3').subscribe((data: any) => {
-      console.log(data);
-
       this.com3 = data;
       // console.log(this.com3['InletAirTempStage3']);
 

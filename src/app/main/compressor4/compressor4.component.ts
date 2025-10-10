@@ -489,8 +489,6 @@ export class Compressor4Component implements OnInit {
 
   ngOnInit(): void {
     this.sseSub = this.sseService.getSSEComp('comp4').subscribe((data: any) => {
-      console.log(data);
-
       // this.igcaFlow = parseInt(data.IGCA_FLOW);
 
       this.com4 = data;

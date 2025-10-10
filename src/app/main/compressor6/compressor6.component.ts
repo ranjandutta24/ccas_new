@@ -489,8 +489,6 @@ export class Compressor6Component implements OnInit {
 
   ngOnInit(): void {
     this.sseSub = this.sseService.getSSEComp('comp6').subscribe((data: any) => {
-      console.log(data);
-
       // this.igcaFlow = parseInt(data.IGCA_FLOW);
       this.com6 = data;
       // console.log(this.com6['InletAirTempStage3']);

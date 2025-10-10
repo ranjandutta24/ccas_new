@@ -103,7 +103,9 @@
     <tbody>
       <tr>
         <td>Running Status</td>
-        <td>1</td>
+        <td>
+          {{ com4
+          ? (com4.MOTOR_CURR_COMP4 <= 50 ? '0' : '1' ) : '' }} </td>
       </tr>
       <tr>
         <td>Motor Current [amp]</td>

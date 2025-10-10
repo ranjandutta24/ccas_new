@@ -1,27 +1,27 @@
 <div class="main">
   <!-- <button (click)="showdata()"></button> -->
   <div class="status">
-    <div class="inactive_design" [ngClass]="MOTOR_CURR_COMP1 <= 50 ? 'textColour1' : 'textColour2'">
+    <div [ngClass]="MOTOR_CURR_COMP1 <= 50 ? 'textColour1 inactive_design' : 'textColour2 active_design'">
       I
       <img class="com_icon" [src]="MOTOR_CURR_COMP1 <= 50 ? deactive_compath : active_compath" alt="" />
     </div>
-    <div class="active_design" [ngClass]="MOTOR_CURR_COMP2 <= 50 ? 'textColour1' : 'textColour2'">
+    <div [ngClass]="MOTOR_CURR_COMP2 <= 50 ? 'textColour1 inactive_design' : 'textColour2 active_design'">
       II
       <img class="com_icon" [src]="MOTOR_CURR_COMP2 <= 50 ? deactive_compath : active_compath" alt="" />
     </div>
-    <div class="inactive_design" [ngClass]="MOTOR_CURR_COMP3 <= 50 ? 'textColour1' : 'textColour2'">
+    <div [ngClass]="MOTOR_CURR_COMP3 <= 50 ? 'textColour1 inactive_design' : 'textColour2 active_design'">
       III
       <img class="com_icon" [src]="MOTOR_CURR_COMP3 <= 50 ? deactive_compath : active_compath" alt="" />
     </div>
-    <div class="active_design" [ngClass]="MOTOR_CURR_COMP4 <= 50 ? 'textColour1' : 'textColour2'">
+    <div [ngClass]="MOTOR_CURR_COMP4 <= 50 ? 'textColour1 inactive_design' : 'textColour2 active_design'">
       IV
       <img class="com_icon" [src]="MOTOR_CURR_COMP4 <= 50 ? deactive_compath : active_compath" alt="" />
     </div>
-    <div class="inactive_design" [ngClass]="MOTOR_CURR_COMP5 <= 50 ? 'textColour1' : 'textColour2'">
+    <div [ngClass]="MOTOR_CURR_COMP5 <= 50 ? 'textColour1 inactive_design' : 'textColour2 active_design'">
       V
       <img class="com_icon" [src]="MOTOR_CURR_COMP5 <= 50 ? deactive_compath : active_compath" alt="" />
     </div>
-    <div class="active_design" [ngClass]="MOTOR_CURR_COMP6 <= 50 ? 'textColour1' : 'textColour2'">
+    <div [ngClass]="MOTOR_CURR_COMP6 <= 50 ? 'textColour1 inactive_design' : 'textColour2 active_design'">
       VI
       <img class="com_icon" [src]="MOTOR_CURR_COMP6 <= 50 ? deactive_compath : active_compath" alt="" />
     </div>
