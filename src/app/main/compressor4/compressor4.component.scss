@@ -109,7 +109,9 @@
 }
 
 .each4th {
-  border: 1px solid rgb(153, 153, 153);
+  // border: 1px solid rgb(153, 153, 153);
+  border: 1px solid #000;
+
   display: flex;
   justify-content: center;
   width: 100%;
@@ -118,7 +120,9 @@
 }
 
 .each4thr {
-  border: 1px solid rgb(165, 165, 165);
+  // border: 1px solid rgb(165, 165, 165);
+  border: 1px solid #000;
+
   display: flex;
   justify-content: center;
   width: 100%;
@@ -173,8 +177,14 @@ td {
 .styled-table th,
 .styled-table td {
   padding: 10px;
-  border: 1px solid #ddd;
+  // border: 1px solid #ddd;
+  border: 1px solid #000; // dark black cell borders
 }
+
+.text_design {
+  color: #000000 !important;
+}
+
 
 .styled-table tbody tr:nth-child(even) {
   background-color: #f9f9f9;

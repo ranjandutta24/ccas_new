@@ -25,43 +25,43 @@
     </thead>
     <tbody>
       <tr>
-        <td>IGCA Flow (Nm³/hr)</td>
-        <td [attr.colspan]="6">{{ igcaFlow }}</td>
+        <td class="text_design">IGCA Flow (Nm³/hr)</td>
+        <td class="text_design" [attr.colspan]="6">{{ igcaFlow }}</td>
       </tr>
       <tr>
-        <td>IGCA Pressure (kg/cm²)</td>
-        <td [attr.colspan]="6">{{ igcaPresser }}</td>
-      </tr>
-
-      <tr>
-        <td>PGCA Flow (Nm³/hr)</td>
-        <td [attr.colspan]="6">{{ pgcaFlow }}</td>
+        <td class="text_design">IGCA Pressure (kg/cm²)</td>
+        <td class="text_design" [attr.colspan]="6">{{ igcaPresser }}</td>
       </tr>
 
       <tr>
-        <td>PGCA Pressure (kg/cm²)</td>
-        <td [attr.colspan]="6">{{ pgcaPresser }}</td>
+        <td class="text_design">PGCA Flow (Nm³/hr)</td>
+        <td class="text_design" [attr.colspan]="6">{{ pgcaFlow }}</td>
       </tr>
 
       <tr>
-        <td>Compressor Flow (Nm³/hr)</td>
-        <td>{{ AI_6_COMP1 }}</td>
-        <td>{{ AI_6_COMP2 }}</td>
-        <td>{{ AI_6_COMP3 }}</td>
-        <td>{{ AI_6_COMP4 }}</td>
-        <td>{{ AI_6_COMP5 }}</td>
-        <td>{{ AI_6_COMP6 }}</td>
+        <td class="text_design">PGCA Pressure (kg/cm²)</td>
+        <td class="text_design" [attr.colspan]="6">{{ pgcaPresser }}</td>
+      </tr>
+
+      <tr>
+        <td class="text_design">Compressor Flow (Nm³/hr)</td>
+        <td class="text_design">{{ AI_6_COMP1 }}</td>
+        <td class="text_design">{{ AI_6_COMP2 }}</td>
+        <td class="text_design">{{ AI_6_COMP3 }}</td>
+        <td class="text_design">{{ AI_6_COMP4 }}</td>
+        <td class="text_design">{{ AI_6_COMP5 }}</td>
+        <td class="text_design">{{ AI_6_COMP6 }}</td>
         <!-- <td *ngFor="let flow of compressorFlows">{{ flow }}</td> -->
       </tr>
 
       <tr>
-        <td>Current (amp)</td>
-        <td>{{ MOTOR_CURR_COMP1 }}</td>
-        <td>{{ MOTOR_CURR_COMP2 }}</td>
-        <td>{{ MOTOR_CURR_COMP3 }}</td>
-        <td>{{ MOTOR_CURR_COMP4 }}</td>
-        <td>{{ MOTOR_CURR_COMP5 }}</td>
-        <td>{{ MOTOR_CURR_COMP6 }}</td>
+        <td class="text_design">Current (amp)</td>
+        <td class="text_design">{{ MOTOR_CURR_COMP1 }}</td>
+        <td class="text_design">{{ MOTOR_CURR_COMP2 }}</td>
+        <td class="text_design">{{ MOTOR_CURR_COMP3 }}</td>
+        <td class="text_design">{{ MOTOR_CURR_COMP4 }}</td>
+        <td class="text_design">{{ MOTOR_CURR_COMP5 }}</td>
+        <td class="text_design">{{ MOTOR_CURR_COMP6 }}</td>
       </tr>
     </tbody>
   </table>
@@ -79,11 +79,11 @@
   </thead>
   <tbody>
     <tr *ngFor="let plant of plants">
-      <td>{{ plant["name"] }}</td>
-      <td>{{ plant["if"] }}</td>
-      <td>{{ plant["ip"] }}</td>
-      <td>{{ plant["pf"] }}</td>
-      <td colspan="2">{{ plant["pp"] }}</td>
+      <td class="text_design">{{ plant["name"] }}</td>
+      <td class="text_design">{{ plant["if"] }}</td>
+      <td class="text_design">{{ plant["ip"] }}</td>
+      <td class="text_design">{{ plant["pf"] }}</td>
+      <td class="text_design" colspan="2">{{ plant["pp"] }}</td>
     </tr>
   </tbody>
 </table>

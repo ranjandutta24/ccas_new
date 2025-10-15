@@ -1,5 +1,6 @@
 .status {
     display: flex;
+
 }
 
 .graph1 {
@@ -96,18 +97,21 @@
     width: 100%;
     border: 1px solid rgb(163, 163, 163);
     padding: 10px;
+    border: 1px solid #000; // Dark gray border
 }
 
 .textColour1 {
     color: #212121;
     font-weight: bold;
     font-size: 25px;
+    border: 1px solid #000; // Dark gray border
 }
 
 .textColour2 {
     color: #212121;
     font-weight: bold;
     font-size: 25px;
+    border: 1px solid #000; // Dark gray border
 }
 
 .unit {
@@ -118,8 +122,10 @@
 
 .bg_off {
     background-color: #c5c5c5;
+    border: 1px solid #000; // Dark gray border
 }
 
 .bg_on {
     background-color: rgb(250, 255, 250);
+    border: 1px solid #000; // Dark gray border
 }
