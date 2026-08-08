@@ -9,6 +9,7 @@ import { OverviewComponent } from './overview/overview.component';
 // import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'ccslive', pathMatch: 'full' },
   { path: 'ccslive', component: CcasLiveComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'overview', component: OverviewComponent },
