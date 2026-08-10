@@ -481,7 +481,7 @@ export class Compressor3Component implements OnInit {
         },
       },
       fill: {
-        colors: [percent > 70 ? '#FF0000' : '#00B050'], // red if >70%, else green
+        colors: [percent > 70 ? '#FF0000' : '#00B050'], //  red if >70%, else green
       },
       labels: ['Average Results'],
     };
