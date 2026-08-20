@@ -13,6 +13,7 @@ import {
   ApexTitleSubtitle,
   ApexStroke,
   ApexXAxis,
+  ApexTooltip
 } from 'ng-apexcharts';
 import { SseService } from 'src/app/service/sse.servece';
 
@@ -23,6 +24,7 @@ export type ChartOptions = {
   plotOptions: ApexPlotOptions;
   legend: ApexLegend;
   colors: string[];
+  tooltip?: ApexTooltip;
 };
 
 export type LineChartOptions = {
@@ -58,6 +60,8 @@ export class DashboardComponent implements OnInit {
   @ViewChild('chart12') chart12!: ChartComponent;
   @ViewChild('lineChart') lineChart!: ChartComponent;
   @ViewChild('lineChart2') lineChart2!: ChartComponent;
+
+  isDataLoaded: boolean = false;
 
   igcaFlow: number = 0;
   igcaPresser: number = 0;
@@ -105,8 +109,8 @@ export class DashboardComponent implements OnInit {
   constructor(private sseService: SseService) {
     const baseChartOptions = {
       chart: {
-        height: 110,
-        // width: 300,
+        height: '100%',
+        width: '100%',
         type: 'bar',
         toolbar: {
           show: true,
@@ -121,25 +125,48 @@ export class DashboardComponent implements OnInit {
           },
         },
         animations: {
-          enabled: false,
+          enabled: true,
+          easing: 'easeinout',
+          speed: 1500, // 1.5 seconds smooth initial growth from left to right
+          animateGradually: {
+            enabled: true,
+            delay: 150
+          },
+          dynamicAnimation: {
+            enabled: true,
+            speed: 350
+          }
         },
       } as ApexChart,
       plotOptions: {
         bar: {
           horizontal: true,
+          dataLabels: {
+            position: 'center',
+            hideOverflowingLabels: false,
+          }
         },
       },
       colors: ['#008FFB'],
       dataLabels: {
+        enabled: true,
+        style: {
+          colors: ['#000000'], // Default to black
+          fontSize: '13px',
+          fontWeight: 'bold',
+        },
+        dropShadow: {
+          enabled: false, // Remove shadow for cleaner look
+        },
         formatter: function (val: any, opts: any) {
-          const goals =
-            opts.w.config.series[opts.seriesIndex].data[opts.dataPointIndex]
-              .goals;
-
-          if (goals && goals.length) {
-            return `${val} / ${goals[0].value}`;
-          }
-          return val;
+          let expected = '';
+          try {
+            const dataPoint = opts.w.config.series[opts.seriesIndex].data[opts.dataPointIndex];
+            if (dataPoint && dataPoint.goals && dataPoint.goals.length) {
+              expected = ` / ${dataPoint.goals[0].value}`;
+            }
+          } catch(e) {}
+          return `${val}${expected}`;
         },
       },
       legend: {
@@ -148,6 +175,20 @@ export class DashboardComponent implements OnInit {
         customLegendItems: ['Current', 'Limit'],
         markers: {
           fillColors: ['#008FFB', '#BD4CC7'],
+        },
+      },
+      tooltip: {
+        y: {
+          formatter: function (val: any, opts: any) {
+            const goals =
+              opts.w.config.series[opts.seriesIndex].data[opts.dataPointIndex]
+                .goals;
+
+            if (goals && goals.length) {
+              return `${val} / ${goals[0].value}`;
+            }
+            return val;
+          },
         },
       },
     };
@@ -173,7 +214,8 @@ export class DashboardComponent implements OnInit {
         },
       ],
       chart: {
-        height: 105,
+        height: '100%',
+        width: '100%',
         type: 'bar',
         toolbar: {
           show: true,
@@ -198,6 +240,12 @@ export class DashboardComponent implements OnInit {
       },
       colors: ['#008FFB'],
       dataLabels: {
+        enabled: true,
+        style: {
+          colors: ['#ffffff'],
+          fontSize: '11px',
+          fontWeight: 'bold',
+        },
         formatter: function (val: any, opts) {
           const goals =
             opts.w.config.series[opts.seriesIndex].data[opts.dataPointIndex]
@@ -215,6 +263,20 @@ export class DashboardComponent implements OnInit {
         customLegendItems: ['Current', 'Limit'],
         markers: {
           fillColors: ['#008FFB', '#BD4CC7'],
+        },
+      },
+      tooltip: {
+        y: {
+          formatter: function (val: any, opts: any) {
+            const goals =
+              opts.w.config.series[opts.seriesIndex].data[opts.dataPointIndex]
+                .goals;
+
+            if (goals && goals.length) {
+              return `${val} / ${goals[0].value}`;
+            }
+            return val;
+          },
         },
       },
     };
@@ -503,8 +565,8 @@ export class DashboardComponent implements OnInit {
         },
       ],
       chart: {
-        height: 350,
-        width: 900,
+        height: '100%',
+        width: '100%',
         type: 'line',
         zoom: {
           enabled: false,
@@ -601,8 +663,8 @@ export class DashboardComponent implements OnInit {
         },
       ],
       chart: {
-        height: 350,
-        width: 900,
+        height: '100%',
+        width: '100%',
         type: 'line',
         zoom: {
           enabled: false,
@@ -733,8 +795,9 @@ export class DashboardComponent implements OnInit {
       .getServerSentEvent()
       .pipe(debounceTime(100)) // Add debounce to reduce update frequency
       .subscribe((data: any) => {
-        // console.log(parseInt(data.IGCA_FLOW));
-        // console.log('ds');
+        if (!this.isDataLoaded) {
+          this.isDataLoaded = true;
+        }
 
         this.igcaFlow = parseInt(data.IGCA_FLOW);
         this.igcaPresser = parseFloat(data.IGCA_PRESSER.toFixed(2));
@@ -754,55 +817,71 @@ export class DashboardComponent implements OnInit {
         this.MOTOR_CURR_COMP6 = parseInt(data.MOTOR_CURR_COMP6);
 
         // Update all charts without causing full re-render
-        this.updateChart(this.chart1, this.MOTOR_CURR_COMP1, 600);
-        this.updateChart(this.chart2, this.MOTOR_CURR_COMP2, 600);
-        this.updateChart(this.chart3, this.MOTOR_CURR_COMP3, 600);
-        this.updateChart(this.chart4, this.MOTOR_CURR_COMP4, 600);
-        this.updateChart(this.chart5, this.MOTOR_CURR_COMP5, 600);
-        this.updateChart(this.chart6, this.MOTOR_CURR_COMP6, 600);
+        this.updateChart(this.chart1, this.MOTOR_CURR_COMP1, 600, this.MOTOR_CURR_COMP1 > 50);
+        this.updateChart(this.chart2, this.MOTOR_CURR_COMP2, 600, this.MOTOR_CURR_COMP2 > 50);
+        this.updateChart(this.chart3, this.MOTOR_CURR_COMP3, 600, this.MOTOR_CURR_COMP3 > 50);
+        this.updateChart(this.chart4, this.MOTOR_CURR_COMP4, 600, this.MOTOR_CURR_COMP4 > 50);
+        this.updateChart(this.chart5, this.MOTOR_CURR_COMP5, 600, this.MOTOR_CURR_COMP5 > 50);
+        this.updateChart(this.chart6, this.MOTOR_CURR_COMP6, 600, this.MOTOR_CURR_COMP6 > 50);
 
-        this.updateChart(this.chart7, this.AI_6_COMP1, 21000);
-        this.updateChart(this.chart8, this.AI_6_COMP2, 21000);
-        this.updateChart(this.chart9, this.AI_6_COMP3, 21000);
-        this.updateChart(this.chart10, this.AI_6_COMP4, 21000);
-        this.updateChart(this.chart11, this.AI_6_COMP5, 21000);
-        this.updateChart(this.chart12, this.AI_6_COMP6, 21000);
+        this.updateChart(this.chart7, this.AI_6_COMP1, 21000, this.MOTOR_CURR_COMP1 > 50);
+        this.updateChart(this.chart8, this.AI_6_COMP2, 21000, this.MOTOR_CURR_COMP2 > 50);
+        this.updateChart(this.chart9, this.AI_6_COMP3, 21000, this.MOTOR_CURR_COMP3 > 50);
+        this.updateChart(this.chart10, this.AI_6_COMP4, 21000, this.MOTOR_CURR_COMP4 > 50);
+        this.updateChart(this.chart11, this.AI_6_COMP5, 21000, this.MOTOR_CURR_COMP5 > 50);
+        this.updateChart(this.chart12, this.AI_6_COMP6, 21000, this.MOTOR_CURR_COMP6 > 50);
       });
   }
   showdata() {
     console.log(this.trendData);
   }
+  private previousValues = new Map<ChartComponent, string>();
+
   // Helper method to update chart data
   private updateChart(
-    chart: ChartComponent | undefined,
+    chartComp: ChartComponent | undefined,
     value: number,
-    limit: number
+    limit: number,
+    isActive: boolean
   ): void {
-    if (chart) {
-      chart.updateSeries(
-        [
+    if (!chartComp) return;
+
+    const stateStr = `${value}_${limit}_${isActive}`;
+    if (this.previousValues.get(chartComp) === stateStr) {
+      return; // Skip update if nothing changed to prevent blinking
+    }
+    this.previousValues.set(chartComp, stateStr);
+
+    chartComp.updateOptions(
+      {
+        series: [
           {
             name: 'Actual',
             data: [
               {
                 x: '',
-                // x: limit == 600 ? 'Amp' : 'Nm3/hr',
                 y: value,
                 goals: [
                   {
                     name: 'Expected',
                     value: limit,
                     strokeWidth: 5,
-                    strokeColor: '#BD4CC7',
+                    strokeColor: isActive ? '#BD4CC7' : '#D50000',
                   },
                 ],
               },
             ],
           },
         ],
-        false
-      );
-    }
+        dataLabels: {
+          style: {
+            colors: [isActive ? '#ffffff' : '#000000']
+          }
+        }
+      },
+      false,
+      false
+    );
   }
 
   private updateLineChart(

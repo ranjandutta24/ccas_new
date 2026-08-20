@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" *ngIf="isDataLoaded; else loadingTpl">
   <!-- <button (click)="showdata()"></button> -->
   <div class="status">
     <div [ngClass]="MOTOR_CURR_COMP1 <= 50 ? 'textColour1 inactive_design' : 'textColour2 active_design'">
@@ -31,7 +31,8 @@
     <div class="each_g1" [ngClass]="MOTOR_CURR_COMP1 <= 50 ? 'bg_off' : 'bg_on'">
       <p class="unit" style="margin: 0px">Compressor 1 Current (Amp)</p>
       <apx-chart #chart1 [series]="chartOptions1.series" [chart]="chartOptions1.chart"
-        [plotOptions]="chartOptions1.plotOptions" [colors]="chartOptions1.colors" [legend]="chartOptions1.legend">
+        [dataLabels]="chartOptions1.dataLabels" [plotOptions]="chartOptions1.plotOptions" 
+        [colors]="chartOptions1.colors" [legend]="chartOptions1.legend">
       </apx-chart>
     </div>
 
@@ -118,17 +119,32 @@
   <div class="graph3">
     <div class="each_g3">
       <apx-chart #lineChart [series]="lineChartOptions.series" [chart]="lineChartOptions.chart"
-        [dataLabels]="lineChartOptions.dataLabels" [stroke]="lineChartOptions.stroke" [title]="lineChartOptions.title"
+        [stroke]="lineChartOptions.stroke" [dataLabels]="lineChartOptions.dataLabels" [title]="lineChartOptions.title"
         [xaxis]="lineChartOptions.xaxis" [yaxis]="lineChartOptions.yaxis" [grid]="lineChartOptions.grid"
         [colors]="lineChartOptions.colors">
       </apx-chart>
     </div>
     <div class="each_g3">
       <apx-chart #lineChart2 [series]="lineChartOptions2.series" [chart]="lineChartOptions2.chart"
-        [dataLabels]="lineChartOptions2.dataLabels" [stroke]="lineChartOptions2.stroke"
+        [stroke]="lineChartOptions2.stroke" [dataLabels]="lineChartOptions2.dataLabels"
         [title]="lineChartOptions2.title" [xaxis]="lineChartOptions2.xaxis" [yaxis]="lineChartOptions2.yaxis"
         [grid]="lineChartOptions2.grid" [colors]="lineChartOptions2.colors">
       </apx-chart>
     </div>
   </div>
 </div>
+
+<ng-template #loadingTpl>
+  <div class="comp-loader-wrapper" style="height: calc(100vh - 95px); background: transparent;">
+    <div class="comp-loader-ring">
+      <div class="comp-loader-dot"></div>
+    </div>
+    <div class="comp-loader-info">
+      <span class="comp-loader-title" style="color: #333;">Loading Dashboard Data</span>
+      <span class="comp-loader-subtitle">Fetching live sensor data...</span>
+      <div class="comp-loader-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</ng-template>
