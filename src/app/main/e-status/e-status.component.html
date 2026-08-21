@@ -1,41 +1,82 @@
-<table class="status-table">
-  <!-- <caption>
-    <button class="header-btn">Electrical Status</button>
-  </caption> -->
+<div class="comp-loader-wrapper" *ngIf="!isDataLoaded" style="height: calc(100vh - 95px); background: transparent; width: 100%;">
+  <div class="comp-loader-ring">
+    <div class="comp-loader-dot"></div>
+  </div>
+  <div class="comp-loader-info">
+    <span class="comp-loader-title" style="color: #333;">Loading Electrical Status</span>
+    <span class="comp-loader-subtitle">Fetching live sensor data...</span>
+    <div class="comp-loader-dots">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</div>
 
-  <tr class="section-header">
-    <th colspan="2">Cooling Tower Fan</th>
-  </tr>
-  <tr *ngFor="let fan of coolingTowerFans">
-    <td>{{ fan.name }}</td>
-    <td>
-      <div
-        class="status"
-        [ngClass]="{
-          'status-running': fan.status === 1,
-          'status-stopped': fan.status === 0
-        }"
-      >
-        Running Status
+<div class="estatus-container" *ngIf="isDataLoaded">
+  <!-- Cooling Tower Fans Section -->
+  <div class="category-section">
+    <div class="section-inner">
+      <div class="category-header">
+        <div class="icon-box fan-box">
+          <span class="header-emoji">🌬️</span>
+        </div>
+        <div class="header-text">
+          <h2 class="category-title animated-text fan-text">Cooling Tower Fans</h2>
+          <p class="category-subtitle animated-subtitle">Live operational status</p>
+        </div>
       </div>
-    </td>
-  </tr>
+      
+      <div class="card-grid card-grid-fans">
+        <div class="status-card card-running" *ngFor="let fan of coolingTowerFans" 
+            [ngClass]="fan.status === 1 ? 'card-running' : 'card-stopped'">
+          <div class="card-inner">
+            <div class="card-icon-wrapper" [ngClass]="fan.status === 1 ? 'glow-green' : 'glow-red'">
+              <span *ngIf="fan.status === 1" class="icon-running">⚙️</span>
+              <span *ngIf="fan.status === 0" class="icon-pulse">🔴</span>
+            </div>
+            <div class="card-content">
+              <h3 class="equipment-name">{{ fan.name }}</h3>
+              <div class="status-badge" [ngClass]="fan.status === 1 ? 'badge-running' : 'badge-stopped'">
+                {{ fan.status === 1 ? 'Running' : 'Stopped' }}
+              </div>
+            </div>
+            <div class="card-bg-shape"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <tr class="section-header">
-    <th colspan="2">Cooling Water Pump</th>
-  </tr>
-  <tr *ngFor="let pump of coolingWaterPumps">
-    <td>{{ pump.name }}</td>
-    <td>
-      <div
-        class="status"
-        [ngClass]="{
-          'status-running': pump.status === 1,
-          'status-stopped': pump.status === 0
-        }"
-      >
-        Running Status
+  <!-- Cooling Water Pumps Section -->
+  <div class="category-section">
+    <div class="section-inner">
+      <div class="category-header">
+        <div class="icon-box pump-box">
+          <span class="header-emoji">🌊</span>
+        </div>
+        <div class="header-text">
+          <h2 class="category-title animated-text pump-text">Cooling Water Pumps</h2>
+          <p class="category-subtitle animated-subtitle">Live operational status</p>
+        </div>
       </div>
-    </td>
-  </tr>
-</table>
+      
+      <div class="card-grid card-grid-pumps">
+        <div class="status-card" *ngFor="let pump of coolingWaterPumps" 
+            [ngClass]="pump.status === 1 ? 'card-running' : 'card-stopped'">
+          <div class="card-inner">
+            <div class="card-icon-wrapper" [ngClass]="pump.status === 1 ? 'glow-green' : 'glow-red'">
+              <span *ngIf="pump.status === 1" class="icon-running">⚙️</span>
+              <span *ngIf="pump.status === 0" class="icon-pulse">🔴</span>
+            </div>
+            <div class="card-content">
+              <h3 class="equipment-name">{{ pump.name }}</h3>
+              <div class="status-badge" [ngClass]="pump.status === 1 ? 'badge-running' : 'badge-stopped'">
+                {{ pump.status === 1 ? 'Running' : 'Stopped' }}
+              </div>
+            </div>
+            <div class="card-bg-shape"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

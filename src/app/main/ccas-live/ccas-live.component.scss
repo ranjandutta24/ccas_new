@@ -153,6 +153,10 @@ svg path{
   stroke-dasharray: 50;
   stroke-dashoffset: 50;
   animation: textAnimation 1.5s ease-in-out forwards, textGlow 2s infinite alternate 1.5s;
+  animation-fill-mode: forwards;
+  will-change: fill, stroke, stroke-dashoffset, filter;
+  /* Edge fallback: ensure content is never permanently invisible */
+  -ms-animation: textAnimation 1.5s ease-in-out forwards;
 }
 
 @keyframes textAnimation {

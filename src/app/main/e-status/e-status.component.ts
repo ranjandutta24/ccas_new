@@ -49,6 +49,8 @@ export class EStatusComponent implements OnInit {
     { name: 'Cooling Water Pump IV', status: 0 },
   ];
 
+  isDataLoaded: boolean = false;
+
   private sseSub?: Subscription;
   constructor(private sseService: SseService) {}
 
@@ -63,6 +65,8 @@ export class EStatusComponent implements OnInit {
       this.coolingWaterPumps[1].status = data.CoolingWaterPump2On;
       this.coolingWaterPumps[2].status = data.CoolingWaterPump3On;
       this.coolingWaterPumps[3].status = data.CoolingWaterPump4On;
+
+      this.isDataLoaded = true;
     });
   }
 
