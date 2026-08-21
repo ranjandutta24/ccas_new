@@ -26,6 +26,8 @@ export class OverviewComponent implements OnInit {
   MOTOR_CURR_COMP5: number = 0;
   MOTOR_CURR_COMP6: number = 0;
 
+  isDataLoaded: boolean = false;
+
   private sseSub?: Subscription;
   private ssebyshop?: Subscription;
   constructor(private sseService: SseService) {}
@@ -153,6 +155,8 @@ export class OverviewComponent implements OnInit {
         this.MOTOR_CURR_COMP4 = parseInt(data.MOTOR_CURR_COMP4);
         this.MOTOR_CURR_COMP5 = parseInt(data.MOTOR_CURR_COMP5);
         this.MOTOR_CURR_COMP6 = parseInt(data.MOTOR_CURR_COMP6);
+        
+        this.isDataLoaded = true;
       });
     this.ssebyshop = this.sseService.getSSEbyshop().subscribe((data: any) => {
       this.plants[2].if = data.sp1_Inst_air_inlet_flow.toFixed(2);

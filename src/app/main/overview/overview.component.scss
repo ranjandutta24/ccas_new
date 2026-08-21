@@ -1,215 +1,325 @@
-// table {
-//     width: 100%;
-//     border-collapse: collapse;
-//     font-family: Arial, sans-serif;
-//     // margin-top: 1rem;
-//   }
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-//   thead {
-//     background-color: #e0f0ff;
-//   }
-
-//   thead th {
-//     padding: 10px;
-//     border: 1px solid #ccc;
-//     text-align: center;
-//     font-weight: bold;
-//   }
-
-//   tbody td {
-//     padding: 8px;
-//     border: 1px solid #ccc;
-//     text-align: center;
-//   }
-
-//   .table-title {
-//     background-color: #007bff;
-//     color: white;
-//     font-size: 20px;
-//     padding: 10px;
-//     text-align: center;
-//     border-radius: 4px;
-//     margin-bottom: 10px;
-//   }
-
-//   .bg-danger {
-//     background-color: #dc3545;
-//     color: white;
-//   }
-
-//   .bg-success {
-//     background-color: #28a745;
-//     color: white;
-//   }
-
-//   .table-info {
-//     background-color: #d1ecf1;
-//     font-weight: bold;
-//   }
-//   .colorRed{
-//     background-color: #f1594eab;
-//   }
-//   .colorGreen{
-//     background-color: #55e50b42;
-//   }
-//   .colorDefault{
-//     background-color: #979797d5;
-//   }
-
-.table-container {
-  width: 100%;
-  overflow-x: auto;
-  /* Enables horizontal scroll on small screens */
-  -webkit-overflow-scrolling: touch;
-  margin-top: 1rem;
-  margin-bottom: 1.25rem;
-  /* Adjust gap size as needed */
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+:host {
+  display: flex;
+  flex-direction: row; /* Side by side layout */
+  align-items: stretch;
+  height: calc(100vh - 120px); 
+  padding: 12px 18px;
+  background: linear-gradient(145deg, #e8f0fe 0%, #fce8f3 50%, #e8f5e9 100%);
+  overflow: hidden;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  gap: 18px;
 }
 
-/* Table Styles */
+/* ============================================================
+   TABLE CONTAINER — with gradient border effect
+   ============================================================ */
+.table-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  min-width: 0;
+
+  /* Gradient border trick: outer glow layer */
+  background: linear-gradient(135deg, #6366f1, #ec4899, #f59e0b, #10b981);
+  padding: 3px; /* This creates the visible gradient border */
+  box-shadow: 0 15px 45px rgba(99,102,241,0.15), 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* Inner white wrapper to sit inside the gradient border */
+.table-container > table {
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+/* We need an inner wrapper for the real table bg */
+.table-container::after {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border-radius: 17px;
+  background: #ffffff;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Table itself sits above the ::after pseudo */
 table {
   width: 100%;
+  height: 100%;
   border-collapse: collapse;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 14px;
-  background-color: #ffffff;
-  min-width: 600px;
-  /* Prevents breaking layout on very small screens */
+  table-layout: fixed;
+  position: relative;
+  z-index: 1;
+  border-radius: 18px;
+  overflow: hidden;
 }
 
+/* ============================================================
+   HEADER STYLES
+   ============================================================ */
 thead {
-  background-color: #6c757d;
-  // background: linear-gradient(to right, #ffffff, #979797);
-  color: #ffffff;
+  height: 52px;
 }
 
 thead th {
-  padding: 12px;
-  // border: 1px solid #ddd;
-  border: 2px solid #000000; //sourav code
-  /* Darker border */
   text-align: center;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  color: #ffffff;
+  text-transform: uppercase;
+  padding: 0 6px;
+  border: none;
+  border-right: 2px solid rgba(255,255,255,0.2); /* Column separators */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+thead th:last-child { border-right: none; }
+
+/* Icon & text inline layout */
+.th-inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.th-icon {
   font-size: 14px;
-  letter-spacing: 0.3px;
+  line-height: 1;
+  animation: iconBounce 2.5s infinite ease-in-out;
+  flex-shrink: 0;
 }
 
-tbody tr {
-  transition: background-color 0.2s ease;
+.th-text {
+  font-size: 10.5px;
+  letter-spacing: 0.7px;
+  font-weight: 700;
 }
 
-/* Zebra striping */
-tbody tr:nth-child(odd) {
-  background-color: #f9f9f9;
+@keyframes iconBounce {
+  0%, 100% { transform: translateY(0); }
+  30%       { transform: translateY(-4px); }
+  60%       { transform: translateY(0); }
+  80%       { transform: translateY(-2px); }
 }
 
-tbody tr:nth-child(even) {
-  background-color: #ffffff;
+/* Stagger icon animation per column */
+thead th:nth-child(1) .th-icon { animation-delay: 0s; }
+thead th:nth-child(2) .th-icon { animation-delay: 0.3s; }
+thead th:nth-child(3) .th-icon { animation-delay: 0.6s; }
+thead th:nth-child(4) .th-icon { animation-delay: 0.9s; }
+thead th:nth-child(5) .th-icon { animation-delay: 1.2s; }
+thead th:nth-child(6) .th-icon { animation-delay: 1.5s; }
+thead th:nth-child(7) .th-icon { animation-delay: 1.8s; }
+
+/* Shine sweep animation on headers */
+thead th::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -150%; width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: skewX(-20deg);
+  animation: sweepShine 4s infinite;
 }
 
-tbody tr:hover {
-  background-color: #eef6ff;
+thead th:nth-child(1)::after { animation-delay: 0s; }
+thead th:nth-child(2)::after { animation-delay: 0.2s; }
+thead th:nth-child(3)::after { animation-delay: 0.4s; }
+thead th:nth-child(4)::after { animation-delay: 0.6s; }
+thead th:nth-child(5)::after { animation-delay: 0.8s; }
+thead th:nth-child(6)::after { animation-delay: 1.0s; }
+thead th:nth-child(7)::after { animation-delay: 1.2s; }
+
+@keyframes sweepShine {
+  0%  { left: -150%; }
+  35% { left: 200%; }
+  100%{ left: 200%; }
 }
 
-tbody td {
-  padding: 10px;
-  // border: 1px solid #ddd;
-  border: 2px solid #000000; //sourav code
-  /* Darker border */
-  text-align: center;
-  color: #333;
-}
-
-/* Table Title */
-.table-title {
-  background-color: #007bff;
-  color: #fff;
-  font-size: 18px;
-  padding: 12px;
-  text-align: center;
-  border-radius: 6px 6px 0 0;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.table-info {
-  background-color: #0056b3;
-  font-weight: bold;
-  color: #f1f9ff;
-}
-
-.text_design {
-  color: #000000 !important;
-}
-
-/* Status colors */
-.bg-danger {
-  background-color: #6d6d6d !important;
-  color: #fff !important;
-}
-
-.bg-success {
-  background-color: #28a745 !important;
-  color: #fff !important;
+/* ---- Table 1 header colors ---- */
+.overview_parameter_column {
+  background: linear-gradient(135deg, #1e293b 0%, #0f4c75 100%) !important;
+  font-size: 13px !important;
+  text-align: center !important;
+  padding-left: 12px !important;
+  border-right: 2px solid rgba(255,255,255,0.2) !important;
+  min-width: 180px;
 }
 
 .colorRed {
-  // background-color: rgba(168, 59, 40, 0.87);
-  background-color: #ff4141;
-  color: #ffffff;
-  font-weight: 600;
+  background: linear-gradient(135deg, #ff6b6b 0%, #c0392b 100%) !important;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.2);
 }
-
 .colorGreen {
-  background-color: rgb(29, 124, 51);
-  color: #eeeeee;
+  background: linear-gradient(135deg, #2ecc71 0%, #1a7a4a 100%) !important;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.2);
+}
+
+/* ---- Table 2 header colors ---- */
+.plant-name-col {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+  border-right: 2px solid rgba(255,255,255,0.2) !important;
+  min-width: 180px;
+}
+.col-igca-flow     { background: linear-gradient(135deg, #0369a1 0%, #06b6d4 100%) !important; }
+.col-igca-pressure { background: linear-gradient(135deg, #0d9488 0%, #22c55e 100%) !important; }
+.col-pgca-flow     { background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%) !important; }
+.col-pgca-pressure { background: linear-gradient(135deg, #e11d48 0%, #a855f7 100%) !important; }
+
+/* ============================================================
+   BODY ROWS — Colored backgrounds matching the theme
+   ============================================================ */
+tbody tr {
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: fadeSlideIn 0.5s ease-out forwards;
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+tbody tr:nth-child(1) { animation-delay: 0.03s; }
+tbody tr:nth-child(2) { animation-delay: 0.08s; }
+tbody tr:nth-child(3) { animation-delay: 0.13s; }
+tbody tr:nth-child(4) { animation-delay: 0.18s; }
+tbody tr:nth-child(5) { animation-delay: 0.23s; }
+tbody tr:nth-child(6) { animation-delay: 0.28s; }
+tbody tr:nth-child(7) { animation-delay: 0.33s; }
+
+@keyframes fadeSlideIn { to { opacity: 1; transform: translateY(0); } }
+
+/* Attractive alternating backgrounds — soft but visible */
+tbody tr:nth-child(odd)  { background: linear-gradient(90deg, #eef2ff 0%, #f5f3ff 100%); } /* Soft Indigo-Lavender */
+tbody tr:nth-child(even) { background: linear-gradient(90deg, #fff0f9 0%, #fce7f3 100%); } /* Soft Rose-Pink */
+
+tbody td {
+  padding: 3px 8px;
+  text-align: center;
+  color: #1e293b;
+  font-size: 13px;
   font-weight: 600;
+  border-bottom: 1px solid rgba(99, 102, 241, 0.1); /* Faint indigo divider */
+  border-right: 1px solid rgba(99, 102, 241, 0.08); /* Column dividers */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+tbody td:last-child { border-right: none; }
+tbody tr:last-child td { border-bottom: none; }
+
+/* Parameter cell — distinct from data cells */
+.parameter-cell {
+  text-align: left !important;
+  padding-left: 12px !important;
+  color: #312e81 !important;  /* Deep indigo text */
+  font-weight: 800 !important;
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%) !important; /* Richer indigo bg */
+  border-right: 3px solid #818cf8 !important;
+  font-size: 12px !important;
+  white-space: nowrap;
 }
 
-.colorDefault {
-  background-color: rgba(108, 117, 125, 0.15);
-  color: #6c757d;
-  font-weight: 600;
+.row-icon {
+  font-size: 13px;
+  margin-right: 4px;
 }
 
-/* Responsive tweaks */
-@media (max-width: 768px) {
-  table {
-    font-size: 12px;
-    min-width: 500px;
-  }
-
-  thead th,
-  tbody td {
-    padding: 8px;
-  }
-
-  .table-title {
-    font-size: 16px;
-    padding: 10px;
-  }
+/* ============================================================
+   DATA VALUE PILLS
+   ============================================================ */
+.data-value {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Matching the row bg — subtle teal pill */
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  color: #1d4ed8;
+  border: 1px solid #93c5fd;
+  box-shadow: 0 2px 6px rgba(29, 78, 216, 0.1);
 }
 
-@media (max-width: 480px) {
-  table {
-    font-size: 11px;
-    min-width: 400px;
-  }
-
-  thead th,
-  tbody td {
-    padding: 6px;
-  }
-
-  .table-title {
-    font-size: 14px;
-    padding: 8px;
-  }
+/* Odd rows get indigo pill, even rows get rose pill */
+tbody tr:nth-child(odd) .data-value {
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  color: #3730a3;
+  border-color: #a5b4fc;
 }
 
-td {
-  font-size: 15px;
-  font-weight: 500;
+tbody tr:nth-child(even) .data-value {
+  background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+  color: #9d174d;
+  border-color: #f9a8d4;
 }
+
+/* Highlight values (IGCA/PGCA) — always stand out */
+.highlight-value {
+  background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+  color: #be185d;
+  border-color: #f9a8d4;
+  padding: 4px 12px;
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(190, 24, 93, 0.2);
+  font-weight: 800;
+}
+
+/* ============================================================
+   ROW HOVER EFFECTS
+   ============================================================ */
+tbody tr:hover {
+  background: linear-gradient(90deg, #c7d2fe 0%, #ddd6fe 100%) !important; /* Vivid indigo-violet */
+  transform: scale(1.018);
+  box-shadow: 0 12px 35px rgba(99, 102, 241, 0.25);
+  z-index: 10;
+  position: relative;
+}
+
+tbody tr:hover td {
+  color: #1e1b4b;
+  border-bottom-color: transparent;
+  border-right-color: rgba(255,255,255,0.4);
+}
+
+tbody tr:hover td:first-child {
+  border-top-left-radius: 8px; border-bottom-left-radius: 8px;
+  border-left: 4px solid #6366f1;
+}
+tbody tr:hover td:last-child {
+  border-top-right-radius: 8px; border-bottom-right-radius: 8px;
+}
+
+/* Values pop to vibrant on hover — matching the hover row color */
+tbody tr:hover .data-value {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.5);
+}
+
+tbody tr:hover .highlight-value {
+  background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 8px 20px rgba(236, 72, 153, 0.5);
+}
+
+tbody tr:hover .parameter-cell {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+  color: #ffffff !important;
+  border-right-color: #a5b4fc !important;
+}
+
+.text_design { color: inherit !important; }
