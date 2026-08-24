@@ -2,9 +2,10 @@
 
 :host {
   display: flex;
-  flex-direction: row; /* Side by side layout */
+  flex-direction: row;
+  /* Side by side layout */
   align-items: stretch;
-  height: calc(100vh - 120px); 
+  height: calc(100vh - 120px);
   padding: 12px 18px;
   background: linear-gradient(145deg, #e8f0fe 0%, #fce8f3 50%, #e8f5e9 100%);
   overflow: hidden;
@@ -26,12 +27,13 @@
 
   /* Gradient border trick: outer glow layer */
   background: linear-gradient(135deg, #6366f1, #ec4899, #f59e0b, #10b981);
-  padding: 3px; /* This creates the visible gradient border */
-  box-shadow: 0 15px 45px rgba(99,102,241,0.15), 0 4px 12px rgba(0,0,0,0.06);
+  padding: 3px;
+  /* This creates the visible gradient border */
+  box-shadow: 0 15px 45px rgba(99, 102, 241, 0.15), 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 /* Inner white wrapper to sit inside the gradient border */
-.table-container > table {
+.table-container>table {
   border-radius: 18px;
   overflow: hidden;
 }
@@ -63,7 +65,6 @@ table {
    HEADER STYLES
    ============================================================ */
 thead {
-  height: 52px;
 }
 
 thead th {
@@ -73,23 +74,25 @@ thead th {
   letter-spacing: 0.6px;
   color: #ffffff;
   text-transform: uppercase;
-  padding: 0 6px;
-  border: none;
-  border-right: 2px solid rgba(255,255,255,0.2); /* Column separators */
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  padding: 8px 4px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
   vertical-align: middle;
 }
 
-thead th:last-child { border-right: none; }
+thead th:last-child {
+  border-right: none;
+}
 
 /* Icon & text inline layout */
 .th-inner {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 4px;
+  width: 100%;
 }
 
 .th-icon {
@@ -100,49 +103,116 @@ thead th:last-child { border-right: none; }
 }
 
 .th-text {
-  font-size: 10.5px;
-  letter-spacing: 0.7px;
+  font-size: 9.5px;
+  letter-spacing: 0px;
   font-weight: 700;
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.2;
 }
 
 @keyframes iconBounce {
-  0%, 100% { transform: translateY(0); }
-  30%       { transform: translateY(-4px); }
-  60%       { transform: translateY(0); }
-  80%       { transform: translateY(-2px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(-4px);
+  }
+
+  60% {
+    transform: translateY(0);
+  }
+
+  80% {
+    transform: translateY(-2px);
+  }
 }
 
 /* Stagger icon animation per column */
-thead th:nth-child(1) .th-icon { animation-delay: 0s; }
-thead th:nth-child(2) .th-icon { animation-delay: 0.3s; }
-thead th:nth-child(3) .th-icon { animation-delay: 0.6s; }
-thead th:nth-child(4) .th-icon { animation-delay: 0.9s; }
-thead th:nth-child(5) .th-icon { animation-delay: 1.2s; }
-thead th:nth-child(6) .th-icon { animation-delay: 1.5s; }
-thead th:nth-child(7) .th-icon { animation-delay: 1.8s; }
+thead th:nth-child(1) .th-icon {
+  animation-delay: 0s;
+}
+
+thead th:nth-child(2) .th-icon {
+  animation-delay: 0.3s;
+}
+
+thead th:nth-child(3) .th-icon {
+  animation-delay: 0.6s;
+}
+
+thead th:nth-child(4) .th-icon {
+  animation-delay: 0.9s;
+}
+
+thead th:nth-child(5) .th-icon {
+  animation-delay: 1.2s;
+}
+
+thead th:nth-child(6) .th-icon {
+  animation-delay: 1.5s;
+}
+
+thead th:nth-child(7) .th-icon {
+  animation-delay: 1.8s;
+}
 
 /* Shine sweep animation on headers */
 thead th::after {
   content: "";
   position: absolute;
-  top: 0; left: -150%; width: 60%; height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  top: 0;
+  left: -150%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
   transform: skewX(-20deg);
   animation: sweepShine 4s infinite;
 }
 
-thead th:nth-child(1)::after { animation-delay: 0s; }
-thead th:nth-child(2)::after { animation-delay: 0.2s; }
-thead th:nth-child(3)::after { animation-delay: 0.4s; }
-thead th:nth-child(4)::after { animation-delay: 0.6s; }
-thead th:nth-child(5)::after { animation-delay: 0.8s; }
-thead th:nth-child(6)::after { animation-delay: 1.0s; }
-thead th:nth-child(7)::after { animation-delay: 1.2s; }
+thead th:nth-child(1)::after {
+  animation-delay: 0s;
+}
+
+thead th:nth-child(2)::after {
+  animation-delay: 0.2s;
+}
+
+thead th:nth-child(3)::after {
+  animation-delay: 0.4s;
+}
+
+thead th:nth-child(4)::after {
+  animation-delay: 0.6s;
+}
+
+thead th:nth-child(5)::after {
+  animation-delay: 0.8s;
+}
+
+thead th:nth-child(6)::after {
+  animation-delay: 1.0s;
+}
+
+thead th:nth-child(7)::after {
+  animation-delay: 1.2s;
+}
 
 @keyframes sweepShine {
-  0%  { left: -150%; }
-  35% { left: 200%; }
-  100%{ left: 200%; }
+  0% {
+    left: -150%;
+  }
+
+  35% {
+    left: 200%;
+  }
+
+  100% {
+    left: 200%;
+  }
 }
 
 /* ---- Table 1 header colors ---- */
@@ -151,29 +221,43 @@ thead th:nth-child(7)::after { animation-delay: 1.2s; }
   font-size: 13px !important;
   text-align: center !important;
   padding-left: 12px !important;
-  border-right: 2px solid rgba(255,255,255,0.2) !important;
-  min-width: 180px;
+  border-right: 2px solid rgba(255, 255, 255, 0.2) !important;
+  width: 220px !important;
+  min-width: 220px !important;
 }
 
 .colorRed {
   background: linear-gradient(135deg, #ff6b6b 0%, #c0392b 100%) !important;
-  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.2);
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.2);
 }
+
 .colorGreen {
   background: linear-gradient(135deg, #2ecc71 0%, #1a7a4a 100%) !important;
-  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.2);
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* ---- Table 2 header colors ---- */
 .plant-name-col {
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
-  border-right: 2px solid rgba(255,255,255,0.2) !important;
+  border-right: 2px solid rgba(255, 255, 255, 0.2) !important;
   min-width: 180px;
 }
-.col-igca-flow     { background: linear-gradient(135deg, #0369a1 0%, #06b6d4 100%) !important; }
-.col-igca-pressure { background: linear-gradient(135deg, #0d9488 0%, #22c55e 100%) !important; }
-.col-pgca-flow     { background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%) !important; }
-.col-pgca-pressure { background: linear-gradient(135deg, #e11d48 0%, #a855f7 100%) !important; }
+
+.col-igca-flow {
+  background: linear-gradient(135deg, #0369a1 0%, #06b6d4 100%) !important;
+}
+
+.col-igca-pressure {
+  background: linear-gradient(135deg, #0d9488 0%, #22c55e 100%) !important;
+}
+
+.col-pgca-flow {
+  background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%) !important;
+}
+
+.col-pgca-pressure {
+  background: linear-gradient(135deg, #e11d48 0%, #a855f7 100%) !important;
+}
 
 /* ============================================================
    BODY ROWS — Colored backgrounds matching the theme
@@ -185,19 +269,52 @@ tbody tr {
   transform: translateY(12px);
 }
 
-tbody tr:nth-child(1) { animation-delay: 0.03s; }
-tbody tr:nth-child(2) { animation-delay: 0.08s; }
-tbody tr:nth-child(3) { animation-delay: 0.13s; }
-tbody tr:nth-child(4) { animation-delay: 0.18s; }
-tbody tr:nth-child(5) { animation-delay: 0.23s; }
-tbody tr:nth-child(6) { animation-delay: 0.28s; }
-tbody tr:nth-child(7) { animation-delay: 0.33s; }
+tbody tr:nth-child(1) {
+  animation-delay: 0.03s;
+}
 
-@keyframes fadeSlideIn { to { opacity: 1; transform: translateY(0); } }
+tbody tr:nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+tbody tr:nth-child(3) {
+  animation-delay: 0.13s;
+}
+
+tbody tr:nth-child(4) {
+  animation-delay: 0.18s;
+}
+
+tbody tr:nth-child(5) {
+  animation-delay: 0.23s;
+}
+
+tbody tr:nth-child(6) {
+  animation-delay: 0.28s;
+}
+
+tbody tr:nth-child(7) {
+  animation-delay: 0.33s;
+}
+
+@keyframes fadeSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 /* Attractive alternating backgrounds — soft but visible */
-tbody tr:nth-child(odd)  { background: linear-gradient(90deg, #eef2ff 0%, #f5f3ff 100%); } /* Soft Indigo-Lavender */
-tbody tr:nth-child(even) { background: linear-gradient(90deg, #fff0f9 0%, #fce7f3 100%); } /* Soft Rose-Pink */
+tbody tr:nth-child(odd) {
+  background: linear-gradient(90deg, #eef2ff 0%, #f5f3ff 100%);
+}
+
+/* Soft Indigo-Lavender */
+tbody tr:nth-child(even) {
+  background: linear-gradient(90deg, #fff0f9 0%, #fce7f3 100%);
+}
+
+/* Soft Rose-Pink */
 
 tbody td {
   padding: 3px 8px;
@@ -205,25 +322,30 @@ tbody td {
   color: #1e293b;
   font-size: 13px;
   font-weight: 600;
-  border-bottom: 1px solid rgba(99, 102, 241, 0.1); /* Faint indigo divider */
-  border-right: 1px solid rgba(99, 102, 241, 0.08); /* Column dividers */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  border: 1px solid rgba(99, 102, 241, 0.4); /* Stronger visible grid outline */
+  white-space: normal;
 }
-tbody td:last-child { border-right: none; }
-tbody tr:last-child td { border-bottom: none; }
+
+tbody td:last-child {
+  border-right: none;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
 
 /* Parameter cell — distinct from data cells */
 .parameter-cell {
   text-align: left !important;
   padding-left: 12px !important;
-  color: #312e81 !important;  /* Deep indigo text */
+  color: #312e81 !important;
+  /* Deep indigo text */
   font-weight: 800 !important;
-  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%) !important; /* Richer indigo bg */
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%) !important;
+  /* Richer indigo bg */
   border-right: 3px solid #818cf8 !important;
   font-size: 12px !important;
-  white-space: nowrap;
+  white-space: nowrap !important;
 }
 
 .row-icon {
@@ -242,7 +364,7 @@ tbody tr:last-child td { border-bottom: none; }
   font-weight: 800;
   letter-spacing: 0.4px;
   transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  
+
   /* Matching the row bg — subtle teal pill */
   background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
   color: #1d4ed8;
@@ -278,7 +400,8 @@ tbody tr:nth-child(even) .data-value {
    ROW HOVER EFFECTS
    ============================================================ */
 tbody tr:hover {
-  background: linear-gradient(90deg, #c7d2fe 0%, #ddd6fe 100%) !important; /* Vivid indigo-violet */
+  background: linear-gradient(90deg, #c7d2fe 0%, #ddd6fe 100%) !important;
+  /* Vivid indigo-violet */
   transform: scale(1.018);
   box-shadow: 0 12px 35px rgba(99, 102, 241, 0.25);
   z-index: 10;
@@ -288,15 +411,18 @@ tbody tr:hover {
 tbody tr:hover td {
   color: #1e1b4b;
   border-bottom-color: transparent;
-  border-right-color: rgba(255,255,255,0.4);
+  border-right-color: rgba(255, 255, 255, 0.4);
 }
 
 tbody tr:hover td:first-child {
-  border-top-left-radius: 8px; border-bottom-left-radius: 8px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
   border-left: 4px solid #6366f1;
 }
+
 tbody tr:hover td:last-child {
-  border-top-right-radius: 8px; border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 /* Values pop to vibrant on hover — matching the hover row color */
@@ -322,4 +448,6 @@ tbody tr:hover .parameter-cell {
   border-right-color: #bae6fd !important;
 }
 
-.text_design { color: inherit !important; }
+.text_design {
+  color: inherit !important;
+}
