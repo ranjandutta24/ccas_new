@@ -17,11 +17,12 @@ const routes: Routes = [
   //   path: 'admin',
   //   loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   // },
-  // fallback
+  { path: '**', redirectTo: 'main' } // fallback
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  // Old code: imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
