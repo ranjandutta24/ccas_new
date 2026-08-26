@@ -85,7 +85,7 @@ export class Compressor1Component implements OnInit {
   constructor(private sseService: SseService) {
     const baseChartOptions = {
       chart: {
-        height: 90,
+        height: 84,
         // width: 300,
         type: 'bar',
         toolbar: {
@@ -321,6 +321,7 @@ export class Compressor1Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
+        height: 140,
         // height: 250,
         // width: 300,
       },
@@ -377,6 +378,7 @@ export class Compressor1Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
+        height: 140,
         // width: 300,
       },
       title: {
@@ -430,6 +432,7 @@ export class Compressor1Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
+        height: 140,
         // width: 300,
       },
       title: {
@@ -484,7 +487,7 @@ export class Compressor1Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
-        height: 250,
+        height: 140,
         // width: 300,
       },
       title: {

@@ -1,3 +1,12 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  padding: clamp(6px, 0.9vw, 12px);
+  box-sizing: border-box;
+}
+
 .button-container {
   margin: 20px;
   display: flex;
@@ -82,7 +91,7 @@
 
 @keyframes fadeIn {
   from {
-    opacity: 1;
+    opacity: 0;
     transform: translateY(10px);
   }
 
@@ -93,107 +102,119 @@
 }
 
 
-.bar1 {
-  display: flex;
-  justify-content: space-between;
-}
-
-.bar2 {
-  display: flex;
-  justify-content: space-between;
-}
-
+.bar1,
+.bar2,
 .radial {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(6px, 0.6vw, 10px);
+  margin-bottom: clamp(6px, 0.6vw, 10px);
 }
 
-.each4th {
-  // border: 1px solid rgb(153, 153, 153);
-  border: 1px solid #000;
-
-  display: flex;
-  justify-content: center;
+.each4th,
+.each4thr {
   width: 100%;
-  height: 120px;
-  padding: 10px;
+  min-height: clamp(90px, 9vh, 110px);
+  padding: clamp(4px, 0.5vw, 8px);
+  border: 1px solid rgba(17, 24, 39, 0.14);
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(246, 248, 252, 0.98) 100%);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
 }
 
 .each4thr {
-  // border: 1px solid rgb(165, 165, 165);
-  border: 1px solid #000;
-
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  padding: 10px;
-  height: 120px;
+  min-height: clamp(95px, 10vh, 120px);
   position: relative;
 }
 
 .each_g1 {
-  // display: flex;
-  justify-content: center;
   width: 100%;
-  // border: 1px solid rgb(163, 163, 163);
-  padding: 10px;
+  padding: 0;
 }
 
 .unit {
-  color: rgb(110, 110, 110);
+  margin: 0 0 clamp(4px, 0.45vw, 8px);
+  color: #5b6472;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: bold;
+  font-weight: 700;
+  font-size: clamp(11px, 0.95vw, 14px);
+  letter-spacing: 0.2px;
+  line-height: 1.1;
 }
 
-
 .unitr {
-  position: absolute;
-  text-align: center;
-  left: 23px
+  position: static;
+  text-align: left;
+  padding-right: 10px;
 }
 
 .table_con {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(4px, 0.5vw, 10px);
+  justify-content: stretch;
+  margin-top: clamp(4px, 0.5vw, 10px) !important;
+  flex: 1;
+  min-height: 0;
 }
 
-td {
-  text-align: center;
+.table-container {
+  min-height: 100%;
 }
 
-.styled-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
+@media (max-width: 1400px) {
+  .bar1,
+  .bar2,
+  .radial,
+  .table_con {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-.styled-table thead tr {
-  background-color: #2c3e50;
-  color: #fff;
-  text-align: left;
+@media (max-width: 900px) {
+  .bar1,
+  .bar2,
+  .radial,
+  .table_con {
+    grid-template-columns: 1fr;
+  }
 }
 
-.styled-table th,
-.styled-table td {
-  padding: 10px;
-  // border: 1px solid #ddd;
-  border: 1px solid #000; // dark black cell borders
+:host ::ng-deep .apexcharts-canvas {
+  margin-top: 0;
 }
 
-.text_design {
-  color: #000000 !important;
+:host ::ng-deep .apexcharts-legend {
+  padding-left: 0 !important;
 }
 
-.styled-table tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
+:host ::ng-deep .apexcharts-datalabel-value {
+  font-size: clamp(12px, 0.95vw, 16px) !important;
+  font-weight: 700 !important;
 }
 
-.styled-table tbody tr:hover {
-  background-color: #f1f1f1;
+:host ::ng-deep .apexcharts-text,
+:host ::ng-deep .apexcharts-xaxis-label,
+:host ::ng-deep .apexcharts-yaxis-label {
+  font-size: clamp(9px, 0.7vw, 11px) !important;
 }
 
-.styled-table td:last-child {
-  text-align: right;
-  /* Right-align numbers */
+:host ::ng-deep .table-container table {
+  min-height: 100%;
 }
+
+:host ::ng-deep .table-container th {
+  padding: clamp(6px, 0.6vw, 10px);
+}
+
+:host ::ng-deep .table-container td {
+  padding: clamp(4px, 0.4vw, 8px);
+  font-size: clamp(10px, 0.8vw, 12px);
+}
+
+:host ::ng-deep .table-container .parameter-cell {
+  font-size: clamp(11px, 0.88vw, 13px);
+}
+
+@import "../../common/beautiful-table.scss";

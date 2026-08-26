@@ -68,7 +68,7 @@ export class CompressorsComponent implements OnInit {
   constructor() {
     const baseChartOptions = {
       chart: {
-        height: 110,
+        height: 84,
         // width: 300,
         type: 'bar',
         toolbar: {

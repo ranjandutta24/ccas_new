@@ -107,102 +107,111 @@
   </div>
 </div>
 
-<div class="table_con">
-  <table style="width: 100%" class="styled-table">
-    <thead>
-      <tr>
-        <th>Parameter</th>
-        <th>Value</th>
-      </tr>
-    </thead>
-    <tbody class="text_design">
-      <tr>
-        <td>Running Status</td>
-        <td>
-          {{ com1
-          ? (com1.MOTOR_CURR_COMP1 <= 50 ? '0' : '1' ) : '' }} </td>
-      </tr>
-      <tr>
-        <td>Motor Current [amp]</td>
-        <!-- <td>2</td> -->
-        <td>{{ com1?.MOTOR_CURR_COMP1 }}</td>
-      </tr>
-      <tr>
-        <td>Compressor I Flow [Nm3/hr]</td>
-        <td>{{com1?.AirFlow}}</td>
-      </tr>
-      <tr>
-        <td>Inlet Valve Position</td>
-        <td>{{ com1?.InletValvePos }}</td>
-      </tr>
-      <tr>
-        <td>By Pass Valve Position</td>
-        <td>{{ com1?.BypassValvePos}}</td>
-      </tr>
-      <tr>
-        <td>POP Running</td>
-        <td>{{ com1?.POPRunning}}</td>
-      </tr>
-      <tr>
-        <td>Common Trip</td>
-        <td>{{ com1?.CommonTrip}}</td>
-      </tr>
-      <tr>
-        <td>Common Alarm</td>
-        <td>{{ com1?.CommonAlarm}}</td>
-      </tr>
-      <tr>
-        <td>Compressor 1 Running Hour [in Hrs]</td>
-        <td>{{ com1?.RUNHRCOMP1}}</td>
-      </tr>
-    </tbody>
-  </table>
-  <table style="width: 100%" class="styled-table">
-    <thead>
-      <tr>
-        <th>Parameter</th>
-        <th>Value</th>
-      </tr>
-    </thead>
-    <tbody class="text_design">
-      <tr>
-        <td>Lube Oil Temperature [Deg C]</td>
-        <td>{{ com1?.LubeOilTemp}}</td>
-      </tr>
-
-      <tr>
-        <td>Discharge Air Temperature [Deg C]</td>
-        <td>{{ com1?.DischargeAirTemp }}</td>
-      </tr>
-      <tr>
-        <td>Inlet Air Temperature [Deg C]</td>
-        <td>{{ com1?.InletAirTemStage}}</td>
-      </tr>
-      <tr>
-        <td>Inlet Air Temperature Stg II [Deg C]</td>
-        <td>{{com1?.InletAirTempStage2}}</td>
-      </tr>
-      <tr>
-        <td>Lube Oil Pressure [kg/cm2]</td>
-        <td>{{com1?.LubeOilPressure}}</td>
-      </tr>
-      <tr>
-        <td>System Pressure [kg/cm2]</td>
-        <td>{{com1?.SystemPressure}}</td>
-      </tr>
-      <tr>
-        <td>Vibration Stage I [mills]</td>
-        <td>{{com1?.VibrationStage1}}</td>
-      </tr>
-      <tr>
-        <td>Vibration Stage II [mills]</td>
-        <td>{{com1?.VibrationStage2}}</td>
-      </tr>
-      <tr>
-        <td>Vibration Stage III [mills]</td>
-        <td>{{com1?.VibrationStage3}}</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="table_con" style="gap: 15px; margin-top: 15px;">
+  <div class="table-container" style="flex: 1;">
+    <table>
+      <thead>
+        <tr>
+          <th class="overview_parameter_column">
+            <div class="th-inner"><span class="th-icon">⚙️</span><span class="th-text">Parameter</span></div>
+          </th>
+          <th class="overview_value_column">
+            <div class="th-inner"><span class="th-icon">📊</span><span class="th-text">Value</span></div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🟢</span> Running Status</td>
+          <td><span class="data-value">{{ com1 ? (com1.MOTOR_CURR_COMP1 <= 50 ? '0' : '1' ) : '' }}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">⚡</span> Motor Current [amp]</td>
+          <td><span class="data-value">{{ com1?.MOTOR_CURR_COMP1 }}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">💨</span> Compressor 1 Flow [Nm3/hr]</td>
+          <td><span class="data-value">{{com1?.AirFlow}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🎛️</span> Inlet Valve Position</td>
+          <td><span class="data-value">{{ com1?.InletValvePos }}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🔄</span> By Pass Valve Position</td>
+          <td><span class="data-value">{{ com1?.BypassValvePos}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🏃</span> POP Running</td>
+          <td><span class="data-value">{{ com1?.POPRunning}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">⚠️</span> Common Trip</td>
+          <td><span class="data-value highlight-value">{{ com1?.CommonTrip}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🔔</span> Common Alarm</td>
+          <td><span class="data-value highlight-value">{{ com1?.CommonAlarm}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">⏱️</span> Compressor 1 Running Hour [in Hrs]</td>
+          <td><span class="data-value">{{ com1?.RUNHRCOMP1}}</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="table-container" style="flex: 1;">
+    <table>
+      <thead>
+        <tr>
+          <th class="overview_parameter_column">
+            <div class="th-inner"><span class="th-icon">⚙️</span><span class="th-text">Parameter</span></div>
+          </th>
+          <th class="overview_value_column">
+            <div class="th-inner"><span class="th-icon">📊</span><span class="th-text">Value</span></div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🛢️</span> Lube Oil Temperature [Deg C]</td>
+          <td><span class="data-value">{{ com1?.LubeOilTemp}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🌡️</span> Discharge Air Temperature [Deg C]</td>
+          <td><span class="data-value">{{ com1?.DischargeAirTemp }}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🌡️</span> Inlet Air Temperature [Deg C]</td>
+          <td><span class="data-value">{{ com1?.InletAirTemStage}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🌡️</span> Inlet Air Temperature Stg II [Deg C]</td>
+          <td><span class="data-value">{{com1?.InletAirTempStage2}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🗜️</span> Lube Oil Pressure [kg/cm2]</td>
+          <td><span class="data-value">{{com1?.LubeOilPressure}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🗜️</span> System Pressure [kg/cm2]</td>
+          <td><span class="data-value">{{com1?.SystemPressure}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">〰️</span> Vibration Stage I [mills]</td>
+          <td><span class="data-value">{{com1?.VibrationStage1}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">〰️</span> Vibration Stage II [mills]</td>
+          <td><span class="data-value">{{com1?.VibrationStage2}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">〰️</span> Vibration Stage III [mills]</td>
+          <td><span class="data-value">{{com1?.VibrationStage3}}</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 </ng-container>

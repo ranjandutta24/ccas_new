@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  height: 100vh;
+  overflow: hidden;
+}
+
+app-header,
+app-footer {
+  flex: 0 0 auto;
+}
+
+router-outlet {
+  display: block;
+}

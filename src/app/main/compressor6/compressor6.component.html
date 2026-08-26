@@ -38,7 +38,7 @@
   </div>
   <div class="each4th">
     <div class="each_g1">
-      <p class="unit" style="margin: 0px">Compressor 1 Current (Amp)</p>
+      <p class="unit" style="margin: 0px">Inlet Air Temperature Stg2 [Deg C]</p>
       <apx-chart #chart4 [series]="chartOptions4.series" [chart]="chartOptions4.chart"
         [plotOptions]="chartOptions4.plotOptions" [colors]="chartOptions4.colors" [legend]="chartOptions4.legend">
       </apx-chart>
@@ -74,7 +74,7 @@
 <div class="bar2">
   <div class="each4th">
     <div class="each_g1">
-      <p class="unit" style="margin: 0px">Compressor I Motor Current [amp]</p>
+      <p class="unit" style="margin: 0px">Compressor 6 Motor Current [amp]</p>
       <apx-chart #chart5 [series]="chartOptions5.series" [chart]="chartOptions5.chart"
         [plotOptions]="chartOptions5.plotOptions" [colors]="chartOptions5.colors" [legend]="chartOptions5.legend">
       </apx-chart>
@@ -106,101 +106,111 @@
     </div>
   </div>
 </div>
-<div class="table_con">
-  <table style="width: 100%" class="styled-table">
-    <thead>
-      <tr>
-        <th>Parameter</th>
-        <th>Value</th>
-      </tr>
-    </thead>
-    <tbody class="text_design">
-      <tr>
-        <td>Running Status</td>
-        <td>
-          {{ com6
-          ? ((!com6.MOTOR_CURR_COMP6 || com6.MOTOR_CURR_COMP6 <= 50 )? '0' : '1' ) : '' }} </td>
-      </tr>
-      <tr>
-        <td>Motor Current [amp]</td>
-        <td>{{ com6 ? (com6.MOTOR_CURR_COMP6 ?? 0) : '' }}</td>
-      </tr>
-      <tr>
-        <td>Compressor I Flow [Nm3/hr]</td>
-        <td>{{com6?.AirFlow}}</td>
-      </tr>
-      <tr>
-        <td>Inlet Valve Position</td>
-        <td>{{ com6?.InletValvePosition}}</td>
-      </tr>
-      <tr>
-        <td>By Pass Valve Position</td>
-        <td>{{com6?(com6.BypassValvePosition ?? 0) : '' }}</td>
-      </tr>
-      <tr>
-        <td>POP Running</td>
-        <td>{{com6?(com6.POPrunning ?? 0) : '' }}</td>
-      </tr>
-      <tr>
-        <td>Common Trip</td>
-        <td>{{com6?.CommonTrip}}</td>
-      </tr>
-      <tr>
-        <td>Common Alarm</td>
-        <td>{{com6?.CommonAlarm}}</td>
-      </tr>
-      <tr>
-        <td>Compressor 1 Running Hour [in Hrs]</td>
-        <td>{{com6?(com6.RUN_HR_COMP6 ?? 0) : '' }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <table style="width: 100%" class="styled-table">
-    <thead>
-      <tr>
-        <th>Parameter</th>
-        <th>Value</th>
-      </tr>
-    </thead>
-    <tbody class="text_design">
-      <tr>
-        <td>Lube Oil Temperature [Deg C]</td>
-        <td>{{com6?.LubeOilTemp}}</td>
-      </tr>
-
-      <tr>
-        <td>Discharge Air Temperature [Deg C]</td>
-        <td>{{com6?.DischargeAirTemp}}</td>
-      </tr>
-      <tr>
-        <td>Inlet Air Temperature [Deg C]</td>
-        <td>{{com6?(com6.InletAirTemStage ?? 0) : '' }}</td>
-      </tr>
-      <tr>
-        <td>Inlet Air Temperature Stg II [Deg C]</td>
-        <td>{{com6?.InletAirTempStage2}}</td>
-      </tr>
-      <tr>
-        <td>Lube Oil Pressure [kg/cm2]</td>
-        <td>{{com6?(com6.LubeoilPressure ?? 0) : '' }}</td>
-      </tr>
-      <tr>
-        <td>System Pressure [kg/cm2]</td>
-        <td>{{com6?.SystemPressure}}</td>
-      </tr>
-      <tr>
-        <td>Vibration Stage I [mills]</td>
-        <td>{{com6?.VibrationStage1}}</td>
-      </tr>
-      <tr>
-        <td>Vibration Stage II [mills]</td>
-        <td>{{com6?.VibrationStage2}}</td>
-      </tr>
-      <tr>
-        <td>Vibration Stage III [mills]</td>
-        <td>{{com6?(com6.VibrationStgae3 ?? 0) : '' }}</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="table_con" style="gap: 15px; margin-top: 15px;">
+  <div class="table-container" style="flex: 1;">
+    <table>
+      <thead>
+        <tr>
+          <th class="overview_parameter_column">
+            <div class="th-inner"><span class="th-icon">⚙️</span><span class="th-text">Parameter</span></div>
+          </th>
+          <th class="overview_value_column">
+            <div class="th-inner"><span class="th-icon">📊</span><span class="th-text">Value</span></div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🟢</span> Running Status</td>
+          <td><span class="data-value">{{ com6 ? ((!com6.MOTOR_CURR_COMP6 || com6.MOTOR_CURR_COMP6 <= 50 )? '0' : '1' ) : '' }}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">⚡</span> Motor Current [amp]</td>
+          <td><span class="data-value">{{ com6 ? (com6.MOTOR_CURR_COMP6 ?? 0) : '' }}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">💨</span> Compressor 6 Flow [Nm3/hr]</td>
+          <td><span class="data-value">{{com6?.AirFlow}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🎛️</span> Inlet Valve Position</td>
+          <td><span class="data-value">{{ com6?.InletValvePosition}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🔄</span> By Pass Valve Position</td>
+          <td><span class="data-value">{{com6?(com6.BypassValvePosition ?? 0) : '' }}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🏃</span> POP Running</td>
+          <td><span class="data-value">{{com6?(com6.POPrunning ?? 0) : '' }}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">⚠️</span> Common Trip</td>
+          <td><span class="data-value highlight-value">{{com6?.CommonTrip}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🔔</span> Common Alarm</td>
+          <td><span class="data-value highlight-value">{{com6?.CommonAlarm}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">⏱️</span> Compressor 6 Running Hour [in Hrs]</td>
+          <td><span class="data-value">{{com6?(com6.RUN_HR_COMP6 ?? 0) : '' }}</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="table-container" style="flex: 1;">
+    <table>
+      <thead>
+        <tr>
+          <th class="overview_parameter_column">
+            <div class="th-inner"><span class="th-icon">⚙️</span><span class="th-text">Parameter</span></div>
+          </th>
+          <th class="overview_value_column">
+            <div class="th-inner"><span class="th-icon">📊</span><span class="th-text">Value</span></div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🛢️</span> Lube Oil Temperature [Deg C]</td>
+          <td><span class="data-value">{{com6?.LubeOilTemp}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🌡️</span> Discharge Air Temperature [Deg C]</td>
+          <td><span class="data-value">{{com6?.DischargeAirTemp}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🌡️</span> Inlet Air Temperature [Deg C]</td>
+          <td><span class="data-value">{{com6?(com6.InletAirTemStage ?? 0) : '' }}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🌡️</span> Inlet Air Temperature Stg II [Deg C]</td>
+          <td><span class="data-value">{{com6?.InletAirTempStage2}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🗜️</span> Lube Oil Pressure [kg/cm2]</td>
+          <td><span class="data-value">{{com6?(com6.LubeoilPressure ?? 0) : '' }}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">🗜️</span> System Pressure [kg/cm2]</td>
+          <td><span class="data-value">{{com6?.SystemPressure}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">〰️</span> Vibration Stage I [mills]</td>
+          <td><span class="data-value">{{com6?.VibrationStage1}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">〰️</span> Vibration Stage II [mills]</td>
+          <td><span class="data-value">{{com6?.VibrationStage2}}</span></td>
+        </tr>
+        <tr>
+          <td class="parameter-cell"><span class="row-icon">〰️</span> Vibration Stage III [mills]</td>
+          <td><span class="data-value">{{com6?(com6.VibrationStgae3 ?? 0) : '' }}</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 </ng-container>
