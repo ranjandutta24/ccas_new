@@ -1,12 +1,26 @@
-.footer{
-    display: flex
-    ;
-        position: fixed;
-        bottom: 0px;
-        background-color: #10194b;
-        color: white;
-        width: 100%;
-        padding: 10px 5px;
-        /* margin: auto; */
-        justify-content: center;
+.footer {
+    display: flex;
+    position: fixed;
+    bottom: 0px;
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    color: #ffffff;
+    width: 100%;
+    padding: 10px 5px;
+    justify-content: center;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    font-size: 14px;
+    font-family: inherit;
+    animation: glowText 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowText {
+    from {
+        text-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
+        color: #e0f2fe;
+    }
+    to {
+        text-shadow: 0 0 10px rgba(253, 250, 84, 0.8), 0 0 20px rgba(253, 250, 84, 0.4);
+        color: #ffffff;
+    }
 }
