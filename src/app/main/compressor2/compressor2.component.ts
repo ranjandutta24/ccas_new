@@ -315,7 +315,7 @@ export class Compressor2Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
-        height: 140,
+        height: 200,
         // width: 300,
       },
       plotOptions: {
@@ -361,7 +361,7 @@ export class Compressor2Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
-        height: 140,
+        height: 200,
         // width: 300,
       },
       plotOptions: {
@@ -406,7 +406,7 @@ export class Compressor2Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
-        height: 140,
+        height: 200,
         // width: 300,
       },
       plotOptions: {
@@ -452,7 +452,7 @@ export class Compressor2Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
-        height: 140,
+        height: 200,
         // width: 300,
       },
       plotOptions: {
