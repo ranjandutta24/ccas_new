@@ -23,7 +23,7 @@ export class EStatusComponent implements OnInit {
   statusOff = '#FF6347';
   statusOn = '#32CD32';
   labels = {
-    electricalStatus: 'Electrical Status',
+    electricalStatus: 'Auxiliary',
     coolingTowerFan: 'Cooling Tower Fan',
     coolingTowerFan1: 'Cooling Tower Fan I',
     coolingTowerFan2: 'Cooling Tower Fan II',
