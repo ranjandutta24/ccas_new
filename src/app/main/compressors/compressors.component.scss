@@ -75,7 +75,8 @@
 :host {
   display: block;
   height: calc(100vh - 96px);
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .page-container {
@@ -91,9 +92,8 @@
   padding: 8px;
   background-color: #f9f9f9;
   flex: 1;
-  /* overflow-y: auto; */
+  overflow-y: auto;
   overflow-x: hidden;
-  overflow: hidden;
 }
   
   .section-content {

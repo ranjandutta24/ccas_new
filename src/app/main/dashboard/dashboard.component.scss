@@ -32,9 +32,9 @@
     flex-direction: column;
     gap: 8px;
     
-    /* Scroll bar is commented out / disabled here as requested */
-    /* overflow-y: auto; */
-    overflow: hidden; 
+    /* Enabled scrollbar for smaller desktop screens */
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* --- LAYOUT GRIDS --- */
