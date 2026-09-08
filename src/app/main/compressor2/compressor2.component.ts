@@ -118,13 +118,13 @@ export class Compressor2Component implements OnInit {
         },
       },
       legend: {
-        show: true,
+        show: false,
         position: 'right',
         showForSingleSeries: true,
-        customLegendItems: ['Current', 'Limit'],
-        markers: {
-          fillColors: ['#208705', '#775DD0'],
-        },
+        // customLegendItems: ['Current', 'Limit'],
+        // markers: {
+        //   fillColors: ['#208705', '#775DD0'],
+        // },
       } as ApexLegend,
     };
 

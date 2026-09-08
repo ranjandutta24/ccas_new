@@ -123,7 +123,7 @@ export class Compressor1Component implements OnInit {
         },
       },
       legend: {
-        show: true,
+        show: false,
         position: 'right',
         showForSingleSeries: true,
         customLegendItems: ['Current', 'Limit'],
