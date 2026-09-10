@@ -74,7 +74,7 @@
   
 :host {
   display: block;
-  height: calc(100vh - 96px);
+  height: var(--content-height);
   overflow-y: auto;
   overflow-x: hidden;
 }

@@ -27,8 +27,8 @@
     font-family: 'Poppins', sans-serif;
     padding: 8px 10px;
     background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
-    /* Adjust height to subtract navbar and footer heights */
-    height: calc(100vh - 95px) !important;
+    /* Use global CSS variable for consistent height across all pages */
+    height: var(--content-height) !important;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;

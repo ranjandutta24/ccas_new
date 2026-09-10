@@ -1,16 +1,19 @@
 .footer {
     display: flex;
+    align-items: center;
     position: fixed;
     bottom: 0px;
     background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
     color: #ffffff;
     width: 100%;
-    padding: 10px 5px;
+    height: var(--footer-height, 40px); /* Match CSS variable exactly */
+    padding: 0 5px;
     justify-content: center;
     box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.5);
     z-index: 1000;
     font-size: 14px;
     font-family: inherit;
+    box-sizing: border-box;
     animation: glowText 2s ease-in-out infinite alternate;
 }
 

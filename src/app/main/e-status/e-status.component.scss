@@ -2,7 +2,7 @@
 
 :host {
   display: block;
-  height: calc(100vh - 120px);
+  height: var(--content-height);
   padding: 16px 24px;
   background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 50%, #dbeafe 100%);
   font-family: 'Plus Jakarta Sans', sans-serif;

@@ -1,7 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* ── Global Layout Variables ─────────────────────────────────────────────── */
+:root {
+  --header-height: 46px;   /* height of the fixed navbar */
+  --footer-height: 40px;   /* height of the fixed footer  */
+  --content-height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
+/* ── Body Reset ──────────────────────────────────────────────────────────── */
 body {
   margin: 0;
-  padding-top: 50% !important;
+  padding: 0;
+  /* Push content below the fixed navbar */
+  padding-top: var(--header-height);
+  /* The fixed footer occupies the bottom — no extra padding needed */
+  box-sizing: border-box;
   height: 100vh;
   overflow: hidden;
 }
