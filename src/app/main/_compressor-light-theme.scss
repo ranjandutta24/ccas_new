@@ -1,0 +1,68 @@
+:host {
+  background: #f3f7fc !important;
+}
+
+.main-layout {
+  background: transparent !important;
+}
+
+.each4th.each4th,
+.each4thr.each4thr,
+:host ::ng-deep .table-container.table-container {
+  background: #ffffff !important;
+  border-color: #d7e1ef !important;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.09) !important;
+}
+
+.bar1 > .each4th:nth-child(1) { background: linear-gradient(135deg, #eaf2ff, #ffffff) !important; }
+.bar1 > .each4th:nth-child(2) { background: linear-gradient(135deg, #e8faf4, #ffffff) !important; }
+.bar1 > .each4th:nth-child(3) { background: linear-gradient(135deg, #fff6e5, #ffffff) !important; }
+.bar1 > .each4th:nth-child(4) { background: linear-gradient(135deg, #fff0f0, #ffffff) !important; }
+
+.radial > .each4thr:nth-child(1) { background: linear-gradient(135deg, #f0f9ff, #ffffff) !important; }
+.radial > .each4thr:nth-child(2) { background: linear-gradient(135deg, #f5f3ff, #ffffff) !important; }
+.radial > .each4thr:nth-child(3) { background: linear-gradient(135deg, #fdf4ff, #ffffff) !important; }
+
+.bar2 > .each4th:nth-child(1) { background: linear-gradient(135deg, #ecfdf5, #ffffff) !important; }
+.bar2 > .each4th:nth-child(2) { background: linear-gradient(135deg, #fefce8, #ffffff) !important; }
+.bar2 > .each4th:nth-child(3) { background: linear-gradient(135deg, #eff6ff, #ffffff) !important; }
+.bar2 > .each4th:nth-child(4) { background: linear-gradient(135deg, #fdf2f8, #ffffff) !important; }
+
+.unit.unit,
+.unitr.unitr {
+  color: #1e293b !important;
+}
+
+:host ::ng-deep .apexcharts-text,
+:host ::ng-deep .apexcharts-xaxis-label,
+:host ::ng-deep .apexcharts-yaxis-label {
+  fill: #64748b !important;
+}
+
+:host ::ng-deep .apexcharts-gridline {
+  stroke: rgba(71, 85, 105, 0.14) !important;
+}
+
+:host ::ng-deep .table-container .overview_parameter_column,
+:host ::ng-deep .table-container .overview_value_column {
+  background: #eef4ff !important;
+  color: #1e3a5f !important;
+  border-color: #d7e1ef !important;
+}
+
+:host ::ng-deep .table-container th,
+:host ::ng-deep .table-container td,
+:host ::ng-deep .table-container .parameter-cell {
+  color: #334155 !important;
+  border-color: #e2e8f0 !important;
+}
+
+:host ::ng-deep .table-container .data-value {
+  background: #eff8ff !important;
+  color: #0369a1 !important;
+  border-color: #bae6fd !important;
+}
+
+:host ::ng-deep .table-container tbody tr:hover {
+  background: #f8fafc !important;
+}
