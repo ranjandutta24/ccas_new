@@ -1,14 +1,20 @@
 :host {
-  display: block;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   overflow: hidden;
 }
 
+/* Header & footer are fixed — they take their own space via body padding-top */
 app-header,
 app-footer {
   flex: 0 0 auto;
 }
 
-router-outlet {
-  display: block;
+/* router-outlet itself is a comment node — style its next sibling (the page component) */
+router-outlet + * {
+  flex: 1 1 0;
+  min-height: 0;
+  height: var(--content-height);
+  overflow: hidden;
 }

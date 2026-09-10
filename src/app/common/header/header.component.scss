@@ -1,14 +1,17 @@
 .header {
     display: flex;
     flex-direction: row;
+    align-items: center;
     background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    padding: 10px 0;
+    padding: 0 10px;
+    height: var(--header-height, 46px); /* Match CSS variable exactly */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
+    box-sizing: border-box;
 }
 
 .header li {
