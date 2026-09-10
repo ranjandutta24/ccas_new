@@ -78,6 +78,7 @@ export class Compressor4Component implements OnInit {
   }
   private sseSub?: Subscription;
   com4: any;
+  isStopped: boolean = false;
   constructor(private sseService: SseService) {
     const baseChartOptions = {
       chart: {
@@ -495,22 +496,32 @@ export class Compressor4Component implements OnInit {
     this.sseSub = this.sseService.getSSEComp('comp4').subscribe((data: any) => {
       // this.igcaFlow = parseInt(data.IGCA_FLOW);
 
+      for (const key in data) {
+        if (typeof data[key] === 'number') {
+          data[key] = parseFloat(data[key].toFixed(2));
+        }
+      }
+      this.isStopped = data['MOTOR_CURR_COMP4'] <= 50;
+      if (this.isStopped && this.com4) {
+        this.com4 = { ...this.com4, MOTOR_CURR_COMP4: data['MOTOR_CURR_COMP4'] };
+        return;
+      }
       this.com4 = data;
       // console.log(this.com4['InletAirTempStage3']);
 
       this.updateChart('chartOptions1', this.com4['LubeOilTemp'], 600);
       this.updateChart('chartOptions2', this.com4['DischargeAirTemp'], 600);
-      this.updateChart('chartOptions3', this.com4['InletAirTemStage'], 250);
-      this.updateChart('chartOptions4', this.com4['InletAirTempStage2'], 250);
+      this.updateChart('chartOptions3', this.com4['InletAirTempStage2'], 250);
+      this.updateChart('chartOptions4', this.com4['InletAirTemStage'], 250);
 
       this.updateChart('chartOptions5', this.com4['MOTOR_CURR_COMP4'], 600);
       this.updateChart('chartOptions6', this.com4['VibrationStgae1'] || 0, 100);
       this.updateChart('chartOptions7', this.com4['VibrationStage2'], 100);
       this.updateChart('chartOptions8', this.com4['VibrationStgae3'] || 0, 100);
 
-      this.updateRadialChart('chartROptions1', this.com4['LubeoilPressure'], 100);
-      this.updateRadialChart('chartROptions2', this.com4['SystemPressure'], 1000);
-      this.updateRadialChart('chartROptions3', this.com4['AirFlow'], 30000);
+      this.updateRadialChart('chartROptions1', this.com4['LubeoilPressure'], 10, 'kg/cm²');
+      this.updateRadialChart('chartROptions2', this.com4['SystemPressure'] / 100, 10, 'kg/cm²');
+      this.updateRadialChart('chartROptions3', this.com4['AirFlow'], 30000, 'Nm³/hr');
       this.updateRadialChart('chartROptions4', this.com4['RUN_HR_COMP4'], 100000);
     });
   }
@@ -519,7 +530,8 @@ export class Compressor4Component implements OnInit {
   private updateRadialChart(
     chartKey: 'chartROptions1' | 'chartROptions2' | 'chartROptions3' | 'chartROptions4',
     value: number,
-    max: number
+    max: number,
+    unit: string = ''
   ): void {
     const percent = (value / max) * 100;
     const currentOptions = this[chartKey] as any;
@@ -534,7 +546,10 @@ export class Compressor4Component implements OnInit {
             ...currentOptions.plotOptions?.radialBar?.dataLabels,
             value: {
               ...currentOptions.plotOptions?.radialBar?.dataLabels?.value,
-              formatter: () => `${value} / ${max}`, // display actual numbers
+              formatter: () => {
+                const formattedValue = parseFloat(Number(value).toFixed(2));
+                return unit ? `${formattedValue} ${unit}` : `${formattedValue}`;
+              }, // display only value and unit up to 2 decimal places
             },
           },
         },
@@ -581,3 +596,4 @@ export class Compressor4Component implements OnInit {
     }
   }
 }
+

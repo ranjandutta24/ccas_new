@@ -78,6 +78,7 @@ export class Compressor5Component implements OnInit {
   }
   private sseSub?: Subscription;
   com5: any;
+  isStopped: boolean = false;
 
   constructor(private sseService: SseService) {
     const baseChartOptions = {
@@ -496,6 +497,12 @@ export class Compressor5Component implements OnInit {
     this.sseSub = this.sseService.getSSEComp('comp5').subscribe((data: any) => {
 
       // this.igcaFlow = parseInt(data.IGCA_FLOW);
+      for (const key in data) {
+        if (typeof data[key] === 'number') {
+          data[key] = parseFloat(data[key].toFixed(2));
+        }
+      }
+      this.isStopped = data['MOTOR_CURR_COMP5'] <= 50;
       this.com5 = data;
       // console.log(this.com5['InletAirTempStage3']);
 
@@ -509,9 +516,9 @@ export class Compressor5Component implements OnInit {
       this.updateChart('chartOptions7', this.com5['VibrationStgae2'], 100);
       this.updateChart('chartOptions8', this.com5['VibrationStgae3'] || 0, 100);
 
-      this.updateRadialChart('chartROptions1', this.com5['LubeoilPressure'], 100);
-      this.updateRadialChart('chartROptions2', this.com5['SystemPressure'], 500);
-      this.updateRadialChart('chartROptions3', this.com5['AirFlow'], 30000);
+      this.updateRadialChart('chartROptions1', this.com5['LubeoilPressure'], 10, 'kg/cm²');
+      this.updateRadialChart('chartROptions2', this.com5['SystemPressure'] / 100, 10, 'kg/cm²');
+      this.updateRadialChart('chartROptions3', this.com5['AirFlow'], 30000, 'Nm³/hr');
       this.updateRadialChart('chartROptions4', this.com5['RUN_HR_COMP5'], 100000);
 
     });
@@ -521,7 +528,8 @@ export class Compressor5Component implements OnInit {
   private updateRadialChart(
     chartKey: 'chartROptions1' | 'chartROptions2' | 'chartROptions3' | 'chartROptions4',
     value: number,
-    max: number
+    max: number,
+    unit: string = ''
   ): void {
     const percent = (value / max) * 100;
     const currentOptions = this[chartKey] as any;
@@ -536,7 +544,10 @@ export class Compressor5Component implements OnInit {
             ...currentOptions.plotOptions?.radialBar?.dataLabels,
             value: {
               ...currentOptions.plotOptions?.radialBar?.dataLabels?.value,
-              formatter: () => `${value} / ${max}`, // display actual numbers
+              formatter: () => {
+                const formattedValue = parseFloat(Number(value).toFixed(2));
+                return unit ? `${formattedValue} ${unit}` : `${formattedValue}`;
+              }, // display actual numbers
             },
           },
         },
@@ -582,3 +593,4 @@ export class Compressor5Component implements OnInit {
     }
   }
 }
+

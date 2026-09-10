@@ -78,6 +78,7 @@ export class Compressor6Component implements OnInit {
   }
   private sseSub?: Subscription;
   com6: any;
+  isStopped: boolean = false;
   constructor(private sseService: SseService) {
     const baseChartOptions = {
       chart: {
@@ -494,6 +495,16 @@ export class Compressor6Component implements OnInit {
   ngOnInit(): void {
     this.sseSub = this.sseService.getSSEComp('comp6').subscribe((data: any) => {
       // this.igcaFlow = parseInt(data.IGCA_FLOW);
+      for (const key in data) {
+        if (typeof data[key] === 'number') {
+          data[key] = parseFloat(data[key].toFixed(2));
+        }
+      }
+      this.isStopped = data['MOTOR_CURR_COMP6'] <= 50;
+      if (this.isStopped && this.com6) {
+        this.com6 = { ...this.com6, MOTOR_CURR_COMP6: data['MOTOR_CURR_COMP6'] };
+        return;
+      }
       this.com6 = data;
       // console.log(this.com6['InletAirTempStage3']);
 
@@ -507,9 +518,9 @@ export class Compressor6Component implements OnInit {
       this.updateChart('chartOptions7', this.com6['VibrationStage2'], 100);
       this.updateChart('chartOptions8', this.com6['VibrationStgae3'] || 0, 100);
 
-      this.updateRadialChart('chartROptions1', this.com6['LubeoilPressure'] || 0, 100);
-      this.updateRadialChart('chartROptions2', this.com6['SystemPressure'], 1000);
-      this.updateRadialChart('chartROptions3', this.com6['AirFlow'], 30000);
+      this.updateRadialChart('chartROptions1', this.com6['LubeoilPressure'] || 0, 10, 'kg/cm²');
+      this.updateRadialChart('chartROptions2', this.com6['SystemPressure'] / 100, 10, 'kg/cm²');
+      this.updateRadialChart('chartROptions3', this.com6['AirFlow'], 30000, 'Nm³/hr');
       this.updateRadialChart('chartROptions4', this.com6['RUN_HR_COMP6'] || 0, 100000);
     });
   }
@@ -519,7 +530,8 @@ export class Compressor6Component implements OnInit {
   private updateRadialChart(
     chartKey: 'chartROptions1' | 'chartROptions2' | 'chartROptions3' | 'chartROptions4',
     value: number,
-    max: number
+    max: number,
+    unit: string = ''
   ): void {
     const percent = (value / max) * 100;
     const currentOptions = this[chartKey] as any;
@@ -534,7 +546,10 @@ export class Compressor6Component implements OnInit {
             ...currentOptions.plotOptions?.radialBar?.dataLabels,
             value: {
               ...currentOptions.plotOptions?.radialBar?.dataLabels?.value,
-              formatter: () => `${value} / ${max}`, // display actual numbers
+              formatter: () => {
+                const formattedValue = parseFloat(Number(value).toFixed(2));
+                return unit ? `${formattedValue} ${unit}` : `${formattedValue}`;
+              }, // display actual numbers
             },
           },
         },
@@ -582,3 +597,4 @@ export class Compressor6Component implements OnInit {
     }
   }
 }
+

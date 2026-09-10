@@ -71,6 +71,7 @@ export class Compressor1Component implements OnInit {
   public chartROptions4: ChartROptions;
 
   com1: any;
+  isStopped: boolean = false;
   // {"DT_Stamp":"2025-10-07T06:39:00.000Z","InletValvePos":0,"BypassValvePos":100,"POPRunning":1,"LubeOilTemp":1,"":0,"MOTOR_CURR_COMP1":0,"":103,"PressureSetPoint":102,"":-14,"InletAirTempStage2":85,"InletAirTemStage":83,"DischargeAirTemp":86,"VibrationStage1":0,"VibrationStage2":0,"VibrationStage3":0,"CommonTrip":0,"CommonAlarm":0,"RUNHRCOMP1":918}
 
   setActiveSection(section: string): void {
@@ -536,6 +537,16 @@ export class Compressor1Component implements OnInit {
 
   ngOnInit(): void {
     this.sseSub = this.sseService.getSSEComp('comp1').subscribe((data: any) => {
+      for (const key in data) {
+        if (typeof data[key] === 'number') {
+          data[key] = parseFloat(data[key].toFixed(2));
+        }
+      }
+      this.isStopped = data['MOTOR_CURR_COMP1'] <= 50;
+      if (this.isStopped && this.com1) {
+        this.com1 = { ...this.com1, MOTOR_CURR_COMP1: data['MOTOR_CURR_COMP1'] };
+        return;
+      }
       this.com1 = data;
       // console.log(this.com1['MOTOR_CURR_COMP1']);
 
@@ -549,9 +560,9 @@ export class Compressor1Component implements OnInit {
       this.updateChart('chartOptions7', this.com1['VibrationStage2'], 100);
       this.updateChart('chartOptions8', this.com1['VibrationStage3'], 100);
 
-      this.updateRadialChart('chartROptions1', this.com1['LubeOilPressure'], 100);
-      this.updateRadialChart('chartROptions2', this.com1['SystemPressure'], 250);
-      this.updateRadialChart('chartROptions3', this.com1['AirFlow'], 30000);
+      this.updateRadialChart('chartROptions1', this.com1['LubeOilPressure'], 10, 'kg/cm²');
+      this.updateRadialChart('chartROptions2', this.com1['SystemPressure'] / 100, 10, 'kg/cm²');
+      this.updateRadialChart('chartROptions3', this.com1['AirFlow'], 30000, 'Nm³/hr');
       this.updateRadialChart('chartROptions4', this.com1['RUNHRCOMP1'], 100000);
 
       // this.igcaFlow = parseInt(data.IGCA_FLOW);
@@ -561,7 +572,8 @@ export class Compressor1Component implements OnInit {
   private updateRadialChart(
     chartKey: 'chartROptions1' | 'chartROptions2' | 'chartROptions3' | 'chartROptions4',
     value: number,
-    max: number
+    max: number,
+    unit: string = ''
   ): void {
     const percent = (value / max) * 100;
     const currentOptions = this[chartKey] as any;
@@ -576,7 +588,10 @@ export class Compressor1Component implements OnInit {
             ...currentOptions.plotOptions?.radialBar?.dataLabels,
             value: {
               ...currentOptions.plotOptions?.radialBar?.dataLabels?.value,
-              formatter: () => `${value} / ${max}`, // display actual numbers
+              formatter: () => {
+                const formattedValue = parseFloat(Number(value).toFixed(2));
+                return unit ? `${formattedValue} ${unit}` : `${formattedValue}`;
+              }, // display actual numbers
             },
           },
         },
@@ -623,3 +638,4 @@ export class Compressor1Component implements OnInit {
     }
   }
 }
+

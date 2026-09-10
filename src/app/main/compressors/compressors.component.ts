@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { SseService } from 'src/app/service/sse.servece';
 import {
   ApexChart,
   ChartComponent,
@@ -37,7 +39,7 @@ export type ChartROptions = {
   templateUrl: './compressors.component.html',
   styleUrls: ['./compressors.component.scss'],
 })
-export class CompressorsComponent implements OnInit {
+export class CompressorsComponent implements OnInit, OnDestroy {
   @ViewChild('chart1') chart1!: ChartComponent;
   @ViewChild('chart2') chart2!: ChartComponent;
   @ViewChild('chart3') chart3!: ChartComponent;
@@ -51,6 +53,13 @@ export class CompressorsComponent implements OnInit {
   public chartOptions2: ChartOptions;
   public chartOptions3: ChartOptions;
   public chartOptions4: ChartOptions;
+  isComp1Stopped: boolean = false;
+  isComp2Stopped: boolean = false;
+  isComp3Stopped: boolean = false;
+  isComp4Stopped: boolean = false;
+  isComp5Stopped: boolean = false;
+  isComp6Stopped: boolean = false;
+  private sseSub?: Subscription;
 
   // public chartROptions1: ChartOptions;
   public chartROptions1: ChartROptions;
@@ -65,7 +74,7 @@ export class CompressorsComponent implements OnInit {
   isActive(section: string): boolean {
     return this.activeSection === section;
   }
-  constructor() {
+  constructor(private sseService: SseService) {
     const baseChartOptions = {
       chart: {
         height: 84,
@@ -384,5 +393,22 @@ export class CompressorsComponent implements OnInit {
     };
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.sseSub = this.sseService.getServerSentEvent().subscribe((data: any) => {
+      if (data) {
+        this.isComp1Stopped = (data.MOTOR_CURR_COMP1 <= 50);
+        this.isComp2Stopped = (data.MOTOR_CURR_COMP2 <= 50);
+        this.isComp3Stopped = (data.MOTOR_CURR_COMP3 <= 50);
+        this.isComp4Stopped = (data.MOTOR_CURR_COMP4 <= 50);
+        this.isComp5Stopped = (data.MOTOR_CURR_COMP5 <= 50);
+        this.isComp6Stopped = (data.MOTOR_CURR_COMP6 <= 50);
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.sseSub) {
+      this.sseSub.unsubscribe();
+    }
+  }
 }

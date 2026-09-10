@@ -6,6 +6,31 @@ body {
     overflow: hidden;
 }
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.main-layout .unit {
+    flex: 0 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.main-layout .each_g1,
+.main-layout .each4thr {
+    min-height: 0;
+}
+
+.main-layout .each_g1 apx-chart,
+.main-layout .each4thr > apx-chart {
+    display: block;
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+}
+
 .overview_parameter_column {
     background-color: #1930af !important;
 }

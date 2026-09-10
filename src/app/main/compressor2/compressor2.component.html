@@ -1,17 +1,17 @@
 <div class="comp-loader-wrapper" *ngIf="!com2">
   <div class="comp-loader-ring">
-    <div class="comp-loader-dot"></div>
+    <span class="comp-loader-brand">CCAS</span>
   </div>
   <div class="comp-loader-info">
-    <span class="comp-loader-title">Loading Compressor 2</span>
-    <span class="comp-loader-subtitle">Fetching live sensor data...</span>
+    <span class="comp-loader-title">CCAS</span>
+    <span class="comp-loader-subtitle">Central Compressor Automation System</span>
     <div class="comp-loader-dots">
       <span></span><span></span><span></span>
     </div>
   </div>
 </div>
-<ng-container *ngIf="com2">
-<div class="main-layout">
+<div *ngIf="com2">
+<div class="main-layout" [class.disabled-page]="isStopped">
 <div class="left-panel">
 <div class="bar1">
   <div class="each4th">
@@ -218,4 +218,4 @@
 </div>
 </div>
 </div>
-</ng-container>
+</div>

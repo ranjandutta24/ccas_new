@@ -1,23 +1,17 @@
+const fs = require('fs');
 
+const scssContent = `
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-@import '../ccas-loader';
 
 :host {
   display: flex;
   flex-direction: column;
-  position: relative;
   height: 100%;
   overflow: hidden;
-  padding: 16px 16px 8px;
+  padding: 16px;
   box-sizing: border-box;
   background-color: #0b1120; /* Deep navy/black 3D background */
   font-family: 'Poppins', sans-serif;
-}
-
-:host > div:not(.comp-loader-wrapper) {
-  display: flex;
-  flex: 1 1 auto;
-  min-height: 0;
 }
 
 .main-layout {
@@ -67,10 +61,6 @@
   margin-bottom: 16px;
   flex: 1.2;
   min-height: 0;
-}
-
-.bar2 {
-  margin-bottom: 0;
 }
 
 /* ── Base Card Styles (3D Glassmorphism) ─────────────────────────────── */
@@ -412,4 +402,11 @@
   pointer-events: none;
   filter: grayscale(80%) brightness(0.8);
   transition: all 0.3s ease;
+}
+`;
+
+for (let i = 1; i <= 6; i++) {
+  const f = 'c:/Project/Angular/ccas_new/src/app/main/compressor' + i + '/compressor' + i + '.component.scss';
+  fs.writeFileSync(f, scssContent);
+  console.log('Updated ' + f);
 }

@@ -76,16 +76,20 @@
       margin: 0;
       /* Heavy black drop shadow for contrast against background */
       filter: drop-shadow(3px 5px 5px rgba(0,0,0,1)) drop-shadow(0 0 20px rgba(0,0,0,0.8));
+      max-width: 100%;
+      height: auto;
     }
 
     .subtitle {
-      font-size: 3rem;
+      font-size: clamp(1.5rem, 4vw, 3rem);
       font-weight: 900;
       color: #ffffff;
       text-transform: uppercase;
-      letter-spacing: 8px;
+      letter-spacing: clamp(2px, 1vw, 8px);
       margin-top: 40px;
       animation: fadeInUp 1.5s ease-out, neonSubtitle 2.5s ease-in-out infinite alternate;
+      text-align: center;
+      max-width: 100%;
     }
 
     @keyframes neonSubtitle {
