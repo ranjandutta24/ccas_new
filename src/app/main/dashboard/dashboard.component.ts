@@ -159,23 +159,11 @@ export class DashboardComponent implements OnInit {
           enabled: false, // Remove shadow for cleaner look
         },
         formatter: function (val: any, opts: any) {
-          let expected = '';
-          try {
-            const dataPoint = opts.w.config.series[opts.seriesIndex].data[opts.dataPointIndex];
-            if (dataPoint && dataPoint.goals && dataPoint.goals.length) {
-              expected = ` / ${dataPoint.goals[0].value}`;
-            }
-          } catch(e) {}
-          return `${val}${expected}`;
+          return `${val}`;
         },
       },
       legend: {
-        show: true,
-        showForSingleSeries: true,
-        customLegendItems: ['Current', 'Limit'],
-        markers: {
-          fillColors: ['#008FFB', '#BD4CC7'],
-        },
+        show: false,
       },
       tooltip: {
         y: {
@@ -247,23 +235,11 @@ export class DashboardComponent implements OnInit {
           fontWeight: 'bold',
         },
         formatter: function (val: any, opts) {
-          const goals =
-            opts.w.config.series[opts.seriesIndex].data[opts.dataPointIndex]
-              .goals;
-
-          if (goals && goals.length) {
-            return `${val} / ${goals[0].value}`;
-          }
           return val;
         },
       },
       legend: {
-        show: true,
-        showForSingleSeries: true,
-        customLegendItems: ['Current', 'Limit'],
-        markers: {
-          fillColors: ['#008FFB', '#BD4CC7'],
-        },
+        show: false,
       },
       tooltip: {
         y: {

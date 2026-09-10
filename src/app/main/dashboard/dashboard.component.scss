@@ -2,23 +2,25 @@
 
 /* --- MAIN CONTAINER --- */
 ::ng-deep {
-  .apexcharts-bar-area {
-    transform-box: fill-box;
-    transform-origin: left;
-    animation: barSweep 8s ease-out infinite;
-  }
+    .apexcharts-bar-area {
+        transform-box: fill-box;
+        transform-origin: left;
+        animation: barSweep 8s ease-out infinite;
+    }
 }
 
 @keyframes barSweep {
-  0% {
-    transform: scaleX(0);
-  }
-  25% {
-    transform: scaleX(1);
-  }
-  100% {
-    transform: scaleX(1);
-  }
+    0% {
+        transform: scaleX(0);
+    }
+
+    25% {
+        transform: scaleX(1);
+    }
+
+    100% {
+        transform: scaleX(1);
+    }
 }
 
 .main {
@@ -26,19 +28,21 @@
     padding: 8px 10px;
     background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
     /* Adjust height to subtract navbar and footer heights */
-    height: calc(100vh - 95px); 
+    height: calc(100vh - 95px) !important;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    
+
     /* Enabled scrollbar for smaller desktop screens */
     overflow-y: auto;
     overflow-x: hidden;
 }
 
 /* --- LAYOUT GRIDS --- */
-.status, .graph1, .graph2 {
+.status,
+.graph1,
+.graph2 {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 8px;
@@ -52,13 +56,26 @@
 }
 
 /* Flex rules to fit in 1 page (Top section made a bit smaller) */
-.status { flex: 0 0 6vh; }
-.graph1 { flex: 0 1 21vh; }
-.graph2 { flex: 0 1 21vh; }
-.graph3 { flex: 1 1 40vh; margin-bottom: 2px; }
+.status {
+    flex: 0 0 6vh;
+}
+
+.graph1 {
+    flex: 0 1 21vh;
+}
+
+.graph2 {
+    flex: 0 1 21vh;
+}
+
+.graph3 {
+    flex: 1 1 40vh;
+    margin-bottom: 2px;
+}
 
 /* --- STATUS CARDS --- */
-.inactive_design, .active_design {
+.inactive_design,
+.active_design {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,7 +90,8 @@
     border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-.inactive_design:hover, .active_design:hover {
+.inactive_design:hover,
+.active_design:hover {
     transform: translateY(-4px) scale(1.02);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
@@ -90,13 +108,18 @@
 }
 
 @keyframes pulseGlow {
-    0% { box-shadow: 0 0 5px rgba(150, 201, 61, 0.4); }
-    100% { box-shadow: 0 0 18px rgba(150, 201, 61, 0.9); }
+    0% {
+        box-shadow: 0 0 5px rgba(150, 201, 61, 0.4);
+    }
+
+    100% {
+        box-shadow: 0 0 18px rgba(150, 201, 61, 0.9);
+    }
 }
 
 .com_icon {
     height: 38px;
-    filter: drop-shadow(0px 3px 3px rgba(0,0,0,0.3));
+    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.3));
     transition: transform 0.3s ease;
 }
 
@@ -105,7 +128,9 @@
 }
 
 /* --- GRAPH CONTAINERS (Glassmorphism) --- */
-.each_g1, .each_g2, .each_g3 {
+.each_g1,
+.each_g2,
+.each_g3 {
     border-radius: 16px;
     padding: 8px 10px;
     background: rgba(255, 255, 255, 0.65);
@@ -122,11 +147,13 @@
 
 .each_g3 {
     padding: 10px;
-    background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(240,244,248,0.7));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(240, 244, 248, 0.7));
 }
 
-.each_g1:hover, .each_g2:hover, .each_g3:hover {
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+.each_g1:hover,
+.each_g2:hover,
+.each_g3:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     transform: translateY(-2px);
 }
 
@@ -137,12 +164,13 @@ apx-chart {
     display: block;
 }
 
-.textColour1, .textColour2 {
+.textColour1,
+.textColour2 {
     color: #fff;
     font-weight: 700;
     font-size: 16px;
     margin: 0;
-    text-shadow: 1px 2px 3px rgba(0,0,0,0.3);
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
     letter-spacing: 1px;
 }
 
@@ -168,7 +196,10 @@ apx-chart {
 }
 
 /* --- ENTRANCE ANIMATIONS --- */
-.status > div, .graph1 > div, .graph2 > div, .graph3 > div {
+.status>div,
+.graph1>div,
+.graph2>div,
+.graph3>div {
     animation: fadeInUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
 }
 
@@ -177,32 +208,89 @@ apx-chart {
         opacity: 0;
         transform: translateY(25px) scale(0.95);
     }
+
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
     }
 }
 
-.status > div:nth-child(1) { animation-delay: 0.05s; }
-.status > div:nth-child(2) { animation-delay: 0.1s; }
-.status > div:nth-child(3) { animation-delay: 0.15s; }
-.status > div:nth-child(4) { animation-delay: 0.2s; }
-.status > div:nth-child(5) { animation-delay: 0.25s; }
-.status > div:nth-child(6) { animation-delay: 0.3s; }
+.status>div:nth-child(1) {
+    animation-delay: 0.05s;
+}
 
-.graph1 > div:nth-child(1) { animation-delay: 0.2s; }
-.graph1 > div:nth-child(2) { animation-delay: 0.25s; }
-.graph1 > div:nth-child(3) { animation-delay: 0.3s; }
-.graph1 > div:nth-child(4) { animation-delay: 0.35s; }
-.graph1 > div:nth-child(5) { animation-delay: 0.4s; }
-.graph1 > div:nth-child(6) { animation-delay: 0.45s; }
+.status>div:nth-child(2) {
+    animation-delay: 0.1s;
+}
 
-.graph2 > div:nth-child(1) { animation-delay: 0.35s; }
-.graph2 > div:nth-child(2) { animation-delay: 0.4s; }
-.graph2 > div:nth-child(3) { animation-delay: 0.45s; }
-.graph2 > div:nth-child(4) { animation-delay: 0.5s; }
-.graph2 > div:nth-child(5) { animation-delay: 0.55s; }
-.graph2 > div:nth-child(6) { animation-delay: 0.6s; }
+.status>div:nth-child(3) {
+    animation-delay: 0.15s;
+}
 
-.graph3 > div:nth-child(1) { animation-delay: 0.5s; }
-.graph3 > div:nth-child(2) { animation-delay: 0.6s; }
+.status>div:nth-child(4) {
+    animation-delay: 0.2s;
+}
+
+.status>div:nth-child(5) {
+    animation-delay: 0.25s;
+}
+
+.status>div:nth-child(6) {
+    animation-delay: 0.3s;
+}
+
+.graph1>div:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.graph1>div:nth-child(2) {
+    animation-delay: 0.25s;
+}
+
+.graph1>div:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.graph1>div:nth-child(4) {
+    animation-delay: 0.35s;
+}
+
+.graph1>div:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+.graph1>div:nth-child(6) {
+    animation-delay: 0.45s;
+}
+
+.graph2>div:nth-child(1) {
+    animation-delay: 0.35s;
+}
+
+.graph2>div:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.graph2>div:nth-child(3) {
+    animation-delay: 0.45s;
+}
+
+.graph2>div:nth-child(4) {
+    animation-delay: 0.5s;
+}
+
+.graph2>div:nth-child(5) {
+    animation-delay: 0.55s;
+}
+
+.graph2>div:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+.graph3>div:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.graph3>div:nth-child(2) {
+    animation-delay: 0.6s;
+}

@@ -2,27 +2,27 @@
   <!-- <button (click)="showdata()"></button> -->
   <div class="status">
     <div [ngClass]="MOTOR_CURR_COMP1 <= 50 ? 'textColour1 inactive_design' : 'textColour2 active_design'">
-      I
+      Compressor I
       <img class="com_icon" [src]="MOTOR_CURR_COMP1 <= 50 ? deactive_compath : active_compath" alt="" />
     </div>
     <div [ngClass]="MOTOR_CURR_COMP2 <= 50 ? 'textColour1 inactive_design' : 'textColour2 active_design'">
-      II
+      Compressor II
       <img class="com_icon" [src]="MOTOR_CURR_COMP2 <= 50 ? deactive_compath : active_compath" alt="" />
     </div>
     <div [ngClass]="MOTOR_CURR_COMP3 <= 50 ? 'textColour1 inactive_design' : 'textColour2 active_design'">
-      III
+      Compressor III
       <img class="com_icon" [src]="MOTOR_CURR_COMP3 <= 50 ? deactive_compath : active_compath" alt="" />
     </div>
     <div [ngClass]="MOTOR_CURR_COMP4 <= 50 ? 'textColour1 inactive_design' : 'textColour2 active_design'">
-      IV
+      Compressor IV
       <img class="com_icon" [src]="MOTOR_CURR_COMP4 <= 50 ? deactive_compath : active_compath" alt="" />
     </div>
     <div [ngClass]="MOTOR_CURR_COMP5 <= 50 ? 'textColour1 inactive_design' : 'textColour2 active_design'">
-      V
+      Compressor V
       <img class="com_icon" [src]="MOTOR_CURR_COMP5 <= 50 ? deactive_compath : active_compath" alt="" />
     </div>
     <div [ngClass]="MOTOR_CURR_COMP6 <= 50 ? 'textColour1 inactive_design' : 'textColour2 active_design'">
-      VI
+      Compressor VI
       <img class="com_icon" [src]="MOTOR_CURR_COMP6 <= 50 ? deactive_compath : active_compath" alt="" />
     </div>
   </div>
@@ -31,7 +31,7 @@
     <div class="each_g1" [ngClass]="MOTOR_CURR_COMP1 <= 50 ? 'bg_off' : 'bg_on'">
       <p class="unit" style="margin: 0px">Compressor 1 Current (Amp)</p>
       <apx-chart #chart1 [series]="chartOptions1.series" [chart]="chartOptions1.chart"
-        [dataLabels]="chartOptions1.dataLabels" [plotOptions]="chartOptions1.plotOptions" 
+        [dataLabels]="chartOptions1.dataLabels" [plotOptions]="chartOptions1.plotOptions"
         [colors]="chartOptions1.colors" [legend]="chartOptions1.legend">
       </apx-chart>
     </div>

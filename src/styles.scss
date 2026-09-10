@@ -1,13 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-    margin: 0;
-    padding-top: 50px;
-    height: 100vh;
-    overflow: hidden;
+  margin: 0;
+  padding-top: 50% !important;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .overview_parameter_column {
-    background-color: #1930af !important;
+  background-color: #1930af !important;
 }
 
 /* Compressor page loader */
@@ -103,24 +103,51 @@ body {
   animation: bounce-dot 1.2s ease-in-out infinite;
 }
 
-.comp-loader-dots span:nth-child(2) { animation-delay: 0.2s; }
-.comp-loader-dots span:nth-child(3) { animation-delay: 0.4s; }
+.comp-loader-dots span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.comp-loader-dots span:nth-child(3) {
+  animation-delay: 0.4s;
+}
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes spin-reverse {
-  to { transform: rotate(-360deg); }
+  to {
+    transform: rotate(-360deg);
+  }
 }
 
 @keyframes pulse-dot {
-  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-  50% { transform: translate(-50%, -50%) scale(1.4); opacity: 0.7; }
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.4);
+    opacity: 0.7;
+  }
 }
 
 @keyframes bounce-dot {
-  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-  40% { transform: scale(1); opacity: 1; }
-}
 
+  0%,
+  80%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
