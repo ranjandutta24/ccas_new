@@ -5,7 +5,14 @@
   --header-height: 46px;   /* height of the fixed navbar */
   --footer-height: 40px;   /* height of the fixed footer  */
   --content-height: calc(100vh - var(--header-height) - var(--footer-height));
+  /* Loader theme variables */
+  --loader-bg: #F5F5F5;
+  --loader-accent: #4A90E2;
+  --loader-number-color: #4A90E2;
+  --loader-title-color: #4A90E2;
+  --loader-subtitle-color: #666;
 }
+
 
 /* ── Body Reset ──────────────────────────────────────────────────────────── */
 body {
