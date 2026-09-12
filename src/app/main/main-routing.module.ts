@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CompressorsComponent } from './compressors/compressors.component';
 import { EStatusComponent } from './e-status/e-status.component';
 import { OverviewComponent } from './overview/overview.component';
+import { OverviewNewComponent } from './overview-new/overview-new.component';
 // import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'compressors', component: CompressorsComponent },
   { path: 'e-status', component: EStatusComponent },
 
+  { path: 'overview-new', component: OverviewNewComponent },
   // { path: '**', component: NotFoundComponent },     // wildcard route for 404
 ];
 

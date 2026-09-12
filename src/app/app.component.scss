@@ -16,5 +16,5 @@ router-outlet + * {
   flex: 1 1 0;
   min-height: 0;
   height: var(--content-height);
-  overflow: hidden;
+  overflow: auto;
 }

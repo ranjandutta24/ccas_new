@@ -1,0 +1,85 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.wrapper {
+  background-color: #ffffff; /* White background */
+  padding: 30px 15px 50px 15px; /* Added substantial top and bottom padding */
+  height: 100%;
+  overflow: auto; /* Important: allows reset of scroll and prevents clipping */
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.table-container {
+  margin-bottom: 5px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #f9f9f9; /* Light colored table */
+  font-size: 0.95rem; /* Restored to readable size */
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px 10px; /* Restored to normal padding */
+  text-align: left;
+}
+
+/* Header row styling */
+.header-row {
+  background-color: #00bcd4; /* Turquoise / Teal */
+  color: white;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 6px 0;
+}
+
+/* Sub-header row styling */
+.sub-header-row th {
+  color: white;
+  text-align: center;
+}
+
+.colorRed {
+  background-color: #ff5252 !important;
+  color: white;
+}
+
+.colorGreen {
+  background-color: #4caf50 !important;
+  color: white;
+}
+
+.bg-blue {
+  background-color: #000080; /* Dark blue from screenshot */
+  color: white;
+}
+
+.bg-yellow {
+  background-color: #ffb300;
+  color: black !important;
+  text-align: center;
+}
+
+/* Hover effect for rows */
+tbody tr:hover td {
+  background-color: #c8e6c9 !important; /* Green hover effect */
+  cursor: pointer;
+}
+
+/* Parameter column specific width/styling if needed */
+.parameter-col {
+  background-color: #000080;
+  color: white;
+  font-weight: bold;
+}
+
+.data-value {
+  font-weight: 500;
+}

@@ -1,0 +1,83 @@
+<div class="wrapper">
+  <div class="comp-loader-wrapper" *ngIf="!isDataLoaded" style="height: calc(100vh - 95px); background: transparent; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <div>Loading Overview New...</div>
+  </div>
+
+  <div class="table-container" *ngIf="isDataLoaded">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="7" class="header-row">COMPRESSED AIR STATION</th>
+        </tr>
+        <tr class="sub-header-row">
+          <th class="parameter-col">Parameter</th>
+          <th [ngClass]="!isDataLoaded ? '' : (MOTOR_CURR_COMP1 <= 50 ? 'colorRed' : 'colorGreen')">Compressor 1</th>
+          <th [ngClass]="!isDataLoaded ? '' : (MOTOR_CURR_COMP2 <= 50 ? 'colorRed' : 'colorGreen')">Compressor 2</th>
+          <th [ngClass]="!isDataLoaded ? '' : (MOTOR_CURR_COMP3 <= 50 ? 'colorRed' : 'colorGreen')">Compressor 3</th>
+          <th [ngClass]="!isDataLoaded ? '' : (MOTOR_CURR_COMP4 <= 50 ? 'colorRed' : 'colorGreen')">Compressor 4</th>
+          <th [ngClass]="!isDataLoaded ? '' : (MOTOR_CURR_COMP5 <= 50 ? 'colorRed' : 'colorGreen')">Compressor 5</th>
+          <th [ngClass]="!isDataLoaded ? '' : (MOTOR_CURR_COMP6 <= 50 ? 'colorRed' : 'colorGreen')">Compressor 6</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>IGCA Flow<br>(Nm³/hr)</td>
+          <td colspan="6"><span class="data-value">{{ igcaFlow }}</span></td>
+        </tr>
+        <tr>
+          <td>IGCA Pressure<br>(kg/cm²)</td>
+          <td colspan="6"><span class="data-value">{{ igcaPresser }}</span></td>
+        </tr>
+        <tr>
+          <td>PGCA Flow<br>(Nm³/hr)</td>
+          <td colspan="6"><span class="data-value">{{ pgcaFlow }}</span></td>
+        </tr>
+        <tr>
+          <td>PGCA Pressure<br>(kg/cm²)</td>
+          <td colspan="6"><span class="data-value">{{ pgcaPresser }}</span></td>
+        </tr>
+        <tr>
+          <td>Compressor Flow<br>(Nm³/hr)</td>
+          <td><span class="data-value">{{ AI_6_COMP1 }}</span></td>
+          <td><span class="data-value">{{ AI_6_COMP2 }}</span></td>
+          <td><span class="data-value">{{ AI_6_COMP3 }}</span></td>
+          <td><span class="data-value">{{ AI_6_COMP4 }}</span></td>
+          <td><span class="data-value">{{ AI_6_COMP5 }}</span></td>
+          <td><span class="data-value">{{ AI_6_COMP6 }}</span></td>
+        </tr>
+        <tr>
+          <td>Current (amp)</td>
+          <td><span class="data-value">{{ MOTOR_CURR_COMP1 }}</span></td>
+          <td><span class="data-value">{{ MOTOR_CURR_COMP2 }}</span></td>
+          <td><span class="data-value">{{ MOTOR_CURR_COMP3 }}</span></td>
+          <td><span class="data-value">{{ MOTOR_CURR_COMP4 }}</span></td>
+          <td><span class="data-value">{{ MOTOR_CURR_COMP5 }}</span></td>
+          <td><span class="data-value">{{ MOTOR_CURR_COMP6 }}</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-container" style="margin-bottom: 5px;" *ngIf="isDataLoaded">
+    <table>
+      <thead>
+        <tr>
+          <th class="bg-blue" style="text-align: center;">Plant Name</th>
+          <th class="bg-yellow">Instrument Grade Flow<br>(Nm³/hr)</th>
+          <th class="bg-yellow">Instrument Grade Pressure<br>(kg/cm²)</th>
+          <th class="bg-yellow">Plant Grade Flow<br>(Nm³/hr)</th>
+          <th class="bg-yellow">Plant Grade Pressure<br>(kg/cm²)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plant of plants">
+          <td>{{ plant.name }}</td>
+          <td>{{ plant.if }}</td>
+          <td>{{ plant.ip }}</td>
+          <td>{{ plant.pf }}</td>
+          <td>{{ plant.pp }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
