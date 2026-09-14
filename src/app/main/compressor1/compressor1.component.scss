@@ -228,7 +228,7 @@
 }
 
 :host ::ng-deep .apexcharts-datalabel-value {
-  fill: #ffffff !important;
+  fill: #38bdf8 !important;
   font-size: clamp(10px, 1.5vh, 16px) !important;
   font-weight: 700 !important;
 }
@@ -247,15 +247,17 @@
 
 :host ::ng-deep .table-container .overview_parameter_column,
 :host ::ng-deep .table-container .overview_value_column {
-  background: rgba(0, 0, 0, 0.2) !important;
-  color: #e2e8f0 !important;
-  border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(30, 64, 175, 0.35) 100%) !important;
+  color: #0f2744 !important;
+  border-right: 1px solid rgba(56, 189, 248, 0.25) !important;
+  border-bottom: 2px solid rgba(56, 189, 248, 0.5) !important;
   min-width: auto !important;
   width: auto !important;
   text-align: left !important;
-  font-size: clamp(9px, 1.5vh, 13px) !important;
-  font-weight: 700;
+  font-size: clamp(10px, 1.5vh, 14px) !important;
+  font-weight: 800 !important;
   padding: min(0.6vh, 6px) min(1vw, 10px) !important;
+  letter-spacing: 0.3px;
 }
 
 :host ::ng-deep .table-container .overview_value_column {

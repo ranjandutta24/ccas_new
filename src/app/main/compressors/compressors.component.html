@@ -1,4 +1,4 @@
-<div class="page-container">
+<div class="page-container" *ngIf="isDataLoaded; else loadingTpl">
   <div class="button-container">
     <!-- Button 1 -->
     <button
@@ -93,3 +93,18 @@
     </div>
   </div>
 </div>
+
+<ng-template #loadingTpl>
+  <div class="comp-loader-wrapper" style="height: calc(100vh - 95px);">
+    <div class="comp-loader-ring">
+      <div class="comp-loader-dot"></div>
+    </div>
+    <div class="comp-loader-info">
+      <span class="comp-loader-title">Compressors</span>
+      <span class="comp-loader-subtitle">Loading...</span>
+      <div class="comp-loader-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</ng-template>

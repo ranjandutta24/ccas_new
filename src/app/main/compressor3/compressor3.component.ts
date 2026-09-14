@@ -341,6 +341,7 @@ export class Compressor3Component implements OnInit {
               show: false,
             },
             value: {
+              color: '#000000',
               offsetY: -2,
               fontSize: '18px',
               formatter: () => `${value1} / ${max1}`, // show absolute instead of %
@@ -387,6 +388,7 @@ export class Compressor3Component implements OnInit {
               show: false,
             },
             value: {
+              color: '#000000',
               offsetY: -2,
               fontSize: '18px',
               formatter: () => `${value2} / ${max2}`, // show absolute instead of %
@@ -432,6 +434,7 @@ export class Compressor3Component implements OnInit {
               show: false,
             },
             value: {
+              color: '#000000',
               offsetY: -2,
               fontSize: '18px',
               formatter: () => `${value3} / ${max3}`, // show absolute instead of %
@@ -478,6 +481,7 @@ export class Compressor3Component implements OnInit {
               show: false,
             },
             value: {
+              color: '#000000',
               offsetY: -2,
               fontSize: '18px',
               formatter: () => `${value} / ${max}`, // show absolute instead of %
@@ -499,7 +503,11 @@ export class Compressor3Component implements OnInit {
           data[key] = parseFloat(data[key].toFixed(2));
         }
       }
-      this.isStopped = data['MOTOR_CURR_COMP3'] <= 50;
+      this.isStopped = data['MotorCurrent'] <= 50;
+      if (this.isStopped && this.com3) {
+        this.com3 = { ...this.com3, MotorCurrent: data['MotorCurrent'] };
+        return;
+      }
       this.com3 = data;
       // console.log(this.com3['InletAirTempStage3']);
 
@@ -539,6 +547,7 @@ export class Compressor3Component implements OnInit {
             ...currentOptions.plotOptions?.radialBar?.dataLabels,
             value: {
               ...currentOptions.plotOptions?.radialBar?.dataLabels?.value,
+              color: '#000000',
               formatter: () => {
                 const formattedValue = parseFloat(Number(value).toFixed(2));
                 return unit ? `${formattedValue} ${unit}` : `${formattedValue}`;

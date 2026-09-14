@@ -1,9 +1,5 @@
-<div class="wrapper">
-  <div class="comp-loader-wrapper" *ngIf="!isDataLoaded" style="height: calc(100vh - 95px); background: transparent; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-    <div>Loading Overview New...</div>
-  </div>
-
-  <div class="table-container" *ngIf="isDataLoaded">
+<div class="wrapper" *ngIf="isDataLoaded; else loadingTpl">
+  <div class="table-container">
     <table>
       <thead>
         <tr>
@@ -58,7 +54,7 @@
     </table>
   </div>
 
-  <div class="table-container" style="margin-bottom: 5px;" *ngIf="isDataLoaded">
+  <div class="table-container" style="margin-bottom: 5px;">
     <table>
       <thead>
         <tr>
@@ -81,3 +77,18 @@
     </table>
   </div>
 </div>
+
+<ng-template #loadingTpl>
+  <div class="comp-loader-wrapper" style="height: calc(100vh - 95px);">
+    <div class="comp-loader-ring">
+      <div class="comp-loader-dot"></div>
+    </div>
+    <div class="comp-loader-info">
+      <span class="comp-loader-title">Overview New</span>
+      <span class="comp-loader-subtitle">Loading...</span>
+      <div class="comp-loader-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</ng-template>

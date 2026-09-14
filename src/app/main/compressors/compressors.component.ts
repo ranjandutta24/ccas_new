@@ -59,6 +59,7 @@ export class CompressorsComponent implements OnInit, OnDestroy {
   isComp4Stopped: boolean = false;
   isComp5Stopped: boolean = false;
   isComp6Stopped: boolean = false;
+  isDataLoaded: boolean = false;
   private sseSub?: Subscription;
 
   // public chartROptions1: ChartOptions;
@@ -396,6 +397,7 @@ export class CompressorsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sseSub = this.sseService.getServerSentEvent().subscribe((data: any) => {
       if (data) {
+        this.isDataLoaded = true;
         this.isComp1Stopped = (data.MOTOR_CURR_COMP1 <= 50);
         this.isComp2Stopped = (data.MOTOR_CURR_COMP2 <= 50);
         this.isComp3Stopped = (data.MOTOR_CURR_COMP3 <= 50);

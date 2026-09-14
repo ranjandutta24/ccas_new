@@ -340,6 +340,7 @@ export class Compressor2Component implements OnInit {
               show: false,
             },
             value: {
+              color: '#000000',
               offsetY: -2,
               fontSize: '18px',
               formatter: () => `${value1} / ${max1}`, // show absolute instead of %
@@ -386,6 +387,7 @@ export class Compressor2Component implements OnInit {
               show: false,
             },
             value: {
+              color: '#000000',
               offsetY: -2,
               fontSize: '18px',
               formatter: () => `${value2} / ${max2}`, // show absolute instead of %
@@ -431,6 +433,7 @@ export class Compressor2Component implements OnInit {
               show: false,
             },
             value: {
+              color: '#000000',
               offsetY: -2,
               fontSize: '18px',
               formatter: () => `${value3} / ${max3}`, // show absolute instead of %
@@ -477,6 +480,7 @@ export class Compressor2Component implements OnInit {
               show: false,
             },
             value: {
+              color: '#000000',
               offsetY: -2,
               fontSize: '18px',
               formatter: () => `${value} / ${max}`, // show absolute instead of %
@@ -575,6 +579,7 @@ export class Compressor2Component implements OnInit {
             ...currentOptions.plotOptions?.radialBar?.dataLabels,
             value: {
               ...currentOptions.plotOptions?.radialBar?.dataLabels?.value,
+              color: '#000000',
               formatter: () => {
                 const formattedValue = parseFloat(Number(value).toFixed(2));
                 return unit ? `${formattedValue} ${unit}` : `${formattedValue}`;
