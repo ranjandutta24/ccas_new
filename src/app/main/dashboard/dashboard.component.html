@@ -8,8 +8,17 @@
     <!-- DASHBOARD TAB -->
     <ng-container *ngSwitchCase="'dashboard'">
       <div class="main" *ngIf="isDataLoaded; else loadingTpl">
-  <!-- <button (click)="showdata()"></button> -->
-  <div class="status">
+
+        <!-- COMPRESSOR ACCORDION HEADER -->
+        <div class="accordion-header" (click)="togglePanel('compressors')" [class.expanded]="activePanel === 'compressors'">
+          <span>Compressor Current & Flow</span>
+          <span class="accordion-icon">{{ activePanel === 'compressors' ? '▼' : '►' }}</span>
+        </div>
+        
+        <!-- COMPRESSOR ACCORDION CONTENT -->
+        <div class="accordion-content" *ngIf="activePanel === 'compressors'">
+          <!-- <button (click)="showdata()"></button> -->
+          <div class="status">
     <div [ngClass]="MOTOR_CURR_COMP1 <= 50 ? 'textColour1 inactive_design' : 'textColour2 active_design'">
       Compressor I
       <img class="com_icon" [src]="MOTOR_CURR_COMP1 <= 50 ? deactive_compath : active_compath" alt="" />
@@ -125,8 +134,18 @@
       </apx-chart>
     </div>
   </div>
-  <div class="graph3">
-    <div class="each_g3">
+        </div> <!-- End Compressor Accordion Content -->
+
+        <!-- IGCA & PGCA ACCORDION HEADER -->
+        <div class="accordion-header" (click)="togglePanel('igca')" [class.expanded]="activePanel === 'igca'">
+          <span>IGCA & PGCA Flow & Pressure</span>
+          <span class="accordion-icon">{{ activePanel === 'igca' ? '▼' : '►' }}</span>
+        </div>
+        
+        <!-- IGCA & PGCA ACCORDION CONTENT -->
+        <div class="accordion-content" *ngIf="activePanel === 'igca'">
+          <div class="graph3">
+            <div class="each_g3">
       <apx-chart #lineChart [series]="lineChartOptions.series" [chart]="lineChartOptions.chart"
         [stroke]="lineChartOptions.stroke" [dataLabels]="lineChartOptions.dataLabels" [title]="lineChartOptions.title"
         [xaxis]="lineChartOptions.xaxis" [yaxis]="lineChartOptions.yaxis" [grid]="lineChartOptions.grid"
@@ -141,6 +160,7 @@
       </apx-chart>
     </div>
   </div>
+        </div> <!-- End IGCA Accordion Content -->
 </div>
 
 <ng-template #loadingTpl>

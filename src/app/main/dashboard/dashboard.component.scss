@@ -130,6 +130,77 @@
   }
 }
 
+.accordion-header {
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.accordion-header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%; height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-20deg);
+  animation: shimmer 3s infinite linear;
+}
+
+@keyframes shimmer {
+  100% { left: 200%; }
+}
+
+.accordion-header:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  box-shadow: 0 6px 12px rgba(139, 92, 246, 0.3);
+}
+
+.accordion-header span:first-child {
+  display: inline-block;
+  animation: textGlowPulse 2.5s infinite ease-in-out;
+  letter-spacing: 0.5px;
+}
+
+@keyframes textGlowPulse {
+  0% { text-shadow: 0 0 2px rgba(255,255,255,0.1); transform: scale(1); }
+  50% { text-shadow: 0 0 12px rgba(255,255,255,0.9); transform: scale(1.02); }
+  100% { text-shadow: 0 0 2px rgba(255,255,255,0.1); transform: scale(1); }
+}
+
+.accordion-header.expanded {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: -8px;
+  box-shadow: 0 8px 15px rgba(37, 99, 235, 0.4);
+  border-bottom: 2px solid #60a5fa; /* Glowing bottom border indicator */
+}
+
+.accordion-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* Removed flex: 1 so panels take natural height and don't make charts excessively large */
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* --- MAIN CONTAINER --- */
 ::ng-deep {
     .apexcharts-bar-area {
@@ -199,8 +270,9 @@
 }
 
 .graph3 {
-    flex: 1 1 max(25vh, 220px);
+    flex: 0 0 max(40vh, 350px);
     margin-bottom: 2px;
+    padding-top: 15px;
 }
 
 /* --- STATUS CARDS --- */

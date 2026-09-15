@@ -46,6 +46,15 @@ export type LineChartOptions = {
 })
 export class DashboardComponent implements OnInit {
   activeTab: string = 'dashboard';
+  activePanel: 'compressors' | 'igca' = 'compressors';
+
+  togglePanel(panel: 'compressors' | 'igca') {
+    this.activePanel = panel;
+    // We can trigger a window resize event to force ApexCharts to recalculate dimensions since accordion opens/closes
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 50);
+  }
 
   setActiveTab(tab: string) {
     if (this.activeTab !== tab) {
