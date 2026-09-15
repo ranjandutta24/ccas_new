@@ -1,4 +1,13 @@
-<div class="main" *ngIf="isDataLoaded; else loadingTpl">
+<div class="tabs-wrapper">
+  <div class="tab-button-container">
+    <button (click)="setActiveTab('dashboard')" [class.active]="activeTab === 'dashboard'" class="switch-button">System Dashboard</button>
+    <button (click)="setActiveTab('overview')" [class.active]="activeTab === 'overview'" class="switch-button">Detailed Data Overview</button>
+  </div>
+
+  <div class="tab-content" [ngSwitch]="activeTab">
+    <!-- DASHBOARD TAB -->
+    <ng-container *ngSwitchCase="'dashboard'">
+      <div class="main" *ngIf="isDataLoaded; else loadingTpl">
   <!-- <button (click)="showdata()"></button> -->
   <div class="status">
     <div [ngClass]="MOTOR_CURR_COMP1 <= 50 ? 'textColour1 inactive_design' : 'textColour2 active_design'">
@@ -148,3 +157,11 @@
     </div>
   </div>
 </ng-template>
+    </ng-container>
+
+    <!-- OVERVIEW TAB -->
+    <ng-container *ngSwitchCase="'overview'">
+      <app-overview-new></app-overview-new>
+    </ng-container>
+  </div>
+</div>

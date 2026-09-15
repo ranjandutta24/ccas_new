@@ -45,6 +45,25 @@ export type LineChartOptions = {
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+  activeTab: string = 'dashboard';
+
+  setActiveTab(tab: string) {
+    if (this.activeTab !== tab) {
+      this.activeTab = tab;
+      
+      // If switching back to dashboard, show loader momentarily for visual feedback
+      if (tab === 'dashboard') {
+        const wasLoaded = this.isDataLoaded;
+        if (wasLoaded) {
+          this.isDataLoaded = false;
+          setTimeout(() => {
+            this.isDataLoaded = true;
+          }, 800);
+        }
+      }
+    }
+  }
+
   @ViewChild('chart') chart!: ChartComponent;
   @ViewChild('chart1') chart1!: ChartComponent;
   @ViewChild('chart2') chart2!: ChartComponent;
