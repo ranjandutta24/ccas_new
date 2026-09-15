@@ -57,19 +57,19 @@
 
 /* Flex rules to fit in 1 page (Top section made a bit smaller) */
 .status {
-    flex: 0 0 6vh;
+    flex: 0 0 max(6vh, 60px);
 }
 
 .graph1 {
-    flex: 0 1 21vh;
+    flex: 0 1 max(15vh, 130px);
 }
 
 .graph2 {
-    flex: 0 1 21vh;
+    flex: 0 1 max(15vh, 130px);
 }
 
 .graph3 {
-    flex: 1 1 40vh;
+    flex: 1 1 max(25vh, 220px);
     margin-bottom: 2px;
 }
 
