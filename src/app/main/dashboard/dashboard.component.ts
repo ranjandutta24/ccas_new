@@ -572,12 +572,26 @@ export class DashboardComponent implements OnInit {
         height: '100%',
         width: '100%',
         type: 'line',
+        animations: {
+          enabled: true,
+          easing: 'easeinout',
+          speed: 800,
+          animateGradually: {
+            enabled: true,
+            delay: 150
+          },
+          dynamicAnimation: {
+            enabled: true,
+            speed: 350
+          }
+        },
         zoom: {
           enabled: false,
         },
         toolbar: {
           show: false,
         },
+        offsetX: 10,
       },
       dataLabels: {
         enabled: true,
@@ -620,6 +634,10 @@ export class DashboardComponent implements OnInit {
           colors: ['#f3f3f3', 'transparent'],
           opacity: 0.5,
         },
+        padding: {
+          left: 20,
+          right: 20,
+        },
       },
       xaxis: {
         categories: [],
@@ -633,10 +651,7 @@ export class DashboardComponent implements OnInit {
         },
         labels: {
           hideOverlappingLabels: true,
-          // formatter: function (value: string, timestamp: any, opts: any) {
-          //   const index = opts?.i; // ApexCharts passes category index in opts.i
-          //   return index % 10 === 0 ? value : '';
-          // },
+          offsetX: 15,
         },
       },
       yaxis: {
@@ -647,6 +662,11 @@ export class DashboardComponent implements OnInit {
             fontWeight: 'bold',
             color: '#263238',
           },
+        },
+        labels: {
+          minWidth: 50,
+          maxWidth: 60,
+          offsetY: -5,
         },
         // min: 15,
         // max: 35,
@@ -670,12 +690,26 @@ export class DashboardComponent implements OnInit {
         height: '100%',
         width: '100%',
         type: 'line',
+        animations: {
+          enabled: true,
+          easing: 'easeinout',
+          speed: 800,
+          animateGradually: {
+            enabled: true,
+            delay: 150
+          },
+          dynamicAnimation: {
+            enabled: true,
+            speed: 350
+          }
+        },
         zoom: {
           enabled: false,
         },
         toolbar: {
           show: false,
         },
+        offsetX: 10,
       },
       dataLabels: {
         enabled: true,
@@ -718,6 +752,10 @@ export class DashboardComponent implements OnInit {
           colors: ['#f3f3f3', 'transparent'],
           opacity: 0.5,
         },
+        padding: {
+          left: 20,
+          right: 20,
+        },
       },
       xaxis: {
         categories: [],
@@ -729,6 +767,9 @@ export class DashboardComponent implements OnInit {
             color: '#263238',
           },
         },
+        labels: {
+          offsetX: 15,
+        },
       },
       yaxis: {
         title: {
@@ -738,6 +779,11 @@ export class DashboardComponent implements OnInit {
             fontWeight: 'bold',
             color: '#263238',
           },
+        },
+        labels: {
+          minWidth: 50,
+          maxWidth: 60,
+          offsetY: -5,
         },
         // min: 6.3,
         // max: 7.2,
