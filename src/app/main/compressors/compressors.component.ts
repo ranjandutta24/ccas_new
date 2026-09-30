@@ -29,7 +29,7 @@ export type ChartOptions = {
 export type ChartROptions = {
   series: ApexNonAxisChartSeries;
   chart: ApexChart;
-  labels: string[];
+  labels: string[]
   plotOptions: ApexPlotOptions;
   fill: ApexFill;
 };
@@ -100,6 +100,10 @@ export class CompressorsComponent implements OnInit, OnDestroy {
       plotOptions: {
         bar: {
           horizontal: true,
+          dataLabels: {
+            position: 'top',
+            hideOverflowingLabels: false
+          }
         },
       },
       colors: ['#208705'],

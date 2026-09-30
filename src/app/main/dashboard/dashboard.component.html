@@ -50,7 +50,7 @@
       <p class="unit" style="margin: 0px">Compressor 1 Current (Amp)</p>
       <apx-chart #chart1 [series]="chartOptions1.series" [chart]="chartOptions1.chart"
         [dataLabels]="chartOptions1.dataLabels" [plotOptions]="chartOptions1.plotOptions"
-        [colors]="chartOptions1.colors" [legend]="chartOptions1.legend">
+        [colors]="chartOptions1.colors" [legend]="chartOptions1.legend" [dataLabels]="chartOptions1.dataLabels">
       </apx-chart>
     </div>
 
@@ -58,35 +58,35 @@
       <p class="unit" style="margin: 0px">Compressor 2 Current (Amp)</p>
       <apx-chart #chart2 [series]="chartOptions2.series" [chart]="chartOptions2.chart"
         [dataLabels]="chartOptions2.dataLabels" [plotOptions]="chartOptions2.plotOptions"
-        [legend]="chartOptions2.legend" [colors]="chartOptions2.colors">
+        [legend]="chartOptions2.legend" [dataLabels]="chartOptions2.dataLabels" [colors]="chartOptions2.colors">
       </apx-chart>
     </div>
     <div class="each_g1" [ngClass]="MOTOR_CURR_COMP3 <= 50 ? 'bg_off' : 'bg_on'">
       <p class="unit" style="margin: 0px">Compressor 3 Current (Amp)</p>
       <apx-chart #chart3 [series]="chartOptions3.series" [chart]="chartOptions3.chart"
         [plotOptions]="chartOptions3.plotOptions" [dataLabels]="chartOptions3.dataLabels"
-        [colors]="chartOptions3.colors" [legend]="chartOptions3.legend">
+        [colors]="chartOptions3.colors" [legend]="chartOptions3.legend" [dataLabels]="chartOptions3.dataLabels">
       </apx-chart>
     </div>
     <div class="each_g1" [ngClass]="MOTOR_CURR_COMP4 <= 50 ? 'bg_off' : 'bg_on'">
       <p class="unit" style="margin: 0px">Compressor 4 Current (Amp)</p>
       <apx-chart #chart4 [series]="chartOptions4.series" [chart]="chartOptions4.chart"
         [plotOptions]="chartOptions4.plotOptions" [dataLabels]="chartOptions4.dataLabels"
-        [colors]="chartOptions4.colors" [legend]="chartOptions4.legend">
+        [colors]="chartOptions4.colors" [legend]="chartOptions4.legend" [dataLabels]="chartOptions4.dataLabels">
       </apx-chart>
     </div>
     <div class="each_g1" [ngClass]="MOTOR_CURR_COMP5 <= 50 ? 'bg_off' : 'bg_on'">
       <p class="unit" style="margin: 0px">Compressor 5 Current (Amp)</p>
       <apx-chart #chart5 [series]="chartOptions5.series" [chart]="chartOptions5.chart"
         [plotOptions]="chartOptions5.plotOptions" [dataLabels]="chartOptions5.dataLabels"
-        [colors]="chartOptions5.colors" [legend]="chartOptions5.legend">
+        [colors]="chartOptions5.colors" [legend]="chartOptions5.legend" [dataLabels]="chartOptions5.dataLabels">
       </apx-chart>
     </div>
     <div class="each_g1" [ngClass]="MOTOR_CURR_COMP6 <= 50 ? 'bg_off' : 'bg_on'">
       <p class="unit" style="margin: 0px">Compressor 6 Current (Amp)</p>
       <apx-chart #chart6 [series]="chartOptions6.series" [chart]="chartOptions6.chart"
         [plotOptions]="chartOptions6.plotOptions" [dataLabels]="chartOptions6.dataLabels"
-        [colors]="chartOptions6.colors" [legend]="chartOptions6.legend">
+        [colors]="chartOptions6.colors" [legend]="chartOptions6.legend" [dataLabels]="chartOptions6.dataLabels">
       </apx-chart>
     </div>
   </div>
@@ -95,42 +95,42 @@
       <p class="unit" style="margin: 0px">Compressor 1 Flow (Nm³/hr)</p>
       <apx-chart #chart7 [series]="chartOptions7.series" [chart]="chartOptions7.chart"
         [dataLabels]="chartOptions7.dataLabels" [plotOptions]="chartOptions7.plotOptions"
-        [legend]="chartOptions7.legend" [colors]="chartOptions7.colors">
+        [legend]="chartOptions7.legend" [dataLabels]="chartOptions7.dataLabels" [colors]="chartOptions7.colors">
       </apx-chart>
     </div>
     <div class="each_g2" [ngClass]="MOTOR_CURR_COMP2 <= 50 ? 'bg_off' : 'bg_on'">
       <p class="unit" style="margin: 0px">Compressor 2 Flow (Nm³/hr)</p>
       <apx-chart #chart8 [series]="chartOptions8.series" [chart]="chartOptions8.chart"
         [plotOptions]="chartOptions8.plotOptions" [dataLabels]="chartOptions8.dataLabels"
-        [colors]="chartOptions8.colors" [legend]="chartOptions8.legend">
+        [colors]="chartOptions8.colors" [legend]="chartOptions8.legend" [dataLabels]="chartOptions8.dataLabels">
       </apx-chart>
     </div>
     <div class="each_g2" [ngClass]="MOTOR_CURR_COMP3 <= 50 ? 'bg_off' : 'bg_on'">
       <p class="unit" style="margin: 0px">Compressor 3 Flow (Nm³/hr)</p>
       <apx-chart #chart9 [series]="chartOptions9.series" [chart]="chartOptions9.chart"
         [plotOptions]="chartOptions9.plotOptions" [dataLabels]="chartOptions9.dataLabels"
-        [colors]="chartOptions9.colors" [legend]="chartOptions9.legend">
+        [colors]="chartOptions9.colors" [legend]="chartOptions9.legend" [dataLabels]="chartOptions9.dataLabels">
       </apx-chart>
     </div>
     <div class="each_g2" [ngClass]="MOTOR_CURR_COMP4 <= 50 ? 'bg_off' : 'bg_on'">
       <p class="unit" style="margin: 0px">Compressor 4 Flow (Nm³/hr)</p>
       <apx-chart #chart10 [series]="chartOptions10.series" [chart]="chartOptions10.chart"
         [plotOptions]="chartOptions10.plotOptions" [dataLabels]="chartOptions10.dataLabels"
-        [colors]="chartOptions10.colors" [legend]="chartOptions10.legend">
+        [colors]="chartOptions10.colors" [legend]="chartOptions10.legend" [dataLabels]="chartOptions10.dataLabels">
       </apx-chart>
     </div>
     <div class="each_g2" [ngClass]="MOTOR_CURR_COMP5 <= 50 ? 'bg_off' : 'bg_on'">
       <p class="unit" style="margin: 0px">Compressor 5 Flow (Nm³/hr)</p>
       <apx-chart #chart11 [series]="chartOptions11.series" [chart]="chartOptions11.chart"
         [plotOptions]="chartOptions11.plotOptions" [dataLabels]="chartOptions11.dataLabels"
-        [colors]="chartOptions11.colors" [legend]="chartOptions11.legend">
+        [colors]="chartOptions11.colors" [legend]="chartOptions11.legend" [dataLabels]="chartOptions11.dataLabels">
       </apx-chart>
     </div>
     <div class="each_g2" [ngClass]="MOTOR_CURR_COMP6 <= 50 ? 'bg_off' : 'bg_on'">
       <p class="unit" style="margin: 0px">Compressor 6 Flow (Nm³/hr)</p>
       <apx-chart #chart12 [series]="chartOptions12.series" [chart]="chartOptions12.chart"
         [plotOptions]="chartOptions12.plotOptions" [dataLabels]="chartOptions12.dataLabels"
-        [colors]="chartOptions12.colors" [legend]="chartOptions12.legend">
+        [colors]="chartOptions12.colors" [legend]="chartOptions12.legend" [dataLabels]="chartOptions12.dataLabels">
       </apx-chart>
     </div>
   </div>

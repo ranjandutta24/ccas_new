@@ -24,6 +24,7 @@ export type ChartOptions = {
   plotOptions: ApexPlotOptions;
   legend: ApexLegend;
   colors: string[];
+  xaxis?: ApexXAxis;
 };
 
 export type ChartROptions = {
@@ -96,9 +97,7 @@ export class Compressor2Component implements OnInit {
             reset: true,
           },
         },
-        animations: {
-          enabled: false,
-        },
+        animations: { enabled: false, dynamicAnimation: { enabled: false } },
       } as ApexChart,
       plotOptions: {
         bar: {
@@ -316,6 +315,7 @@ export class Compressor2Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
+        animations: { enabled: false, dynamicAnimation: { enabled: false } },
         height: 200,
         // width: 300,
       },
@@ -363,6 +363,7 @@ export class Compressor2Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
+        animations: { enabled: false, dynamicAnimation: { enabled: false } },
         height: 200,
         // width: 300,
       },
@@ -409,6 +410,7 @@ export class Compressor2Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
+        animations: { enabled: false, dynamicAnimation: { enabled: false } },
         height: 200,
         // width: 300,
       },
@@ -456,6 +458,7 @@ export class Compressor2Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
+        animations: { enabled: false, dynamicAnimation: { enabled: false } },
         height: 200,
         // width: 300,
       },
@@ -541,12 +544,12 @@ export class Compressor2Component implements OnInit {
       }
       this.com2 = data;
 
-      this.updateChart('chartOptions1', this.com2['LubeOilTemp'], 600);
-      this.updateChart('chartOptions2', this.com2['DischargeAirTemp'], 600);
-      this.updateChart('chartOptions3', this.com2['InletAirTempStage'], 250);
-      this.updateChart('chartOptions4', this.com2['InletAirTempStage3'], 250);
+      this.updateChart('chartOptions1', this.com2['LubeOilTemp'], 60);
+      this.updateChart('chartOptions2', this.com2['DischargeAirTemp'], 60);
+      this.updateChart('chartOptions3', this.com2['InletAirTempStage'], 60);
+      this.updateChart('chartOptions4', this.com2['InletAirTempStage3'], 60);
 
-      this.updateChart('chartOptions5', this.com2['MOTOR_CURR_COMP2'], 600);
+      this.updateChart('chartOptions5', this.com2['MOTOR_CURR_COMP2'], 105);
       this.updateChart('chartOptions6', this.com2['VibrationStage1'], 100);
       this.updateChart('chartOptions7', this.com2['VibrationStgae2'], 100);
       this.updateChart('chartOptions8', this.com2['VibrationStage3'] || 0, 100);
@@ -621,6 +624,7 @@ export class Compressor2Component implements OnInit {
           ],
         },
       ],
+      xaxis: { min: 0, max: limit, tickAmount: 5 },
     };
   }
 

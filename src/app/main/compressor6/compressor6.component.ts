@@ -104,10 +104,18 @@ export class Compressor6Component implements OnInit {
       plotOptions: {
         bar: {
           horizontal: true,
+          dataLabels: {
+            position: 'top',
+            hideOverflowingLabels: false
+          }
         },
       },
       colors: ['#208705'],
       dataLabels: {
+        enabled: true,
+        style: {
+          colors: ['#000']
+        },
         formatter: function (val: any, opts: any) {
           const goals =
             opts.w.config.series[opts.seriesIndex].data[opts.dataPointIndex]
