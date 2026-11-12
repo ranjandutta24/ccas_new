@@ -24,6 +24,7 @@ export type ChartOptions = {
   plotOptions: ApexPlotOptions;
   legend: ApexLegend;
   colors: string[];
+  xaxis?: any;
 };
 
 export type ChartROptions = {
@@ -98,9 +99,7 @@ export class Compressor5Component implements OnInit {
             reset: true,
           },
         },
-        animations: {
-          enabled: false,
-        },
+        animations: { enabled: false, dynamicAnimation: { enabled: false } },
       } as ApexChart,
       plotOptions: {
         bar: {
@@ -151,7 +150,7 @@ export class Compressor5Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 600,
+                  value: 60,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -173,7 +172,7 @@ export class Compressor5Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 600,
+                  value: 60,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -195,7 +194,7 @@ export class Compressor5Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 134,
+                  value: 60,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -217,7 +216,7 @@ export class Compressor5Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 100,
+                  value: 60,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -240,7 +239,7 @@ export class Compressor5Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 600,
+                  value: 300,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -262,7 +261,7 @@ export class Compressor5Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 600,
+                  value: 100,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -284,7 +283,7 @@ export class Compressor5Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 134,
+                  value: 100,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -326,6 +325,7 @@ export class Compressor5Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
+        animations: { enabled: false, dynamicAnimation: { enabled: false } },
         height: 200,
         // width: 300,
       },
@@ -373,6 +373,7 @@ export class Compressor5Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
+        animations: { enabled: false, dynamicAnimation: { enabled: false } },
         height: 200,
         // width: 300,
       },
@@ -419,6 +420,7 @@ export class Compressor5Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
+        animations: { enabled: false, dynamicAnimation: { enabled: false } },
         height: 200,
         // width: 300,
       },
@@ -466,6 +468,7 @@ export class Compressor5Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
+        animations: { enabled: false, dynamicAnimation: { enabled: false } },
         height: 200,
         // width: 300,
       },
@@ -518,12 +521,12 @@ export class Compressor5Component implements OnInit {
       this.com5 = data;
       // console.log(this.com5['InletAirTempStage3']);
 
-      this.updateChart('chartOptions1', this.com5['LubeoilTemp'], 600);
-      this.updateChart('chartOptions2', this.com5['DischargeAirTemp'], 600);
-      this.updateChart('chartOptions3', this.com5['InletAirTempStage2'], 250);
-      this.updateChart('chartOptions4', this.com5['InletAirTempStage3'], 250);
+      this.updateChart('chartOptions1', this.com5['LubeoilTemp'], 60);
+      this.updateChart('chartOptions2', this.com5['DischargeAirTemp'], 60);
+      this.updateChart('chartOptions3', this.com5['InletAirTempStage2'], 60);
+      this.updateChart('chartOptions4', this.com5['InletAirTempStage3'], 60);
 
-      this.updateChart('chartOptions5', this.com5['MOTOR_CURR_COMP5'], 600);
+      this.updateChart('chartOptions5', this.com5['MOTOR_CURR_COMP5'], 300);
       this.updateChart('chartOptions6', this.com5['VibrationStage1'] || 0, 100);
       this.updateChart('chartOptions7', this.com5['VibrationStgae2'], 100);
       this.updateChart('chartOptions8', this.com5['VibrationStgae3'] || 0, 100);
@@ -577,9 +580,8 @@ export class Compressor5Component implements OnInit {
     value: number,
     limit: number
   ): void {
-    this[chartKey] = {
-      ...this[chartKey],
-      series: [
+    if (this[chartKey]) {
+      this[chartKey].series = [
         {
           name: 'Actual',
           data: [
@@ -597,8 +599,9 @@ export class Compressor5Component implements OnInit {
             },
           ],
         },
-      ],
-    };
+      ];
+      this[chartKey].xaxis = { min: 0, max: limit, tickAmount: 5 };
+    }
   }
   ngOnDestroy(): void {
     if (this.sseSub) {

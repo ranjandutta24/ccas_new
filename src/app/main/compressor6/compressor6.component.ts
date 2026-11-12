@@ -24,6 +24,7 @@ export type ChartOptions = {
   plotOptions: ApexPlotOptions;
   legend: ApexLegend;
   colors: string[];
+  xaxis?: any;
 };
 
 export type ChartROptions = {
@@ -97,9 +98,7 @@ export class Compressor6Component implements OnInit {
             reset: true,
           },
         },
-        animations: {
-          enabled: false,
-        },
+        animations: { enabled: false, dynamicAnimation: { enabled: false } },
       } as ApexChart,
       plotOptions: {
         bar: {
@@ -150,7 +149,7 @@ export class Compressor6Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 600,
+                  value: 60,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -172,7 +171,7 @@ export class Compressor6Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 600,
+                  value: 60,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -194,7 +193,7 @@ export class Compressor6Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 134,
+                  value: 60,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -216,7 +215,7 @@ export class Compressor6Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 100,
+                  value: 60,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -239,7 +238,7 @@ export class Compressor6Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 600,
+                  value: 105,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -261,7 +260,7 @@ export class Compressor6Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 600,
+                  value: 100,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -283,7 +282,7 @@ export class Compressor6Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 134,
+                  value: 100,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -325,6 +324,7 @@ export class Compressor6Component implements OnInit {
       chart: {
         type: 'radialBar',
         offsetY: -20,
+        animations: { enabled: false, dynamicAnimation: { enabled: false } },
         height: 200,
         // width: 300,
       },
@@ -520,12 +520,12 @@ export class Compressor6Component implements OnInit {
       this.com6 = data;
       // console.log(this.com6['InletAirTempStage3']);
 
-      this.updateChart('chartOptions1', this.com6['LubeOilTemp'], 600);
-      this.updateChart('chartOptions2', this.com6['DischargeAirTemp'], 600);
-      this.updateChart('chartOptions3', this.com6['InletAirTemStage'] || 0, 250);
-      this.updateChart('chartOptions4', this.com6['InletAirTempStage2'], 250);
+      this.updateChart('chartOptions1', this.com6['LubeOilTemp'], 60);
+      this.updateChart('chartOptions2', this.com6['DischargeAirTemp'], 60);
+      this.updateChart('chartOptions3', this.com6['InletAirTemStage'] || 0, 60);
+      this.updateChart('chartOptions4', this.com6['InletAirTempStage2'], 60);
 
-      this.updateChart('chartOptions5', this.com6['MOTOR_CURR_COMP6'], 600);
+      this.updateChart('chartOptions5', this.com6['MOTOR_CURR_COMP6'], 105);
       this.updateChart('chartOptions6', this.com6['VibrationStage1'] || 0, 100);
       this.updateChart('chartOptions7', this.com6['VibrationStage2'], 100);
       this.updateChart('chartOptions8', this.com6['VibrationStgae3'] || 0, 100);
@@ -579,9 +579,8 @@ export class Compressor6Component implements OnInit {
     value: number,
     limit: number
   ): void {
-    this[chartKey] = {
-      ...this[chartKey],
-      series: [
+    if (this[chartKey]) {
+      this[chartKey].series = [
         {
           name: 'Actual',
           data: [
@@ -599,8 +598,9 @@ export class Compressor6Component implements OnInit {
             },
           ],
         },
-      ],
-    };
+      ];
+      this[chartKey].xaxis = { min: 0, max: limit, tickAmount: 5 };
+    }
   }
   //sourav code
 

@@ -24,7 +24,7 @@ export type ChartOptions = {
   plotOptions: ApexPlotOptions;
   legend: ApexLegend;
   colors: string[];
-  xaxis?: ApexXAxis;
+  xaxis?: any;
 };
 
 export type ChartROptions = {
@@ -103,10 +103,18 @@ export class Compressor4Component implements OnInit {
       plotOptions: {
         bar: {
           horizontal: true,
+          dataLabels: {
+            position: 'top',
+            hideOverflowingLabels: false
+          }
         },
       },
       colors: ['#208705'],
       dataLabels: {
+        enabled: true,
+        style: {
+          colors: ['#000']
+        },
         formatter: function (val: any, opts: any) {
           const goals =
             opts.w.config.series[opts.seriesIndex].data[opts.dataPointIndex]
@@ -141,7 +149,7 @@ export class Compressor4Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 600,
+                  value: 60,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -163,7 +171,7 @@ export class Compressor4Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 600,
+                  value: 60,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -185,7 +193,7 @@ export class Compressor4Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 134,
+                  value: 60,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -207,7 +215,7 @@ export class Compressor4Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 100,
+                  value: 60,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -230,7 +238,7 @@ export class Compressor4Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 600,
+                  value: 300,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -252,7 +260,7 @@ export class Compressor4Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 600,
+                  value: 100,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -274,7 +282,7 @@ export class Compressor4Component implements OnInit {
               goals: [
                 {
                   name: 'Expected',
-                  value: 134,
+                  value: 100,
                   strokeWidth: 5,
                   strokeColor: '#775DD0',
                 },
@@ -518,10 +526,10 @@ export class Compressor4Component implements OnInit {
 
       this.updateChart('chartOptions1', this.com4['LubeOilTemp'], 60);
       this.updateChart('chartOptions2', this.com4['DischargeAirTemp'], 60);
-      this.updateChart('chartOptions3', this.com4['InletAirTempStage2'], 250);
-      this.updateChart('chartOptions4', this.com4['InletAirTemStage'], 250);
+      this.updateChart('chartOptions3', this.com4['InletAirTempStage2'], 60);
+      this.updateChart('chartOptions4', this.com4['InletAirTemStage'], 60);
 
-      this.updateChart('chartOptions5', this.com4['MOTOR_CURR_COMP4'], 105);
+      this.updateChart('chartOptions5', this.com4['MOTOR_CURR_COMP4'], 300);
       this.updateChart('chartOptions6', this.com4['VibrationStgae1'] || 0, 100);
       this.updateChart('chartOptions7', this.com4['VibrationStage2'], 100);
       this.updateChart('chartOptions8', this.com4['VibrationStgae3'] || 0, 100);
@@ -574,9 +582,8 @@ export class Compressor4Component implements OnInit {
     value: number,
     limit: number
   ): void {
-    this[chartKey] = {
-      ...this[chartKey],
-      series: [
+    if (this[chartKey]) {
+      this[chartKey].series = [
         {
           name: 'Actual',
           data: [
@@ -594,9 +601,9 @@ export class Compressor4Component implements OnInit {
             },
           ],
         },
-      ],
-      xaxis: { min: 0, max: limit, tickAmount: 5 },
-    };
+      ];
+      this[chartKey].xaxis = { min: 0, max: limit, tickAmount: 5 };
+    }
   }
   //sourav code
   ngOnDestroy(): void {
